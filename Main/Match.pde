@@ -26,3 +26,4 @@ class Match {
   public void addEvent(Event e){
     events.add(e);
   }
+}
