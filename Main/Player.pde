@@ -21,6 +21,4 @@ class Player {
     events.add(event);
     
   }
-  
-}
-}
+}}}

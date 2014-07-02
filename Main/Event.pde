@@ -1,21 +1,18 @@
+import java.util.*;
+
 class Event{
   EventTypes eventType;
-  String eventDescription;
+  Date eventTime;
   
-  
-  
-  public Event(EventTypes eventType, String eventDescription){
+  public Event(EventTypes eventType, Date eventTime){
     this.eventType = eventType;
-    
     
   }
   
   public EventTypes getEventType(){
-    
     return eventType;
   }
   
-  public String getEventDescription(){
-    
-    return eventDescription;
+  public Date getEventTime(){
+    return eventTime;
   }

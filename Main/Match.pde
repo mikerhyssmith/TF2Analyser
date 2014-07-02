@@ -1,20 +1,28 @@
 class Match {
   
   String mapName;
-  GameModes gameMode;
+  ArrayList<Event> events;
   
-  
-  public Match(String mapName, GameModes gameMode){
+  public Match(String mapName){
     
     this.mapName = mapName;
-    this.gameMode = gameMode;
+    events = new ArrayList<Event>();
     
-  }
-  
-  public GameModes getGameMode(){
-    return gameMode;
   }
   
   public String getMapName(){
     return mapName;
+  }
+  
+  public ArrayList<Event> getEvents(){
+    return events;
+  }
+  
+  public void setEvents(ArrayList<Event> events)
+  {
+    this.events = events;
+  }
+  
+  public void addEvent(Event e){
+    events.add(e);
   }
