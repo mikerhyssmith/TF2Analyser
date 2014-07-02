@@ -1,10 +1,11 @@
 import java.util.*;
+import java.sql.Time;
 
 class Event{
   EventTypes eventType;
-  Date eventTime;
+  Time eventTime;
   
-  public Event(EventTypes eventType, Date eventTime){
+  public Event(EventTypes eventType, Time eventTime){
     this.eventType = eventType;
     
   }
@@ -13,6 +14,6 @@ class Event{
     return eventType;
   }
   
-  public Date getEventTime(){
+  public Time getEventTime(){
     return eventTime;
   }
