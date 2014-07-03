@@ -14,14 +14,19 @@ class FileReader {
     matches = new ArrayList<Match>();
   }
   
- public boolean processFile(String[] data) {
+  public boolean processFile(String[] data) {
+    boolean matchCreated = false;
 
     for (int i = 0; i < data.length; i++) {
       // New Match
       if (data[i].startsWith("Map: ")) {
-       
+        if (matchCreated) {
+          matches.add(currentMatch);
+        }
+
         String mapName = data[i].substring(5);
         currentMatch = new Match(mapName);
+        matchCreated = true;
         matches.add(currentMatch);
       }
 
@@ -57,11 +62,32 @@ class FileReader {
         KillEvent currentEvent = new KillEvent(time, killer, victim,
             weaponName, crit);
         currentMatch.addEvent(currentEvent);
-      }
+      }else  if (data[i].contains(" defended ") && data[i].contains(" for team ")) {
+            
+        int timePosition = data[i].indexOf(": ");
+        int hours = Integer.valueOf(data[i].substring(timePosition - 8, timePosition - 6));
+        int minutes = Integer.valueOf(data[i].substring(timePosition - 5,timePosition - 3));
+        int seconds = Integer.valueOf(data[i].substring(timePosition - 2, timePosition));
+        Time time = new Time(hours,minutes,seconds);
+            
+        String eventDesc = data[i].substring(timePosition + 2);
+        
+        int defendedPosition = eventDesc.indexOf(" defended ");
+        int teamPosition = eventDesc.indexOf(" for ");
+        
+        String defender = eventDesc.substring(0, defendedPosition);
+        String team = eventDesc.substring(teamPosition + 5);
+        String defendedObject = eventDesc.substring(defendedPosition+14, teamPosition);
+        
+        DefendEvent currentEvent = new DefendEvent(time,defender,defendedObject,team);
+        currentMatch.addEvent(currentEvent);
+        }
     }
-    matches.add(currentMatch);
+ 
+    
     return false;
   }
+
 
   public String[] getData() {
     return data;
