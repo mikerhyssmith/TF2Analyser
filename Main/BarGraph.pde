@@ -41,7 +41,6 @@ class BarGraph{
     int h=0;
     int x = 0;
     //Need to put checks in to make sure bars arent too narrow
-    System.out.println(deaths.size());
     int barWidth = (width - ((deaths.size()-1)*seperation)) / deaths.size();
     
     //Just one colour for now
