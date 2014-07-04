@@ -1,5 +1,8 @@
+import java.util.Enumeration;
+import java.util.Hashtable;
+
 class BarGraph{
-  DeathCount[] deaths;
+  Hashtable<String,DeathCount> deaths;
   int width;
   int height;
   int seperation;
@@ -7,7 +10,7 @@ class BarGraph{
   int maxKills=0;
   boolean showCrits=false;
   
-  Pfont arial;
+  PFont arial;
   
   public BarGraph(Hashtable<String,DeathCount> deaths, int width, int height, int seperation){
     this.deaths = deaths;
@@ -38,7 +41,8 @@ class BarGraph{
     int h=0;
     int x = 0;
     //Need to put checks in to make sure bars arent too narrow
-    int barWidth = (width - ((deaths.length-1)*seperation)) / deaths.length;
+    System.out.println(deaths.size());
+    int barWidth = (width - ((deaths.size()-1)*seperation)) / deaths.size();
     
     //Just one colour for now
     fill(50);
@@ -53,20 +57,21 @@ class BarGraph{
       death = deaths.get(key);
       
       //Scale bar heights so that the highest is as tall as the graph
-      h = map(death.getCount(),0,maxKills,0,height);
+      h =  (int) map(death.getCount(),0,maxKills,0,height);
       
+      fill(100);
       rect(x,height-h,barWidth,h);
       
       textFont(arial);       
       fill(0);
-      text(death.getCause(),x+barWidth/2,height-h); 
+      text(death.getCause(),x+barWidth/2,height/2); 
       
-      if((mouseX>x && mouseX<=x+barWidth)||showCrits){
+      if((mouseX>x && mouseX<=x+barWidth)){
         fill(255,40,40);
-        h = map(death.getCritCount(),0,maxKills,0,height);
+        h = (int) map(death.getCritCount(),0,maxKills,0,height);
         rect(x,height-h,barWidth,h);
       }
-      x+=seperation;
+      x+=(seperation+barWidth);
     }
   }
 }

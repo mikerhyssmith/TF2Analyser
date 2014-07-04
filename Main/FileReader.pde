@@ -12,6 +12,7 @@ class FileReader {
     
     data = loadStrings(fileName);
     matches = new ArrayList<Match>();
+    
   }
   
   public boolean processFile(String[] data) {
@@ -19,12 +20,14 @@ class FileReader {
 
     for (int i = 0; i < data.length; i++) {
       // New Match
+      System.out.println(data[i]);
       if (data[i].startsWith("Map: ")) {
         if (matchCreated) {
           matches.add(currentMatch);
         }
 
         String mapName = data[i].substring(5);
+        System.out.println("Map Name: " + mapName);
         currentMatch = new Match(mapName);
         matchCreated = true;
         matches.add(currentMatch);
@@ -93,6 +96,7 @@ class FileReader {
     return data;
   }
   public ArrayList<Match> getMatches(){
+    System.out.println("Number of Matches " + matches.size());
     return matches;
   }
   
