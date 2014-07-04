@@ -9,10 +9,10 @@ class UserInterface {
     
     this.cP5 = cp5;
     cP5.setColorForeground(0xffaa0000);
-    cP5.setColorBackground(0xff660000);
+    cP5.setColorBackground(0xff385C78);
     cP5.setColorLabel(0xffdddddd);
-    cP5.setColorValue(0xffff88ff);
-    cP5.setColorActive(0xffff0000);
+    cP5.setColorValue(0xff342F2C);
+    cP5.setColorActive(0xff9D302F);
     
     
     setupGUI();
