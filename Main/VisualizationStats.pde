@@ -1,0 +1,7 @@
+class VisualizationStats {
+  
+  public VisualizationStats(){
+    
+  }
+  
+}
