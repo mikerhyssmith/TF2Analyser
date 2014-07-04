@@ -26,7 +26,6 @@ class DeathCount{
     this.critCount = count;
   }
   
-  
   public void addCrit(){
     critCount++;
     count++;
