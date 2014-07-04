@@ -15,8 +15,8 @@ void setup() {
   reader.processFile(reader.getData());
   Hashtable<String, DeathCount> deaths;
   DataProcessor processor = new DataProcessor(reader.getMatches());
-  deaths = processor.getDeaths("Mr.Sacha[FR]");
-  graph = new BarGraph(deaths,400,400,20);
+  deaths = processor.getMatchDeaths(1);
+  graph = new BarGraph(deaths,800,600,10);
           
   
 }
