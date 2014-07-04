@@ -9,7 +9,6 @@ class Match {
     
     this.mapName = mapName;
     events = new ArrayList<Event>();
-    
   }
   
   public String getMapName(){

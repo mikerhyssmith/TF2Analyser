@@ -6,9 +6,9 @@ class Event{
   Time eventTime;
   
   public Event(EventTypes eventType, Time eventTime){
+    
     this.eventType = eventType;
     this.eventTime = eventTime;
-    
   }
   
   public EventTypes getEventType(){

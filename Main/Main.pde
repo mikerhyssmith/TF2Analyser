@@ -9,19 +9,16 @@ String filename;
 boolean graphDrawn = false;
 Area graphArea;
 Area statsArea;
+UserInterface UI;
 
 void setup() {
   
   size(800,600);
   smooth();
   cP5 = new ControlP5(this);
-  UserInterface UI = new UserInterface(cP5);
+  UI = new UserInterface(cP5);
   graphArea = new Area(800,400,0,100);
   statsArea = new Area(150,200,width-10,height-10);
-  //String fileName = "C://Program Files (x86)//Steam//SteamApps//common//Team Fortress 2//tf//new4.txt";
- 
-          
-  
 }
 
 void draw(){
@@ -49,6 +46,7 @@ void fileSelected(File selection) {
     filename = selection.getAbsolutePath();
     FileReader reader = new FileReader(filename);
     reader.processFile(reader.getData());
+    UI.fileLoadedUI();
     Hashtable<String, DeathCount> deaths;
     DataProcessor processor = new DataProcessor(reader.getMatches());
     deaths = processor.getMatchDeaths(1);

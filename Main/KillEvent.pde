@@ -15,7 +15,6 @@ class KillEvent extends Event{
     this.victim = victim;
     this.weapon = weapon;
     this.crit = crit;
-
   }
   
   public String getKiller(){

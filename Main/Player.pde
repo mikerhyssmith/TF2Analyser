@@ -10,15 +10,13 @@ class Player {
   String team;
   
   Player(String name, String team){
+    
     this.name = name;
     events = new ArrayList<Event>();
-    this.team = team;
-    
+    this.team = team; 
   }
   
   void addEvent(Event event){
-    
     events.add(event);
-    
   }
 }

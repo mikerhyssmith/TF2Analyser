@@ -8,7 +8,6 @@ class DataProcessor {
 
   public DataProcessor(ArrayList<Match> matches) {
     this.matches = matches;
-
   }
 
   public Hashtable<String, DeathCount> getDeaths(String playerName) {
@@ -88,6 +87,11 @@ class DataProcessor {
       }
 
     return deaths;
+  }
+  
+  public String[] getMatchPlayers(int match){
+    
+    
   }
   
   

@@ -12,7 +12,6 @@ class FileReader {
     
     data = loadStrings(fileName);
     matches = new ArrayList<Match>();
-    
   }
   
   public boolean processFile(String[] data) {
