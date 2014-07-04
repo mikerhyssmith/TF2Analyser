@@ -1,3 +1,4 @@
+import java.sql.Time;
 class CaptureEvent extends Event{
   
   String[] capturingPlayers;
@@ -11,5 +12,13 @@ class CaptureEvent extends Event{
           
     
 
+  }
+  
+  public String[] getCapturingPlayers(){
+    return capturingPlayers;
+  }
+  
+  public String getCapturedObject(){
+    return capturedObject;
   }
 }

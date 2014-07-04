@@ -29,6 +29,7 @@ class DeathCount{
   
   public void addCrit(){
     critCount++;
+    count++;
   }
   public void addDeath(){
     count++;

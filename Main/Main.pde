@@ -8,8 +8,7 @@ void setup() {
   
   size(800,600,P2D);
   smooth();
-  
-   cp5 = new ControlP5(this);
+  cp5 = new ControlP5(this);
           
   
 }

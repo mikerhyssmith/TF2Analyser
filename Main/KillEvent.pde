@@ -1,3 +1,5 @@
+import java.sql.Time;
+
 class KillEvent extends Event{
   
   String killer;
@@ -14,5 +16,19 @@ class KillEvent extends Event{
     this.weapon = weapon;
     this.crit = crit;
 
+  }
+  
+  public String getKiller(){
+    return killer;
+  }
+  public String getVictim(){
+    return victim;
+  }
+  
+  public String getWeapon(){
+    return weapon;
+  }
+  public boolean getCrit(){
+    return crit;
   }
 }

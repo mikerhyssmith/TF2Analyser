@@ -32,7 +32,7 @@ class BarGraph{
     for(int i = 0; i<deaths.length; i++)
     {
       //Scale bar heights so that the highest is as tall as the graph
-      int h = map(deaths[i].getCount(),0,maxKills,0,height);
+      h = (int) map(deaths[i].getCount(),0,maxKills,0,height);
       
       rect(x,height-h,barWidth,h);
       
