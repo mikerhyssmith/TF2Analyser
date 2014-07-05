@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 class DataProcessor {
 
@@ -90,8 +91,34 @@ class DataProcessor {
   }
   
   public String[] getMatchPlayers(int match){
+    List<String> matchPlayers = new ArrayList<String>();
+    Match currentMatch = matches.get(match);
+    ArrayList<Event> matchEvents = currentMatch.getEvents();
+    for(int i = 0; i< matchEvents.size(); i++){
+      Event currentEvent = matchEvents.get(i);
+      if (currentEvent.getEventType().equals(EventTypes.KILL)) {
+        KillEvent kill = (KillEvent) currentEvent;
+        String nameOne = kill.getKiller();
+        String nameTwo = kill.getVictim();
+        if(!matchPlayers.contains(nameOne)){
+          matchPlayers.add(nameOne);
+        }
+        if(!matchPlayers.contains(nameTwo)){
+          matchPlayers.add(nameTwo);
+        }
+     }
+    }
     
-    return null;
+    Iterator<String> it = matchPlayers.iterator();
+    String[] players = new String[matchPlayers.size()];
+    int counter = 0;
+    while(it.hasNext()){
+      players[counter] = it.next();
+      counter++;
+      
+    }
+    
+    return players;
   }
   
   

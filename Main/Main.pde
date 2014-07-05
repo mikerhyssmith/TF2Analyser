@@ -11,6 +11,7 @@ Area graphArea;
 Area statsArea;
 UserInterface UI;
 FileReader reader;
+DataProcessor processor;
 
 void setup() {
   
@@ -50,13 +51,15 @@ void fileSelected(File selection) {
     reader = new FileReader(filename);
     reader.processFile(reader.getData());
     UI.fileLoadedUI();
+    processor = new DataProcessor(reader.getMatches());
+    String [] players = processor.getMatchPlayers(0);
+    UI.addVisualizationOptions(players);
    
   }
 }
 
 void drawBarChart(){
    Hashtable<String, DeathCount> deaths;
-   DataProcessor processor = new DataProcessor(reader.getMatches());
    deaths = processor.getMatchDeaths(1);
    graph = new BarGraph(deaths,graphArea.getWidth(),graphArea.getHeight(),10);
    graphDrawn = true;
