@@ -19,7 +19,6 @@ class FileReader {
 
     for (int i = 0; i < data.length; i++) {
       // New Match
-      System.out.println(data[i]);
       if (data[i].startsWith("Map: ")) {
         if (matchCreated) {
           matches.add(currentMatch);

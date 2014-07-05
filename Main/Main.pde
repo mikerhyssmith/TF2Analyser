@@ -10,11 +10,13 @@ boolean graphDrawn = false;
 Area graphArea;
 Area statsArea;
 UserInterface UI;
+FileReader reader;
 
 void setup() {
   
   size(800,600);
   smooth();
+  background(128);
   cP5 = new ControlP5(this);
   UI = new UserInterface(cP5);
   graphArea = new Area(800,400,0,100);
@@ -25,6 +27,7 @@ void draw(){
   if(graphDrawn){
     graph.draw();
   }
+  UI.UIDraw();
 }
 
 void controlEvent(ControlEvent theEvent) {
@@ -44,15 +47,19 @@ void fileSelected(File selection) {
   } else {
     println("User selected " + selection.getAbsolutePath());
     filename = selection.getAbsolutePath();
-    FileReader reader = new FileReader(filename);
+    reader = new FileReader(filename);
     reader.processFile(reader.getData());
     UI.fileLoadedUI();
-    Hashtable<String, DeathCount> deaths;
-    DataProcessor processor = new DataProcessor(reader.getMatches());
-    deaths = processor.getMatchDeaths(1);
-    graph = new BarGraph(deaths,graphArea.getWidth(),graphArea.getHeight(),10);
-    graphDrawn = true;
+   
   }
+}
+
+void drawBarChart(){
+   Hashtable<String, DeathCount> deaths;
+   DataProcessor processor = new DataProcessor(reader.getMatches());
+   deaths = processor.getMatchDeaths(1);
+   graph = new BarGraph(deaths,graphArea.getWidth(),graphArea.getHeight(),10);
+   graphDrawn = true;
 }
 
 

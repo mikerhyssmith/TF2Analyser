@@ -4,6 +4,9 @@ class UserInterface {
   ControlP5 cP5;
   DropdownList dropdown,playersDropDown;
   ListBox l,playerList;
+  Textarea myTextarea;
+  boolean fileLoaded = false;
+  int colour = 0;
   
   public UserInterface(ControlP5 cp5){
     
@@ -23,12 +26,35 @@ class UserInterface {
     cP5.addButton("Load File",1,0,0,70,30);
   }
   
-  void fileLoadedUI(){
+  void UIDraw(){
     
-    dropdown = cP5.addDropdownList("VisualizationChoice").setPosition(80,20).setSize(120,70);
+    if(fileLoaded){
+      
+      if(colour < 128){
+        colour = colour +1;
+        myTextarea.setColor(colour);
+      }else if(colour == 128){
+        myTextarea.setText("");
+        myTextarea.update();
+        
+      }
+      
+      
+      
+    }
+    
+    
+  }
+  
+  void fileLoadedUI(){
+    colour = 0;
+    dropdown = cP5.addDropdownList("VisualizationChoice").setPosition(80,15);
     dropdown.addItem("Cause Of Death Chart",0);
     dropdown.addItem("Match Timeline",1);
     customizeDropDownList(dropdown);
+    myTextarea = cP5.addTextarea("LoadSuccesful").setPosition(0,35);
+    myTextarea.setText("File Loaded Succesfully !");
+    fileLoaded = true;
     
   }
   
