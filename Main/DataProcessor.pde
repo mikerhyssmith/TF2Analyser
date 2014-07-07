@@ -11,13 +11,13 @@ class DataProcessor {
     this.matches = matches;
   }
 
-  public Hashtable<String, DeathCount> getDeaths(String playerName) {
+  public synchronized Hashtable<String, DeathCount> getDeaths(String playerName) {
     Match currentMatch;
     ArrayList<Event> currentEvents;
     Event currentEvent;
 
     deaths = new Hashtable<String, DeathCount>();
-
+    synchronized(matches){
     for (int i = 0; i < matches.size(); i++) {
 
       currentMatch = matches.get(i);
@@ -50,11 +50,11 @@ class DataProcessor {
       }
 
     }
-
+    }
     return deaths;
   }
   
-  public Hashtable<String, DeathCount> getMatchDeaths(int matchNumber) {
+  public synchronized Hashtable<String, DeathCount> getMatchDeaths(int matchNumber) {
     Match currentMatch;
     ArrayList<Event> currentEvents;
     Event currentEvent;
@@ -63,7 +63,7 @@ class DataProcessor {
 
       currentMatch = matches.get(matchNumber);
       currentEvents = currentMatch.getEvents();
-
+      synchronized(matches){
       for (int j = 0; j < currentMatch.getEvents().size(); j++) {
         currentEvent = currentEvents.get(j);
         if (currentEvent.getEventType().equals(EventTypes.KILL)) {
@@ -86,11 +86,13 @@ class DataProcessor {
             }
         }
       }
-
+      }
     return deaths;
   }
   
-  public String[] getMatchPlayers(int match){
+  public synchronized String[] getMatchPlayers(int match){
+    
+    synchronized(matches){
     List<String> matchPlayers = new ArrayList<String>();
     Match currentMatch = matches.get(match);
     ArrayList<Event> matchEvents = currentMatch.getEvents();
@@ -119,8 +121,8 @@ class DataProcessor {
     }
     
     return players;
+    }
   }
-  
   
 
 }

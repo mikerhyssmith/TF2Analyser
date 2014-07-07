@@ -14,15 +14,14 @@ class FileReader {
     matches = new ArrayList<Match>();
   }
   
-  public boolean processFile(String[] data) {
+  public synchronized boolean processFile(String[] data) {
     boolean matchCreated = false;
 
     for (int i = 0; i < data.length; i++) {
+      
+      synchronized(matches){
       // New Match
       if (data[i].startsWith("Map: ")) {
-        if (matchCreated) {
-          matches.add(currentMatch);
-        }
 
         String mapName = data[i].substring(5);
         System.out.println("Map Name: " + mapName);
@@ -84,8 +83,7 @@ class FileReader {
         currentMatch.addEvent(currentEvent);
         }
     }
- 
-    
+   }
     return false;
   }
 
@@ -93,9 +91,9 @@ class FileReader {
   public String[] getData() {
     return data;
   }
-  public ArrayList<Match> getMatches(){
+  public synchronized ArrayList<Match> getMatches(){
     System.out.println("Number of Matches " + matches.size());
-    return matches;
+    return  matches;
   }
   
   
