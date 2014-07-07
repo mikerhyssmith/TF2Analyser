@@ -26,7 +26,7 @@ void setup() {
   barControl = new ControlP5(this);
   
   UI = new UserInterface(cP5);
-  graphArea = new Area(800,600,0,0);
+  graphArea = new Area(800,500,0,100);
   statsArea = new Area(150,200,width-10,height-10);
 
 }

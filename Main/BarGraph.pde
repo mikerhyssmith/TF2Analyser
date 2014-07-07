@@ -28,6 +28,8 @@ class BarGraph{
   //Height of horizontal slider
   int sliderHeight = 20;
   
+  IconHandler icons;
+  
   
   public BarGraph(Hashtable<String,DeathCount> deaths, Area barArea, int seperation, ControlP5 control){
     this.deaths = deaths;
@@ -71,6 +73,8 @@ class BarGraph{
     //Set up font
     arial = createFont("Arial",12,true);
     textAlign(CENTER);
+    
+    icons = new IconHandler("killicons.png", barWidth, iconHeight);
   }
 
   public void draw(){
@@ -96,6 +100,8 @@ class BarGraph{
       //Calculate y position of rectangle
       float ypos=graphArea.getHeight()+graphArea.getY()-h-sliderHeight;
       
+      //Draw icon
+      icons.Draw(death.getCause(), xpos, ypos-iconHeight);
       
       //Set bar colour and draw bars
       fill(100);
