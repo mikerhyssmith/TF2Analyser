@@ -28,6 +28,7 @@ class FileReader {
         currentMatch = new Match(mapName);
         matchCreated = true;
         matches.add(currentMatch);
+        System.out.println("Match added");
       }
 
       // Kills
@@ -88,14 +89,16 @@ class FileReader {
   }
 
 
-  public String[] getData() {
-    return data;
+  public synchronized String[] getData() {
+    System.out.println("Data Returned");
+    String[] newArray = new String[data.length];
+    for(int i = 0; i< data.length; i++){
+       newArray[i] = data[i]; 
+    }
+    return newArray ;
   }
   public synchronized ArrayList<Match> getMatches(){
     System.out.println("Number of Matches " + matches.size());
-    return  matches;
+    return new ArrayList<Match>(matches);
   }
-  
-  
-  
 }

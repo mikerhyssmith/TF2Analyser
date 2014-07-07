@@ -1,14 +1,17 @@
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
-
+import java.util.*;
 class DataProcessor {
 
   ArrayList<Match> matches;
   Hashtable<String, DeathCount> deaths;
 
   public DataProcessor(ArrayList<Match> matches) {
-    this.matches = matches;
+    System.out.println("Entered DataProcessor");
+    synchronized(matches){
+    this.matches = new ArrayList(matches);
+    }
   }
 
   public synchronized Hashtable<String, DeathCount> getDeaths(String playerName) {

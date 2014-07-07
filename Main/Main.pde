@@ -2,12 +2,14 @@ import controlP5.*;
 
 ControlP5 cP5;
 ControlP5 barControl;
+ControlP5 UIP5;
 
 DropdownList d1, d2;
 BarGraph graph;
-int col;
+ int col;
 String filename;
 boolean graphDrawn = false;
+boolean fileLoaded = false;
 Area graphArea;
 Area statsArea;
 UserInterface UI;
@@ -21,8 +23,9 @@ void setup() {
   background(128);
   cP5 = new ControlP5(this);
   barControl = new ControlP5(this);
+  UIP5 = new ControlP5(this);
   
-  UI = new UserInterface(cP5);
+  UI = new UserInterface(UIP5);
   graphArea = new Area(800,400,0,200);
   statsArea = new Area(150,200,width-10,height-10);
 }
@@ -30,6 +33,10 @@ void setup() {
 void draw(){
   if(graphDrawn){
     graph.draw();
+  }
+  if(fileLoaded){
+    UI.fileLoadedUI();
+    fileLoaded = false;
   }
   UI.UIDraw();
 }
@@ -45,7 +52,7 @@ void controlEvent(ControlEvent theEvent) {
   }  
 }
 
-void fileSelected(File selection) {
+void fileSelected(File selection) throws InterruptedException {
   if (selection == null) {
     println("Window was closed or the user hit cancel.");
   } else {
@@ -55,9 +62,7 @@ void fileSelected(File selection) {
     //Read in data from loaded file
     reader = new FileReader(filename);
     reader.processFile(reader.getData());
-    
-    //
-    UI.fileLoadedUI();
+    fileLoaded = true;
     
     //Process data from file
     processor = new DataProcessor(reader.getMatches());
@@ -65,7 +70,7 @@ void fileSelected(File selection) {
     //Get list of players from processed data
     String[] players = processor.getMatchPlayers(0);
     //Add player list to UI
-    UI.addVisualizationOptions(players);
+    //UI.addVisualizationOptions(players);
     
     //Draw bar chart
     drawBarChart();
@@ -74,7 +79,7 @@ void fileSelected(File selection) {
 
 void drawBarChart(){
    Hashtable<String, DeathCount> deaths;
-   deaths = processor.getMatchDeaths(1);
+   deaths = processor.getDeaths("Beef");
    graph = new BarGraph(deaths,graphArea,10,barControl);
    graphDrawn = true;
 }
