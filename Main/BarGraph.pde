@@ -81,8 +81,6 @@ class BarGraph{
     int h=0;
     int x = 0;
 
-    //Just one colour for now
-    fill(50);
     
     //Set up iterator for deaths
     Enumeration<String> enumDeath = deaths.keys();
@@ -104,7 +102,7 @@ class BarGraph{
       icons.Draw(death.getCause(), xpos, ypos-iconHeight);
       
       //Set bar colour and draw bars
-      fill(100);
+      fill(52,47,44);
       rect(xpos,ypos,barWidth,h);
       
       //Label each bar

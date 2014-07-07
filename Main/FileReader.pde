@@ -14,7 +14,7 @@ class FileReader {
     matches = new ArrayList<Match>();
   }
   
-  public synchronized boolean processFile(String[] data) {
+  public boolean processFile(String[] data) {
     boolean matchCreated = false;
 
     for (int i = 0; i < data.length; i++) {
@@ -89,7 +89,7 @@ class FileReader {
   }
 
 
-  public synchronized String[] getData() {
+  public String[] getData() {
     System.out.println("Data Returned");
     String[] newArray = new String[data.length];
     for(int i = 0; i< data.length; i++){
@@ -97,7 +97,7 @@ class FileReader {
     }
     return newArray ;
   }
-  public synchronized ArrayList<Match> getMatches(){
+  public ArrayList<Match> getMatches(){
     System.out.println("Number of Matches " + matches.size());
     return new ArrayList<Match>(matches);
   }

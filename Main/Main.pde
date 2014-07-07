@@ -26,6 +26,8 @@ void setup() {
   barControl = new ControlP5(this);
   
   UI = new UserInterface(cP5);
+  
+  //Define containing areas for various features
   graphArea = new Area(800,500,0,100);
   statsArea = new Area(150,200,width-10,height-10);
 
@@ -65,7 +67,7 @@ void controlEvent(ControlEvent theEvent) {
       }
     
     }  
-}
+ }
 }
 
 void fileSelected(File selection) {
@@ -90,8 +92,6 @@ void fileSelected(File selection) {
     //Add player list to UI
     dataProcessed = true;
     
-    //Draw bar chart
-    //drawBarChart();
   }
 }
 

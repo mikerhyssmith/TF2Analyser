@@ -14,7 +14,7 @@ class DataProcessor {
     }
   }
 
-  public synchronized Hashtable<String, DeathCount> getDeaths(String playerName) {
+  public Hashtable<String, DeathCount> getDeaths(String playerName) {
     Match currentMatch;
     ArrayList<Event> currentEvents;
     Event currentEvent;
@@ -57,7 +57,7 @@ class DataProcessor {
     return deaths;
   }
   
-  public synchronized Hashtable<String, DeathCount> getMatchDeaths(int matchNumber) {
+  public  Hashtable<String, DeathCount> getMatchDeaths(int matchNumber) {
     Match currentMatch;
     ArrayList<Event> currentEvents;
     Event currentEvent;
@@ -93,7 +93,7 @@ class DataProcessor {
     return deaths;
   }
   
-  public synchronized String[] getMatchPlayers(int match){
+  public String[] getMatchPlayers(int match){
     
     synchronized(matches){
     List<String> matchPlayers = new ArrayList<String>();

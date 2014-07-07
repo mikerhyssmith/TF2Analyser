@@ -44,10 +44,13 @@ class UserInterface {
   
   void fileLoadedUI(){
     colour = 0;
+    //Create a drop down box for visualization selection.
     dropdown = cP5.addDropdownList("VisualizationChoice").setPosition(80,15).setSize(120,70);
     dropdown.addItem("Cause Of Death Chart",0);
     dropdown.addItem("Match Timeline",1);
     customizeDropDownList(dropdown);
+    
+    //Create a notification to state file has loaded correctly.
     myTextarea = cP5.addTextarea("LoadSuccesful").setPosition(0,35);
     myTextarea.setText("File Loaded Succesfully !");
     fileLoaded = true;
@@ -55,12 +58,14 @@ class UserInterface {
   }
   
   void addVisualizationOptions(String[] Players) {
+    //Create a drop down list of available players.
     playersDropDown = cP5.addDropdownList("PlayerChoice").setPosition(200,15).setSize(120,70);
     playersDropDown.addItem("All Players",0);
     customizeDropDownList(playersDropDown);
     int counter = 0;
     for(int i = 0 ; i < Players.length; i ++){
       try{
+        //Must convert the string to bytes to handle unsupported characters.
         byte[] playerBytes = Players[i].getBytes("WINDOWS-1256");
         String playerName = new String(playerBytes);
       playersDropDown.addItem(playerName,i);
