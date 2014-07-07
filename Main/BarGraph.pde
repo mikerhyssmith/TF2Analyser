@@ -17,6 +17,8 @@ class BarGraph{
   //Display stuff
   PFont arial;
   ControlP5 barControl;
+
+  
   Slider barSlider;
   //Width of the killicon image
   int barWidth=128;
@@ -30,6 +32,12 @@ class BarGraph{
     this.graphArea = barArea;
     this.seperation = seperation;
     this.barControl = control;
+    
+    barControl.setColorForeground(0xffaa0000);
+    barControl.setColorBackground(0xff385C78);
+    barControl.setColorLabel(0xffdddddd);
+    barControl.setColorValue(0xff342F2C);
+    barControl.setColorActive(0xff9D302F);
 
     //Set up iterator for deaths
     Enumeration<String> enumDeath = deaths.keys();
