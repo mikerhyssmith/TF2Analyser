@@ -55,7 +55,17 @@ void controlEvent(ControlEvent theEvent) {
          selectInput("Select a file to process:", "fileSelected");
     }
     
-  }  
+  }else if (theEvent.isGroup()) {
+    // if the name of the event is equal to ImageSelect (aka the name of our dropdownlist)
+    if (theEvent.group().name() == "VisualizationChoice") {
+      if(theEvent.group().value() == 0){
+        drawBarChart();
+      }else{
+      
+      }
+    
+    }  
+}
 }
 
 void fileSelected(File selection) {
@@ -81,7 +91,7 @@ void fileSelected(File selection) {
     dataProcessed = true;
     
     //Draw bar chart
-    drawBarChart();
+    //drawBarChart();
   }
 }
 
@@ -90,6 +100,11 @@ void drawBarChart(){
    deaths = processor.getMatchDeaths(1);
    graph = new BarGraph(deaths,graphArea,10,barControl);
    graphDrawn = true;
+}
+
+
+void drawMatchTimeline(){
+  
 }
 
 void BarSlider(float shift) {
