@@ -16,14 +16,14 @@ DataProcessor processor;
 
 void setup() {
   
-  size(1000,600);
+  size(800,600);
   smooth();
   background(128);
   cP5 = new ControlP5(this);
   barControl = new ControlP5(this);
   
   UI = new UserInterface(cP5);
-  graphArea = new Area(800,400,0,200);
+  graphArea = new Area(800,600,0,0);
   statsArea = new Area(150,200,width-10,height-10);
 
 }

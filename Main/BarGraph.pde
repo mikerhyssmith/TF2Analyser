@@ -17,14 +17,16 @@ class BarGraph{
   //Display stuff
   PFont arial;
   ControlP5 barControl;
-
-  
   Slider barSlider;
   //Width of the killicon image
   int barWidth=128;
+  int iconHeight=32;
   //Whether the graph fits in its allocated area or not
   boolean graphFits =true;
-  float xShift;
+  //Shift value of horizontal slider
+  float xShift=0;
+  //Height of horizontal slider
+  int sliderHeight = 20;
   
   
   public BarGraph(Hashtable<String,DeathCount> deaths, Area barArea, int seperation, ControlP5 control){
@@ -33,6 +35,7 @@ class BarGraph{
     this.seperation = seperation;
     this.barControl = control;
     
+    //Format interface
     barControl.setColorForeground(0xffaa0000);
     barControl.setColorBackground(0xff385C78);
     barControl.setColorLabel(0xffdddddd);
@@ -53,13 +56,14 @@ class BarGraph{
       }
     }
     
+    //Total width of graph
     int graphWidth = (deaths.size()*barWidth)+((deaths.size()-1)*seperation);
     
+    //If graph is wider than its allocated area, add a horizontal scrollbar
     if(graphWidth>graphArea.getWidth())
     {
       //Add a slider for horizontal scrolling
-      // parameters  : name, minimum, maximum, default value (float), x, y, width, height
-      barSlider = barControl.addSlider("BarSlider",0,graphWidth-width,0,0,80,width,10);
+      barSlider = barControl.addSlider("BarSlider",0,graphWidth-width,0,0,graphArea.getY()+graphArea.getHeight()-sliderHeight,width,sliderHeight);
       
       graphFits = false;
     }
@@ -67,22 +71,12 @@ class BarGraph{
     //Set up font
     arial = createFont("Arial",12,true);
     textAlign(CENTER);
-    
-    println("graph position: ("+graphArea.getX()+","+graphArea.getY());
   }
 
   public void draw(){
     int h=0;
     int x = 0;
-    //Need to put checks in to make sure bars arent too narrow
-    //int barWidth = (graphArea.getWidth() - ((deaths.size()-1)*seperation)) / deaths.size();
-    
-    //float xShift=0;
-    //if(!graphFits){
-    //  xShift = barSlider.getValue();
-    //}
-    
-    
+
     //Just one colour for now
     fill(50);
     
@@ -96,11 +90,16 @@ class BarGraph{
       death = deaths.get(key);
       
       //Scale bar heights so that the highest is as tall as the graph
-      h =  (int) map(death.getCount(),0,maxKills,0,graphArea.getHeight()); 
+      h =  (int) map(death.getCount(),0,maxKills,0,graphArea.getHeight()-iconHeight-sliderHeight); 
+      
+      float xpos=x+graphArea.getX()-xShift;
+      //Calculate y position of rectangle
+      float ypos=graphArea.getHeight()+graphArea.getY()-h-sliderHeight;
+      
       
       //Set bar colour and draw bars
       fill(100);
-      rect(x+graphArea.getX()-xShift,graphArea.getHeight()+graphArea.getY()-h,barWidth,h);
+      rect(xpos,ypos,barWidth,h);
       
       //Label each bar
       textFont(arial);       
@@ -111,7 +110,8 @@ class BarGraph{
       if((mouseX>x && mouseX<=x+barWidth)&&(mouseY>graphArea.getHeight()+graphArea.getY()-h)){
         fill(255,40,40);
         h = (int) map(death.getCritCount(),0,maxKills,0,graphArea.getHeight());
-        rect(x+graphArea.getX()-xShift,graphArea.getHeight()+graphArea.getY()-h,barWidth,h);
+        ypos=graphArea.getHeight()+graphArea.getY()-h-sliderHeight;
+        rect(xpos,ypos,barWidth,h);
       }
       
       //Move to next bar position
