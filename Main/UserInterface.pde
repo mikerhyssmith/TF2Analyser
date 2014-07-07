@@ -1,4 +1,5 @@
 import controlP5.*;
+import java.text.Normalizer;
 
 class UserInterface {
   ControlP5 cP5;
@@ -38,17 +39,12 @@ class UserInterface {
         myTextarea.update();
         
       }
-      
-      
-      
     }
-    
-    
   }
   
   void fileLoadedUI(){
     colour = 0;
-    dropdown = cP5.addDropdownList("VisualizationChoice").setPosition(80,15);
+    dropdown = cP5.addDropdownList("VisualizationChoice").setPosition(80,15).setSize(120,70);
     dropdown.addItem("Cause Of Death Chart",0);
     dropdown.addItem("Match Timeline",1);
     customizeDropDownList(dropdown);
@@ -59,16 +55,20 @@ class UserInterface {
   }
   
   void addVisualizationOptions(String[] Players) {
-    playersDropDown = cP5.addDropdownList("PlayerChoice").setPosition(200,20).setSize(120,70);
+    playersDropDown = cP5.addDropdownList("PlayerChoice").setPosition(200,15).setSize(120,70);
     playersDropDown.addItem("All Players",0);
-    for(int i = 0 ; i < Players.length; i ++){
-      playersDropDown.addItem(Players[i],i+1);
-    }
     customizeDropDownList(playersDropDown);
-      
-    
-    
-    
+    int counter = 0;
+    for(int i = 0 ; i < Players.length; i ++){
+      try{
+        byte[] playerBytes = Players[i].getBytes("WINDOWS-1256");
+        String playerName = new String(playerBytes);
+      playersDropDown.addItem(playerName,i);
+      }catch(Exception e){
+        System.out.println("Player Name Not Supported");
+        playersDropDown.addItem("Unsupported Player Name " + i, i);
+      }
+    }
   }
   
   void customizeDropDownList(DropdownList ddl) {

@@ -13,6 +13,9 @@ Area statsArea;
 UserInterface UI;
 FileReader reader;
 DataProcessor processor;
+boolean fileLoaded;
+boolean dataProcessed;
+String[] players;
 
 void setup() {
   
@@ -30,6 +33,14 @@ void setup() {
 
 void draw(){
   background(128);
+  if(fileLoaded){
+    UI.fileLoadedUI();
+    fileLoaded = false;
+  }
+  if(dataProcessed){
+    UI.addVisualizationOptions(players);
+    dataProcessed = false;
+  }
   if(graphDrawn){
     graph.draw();
   }
@@ -57,7 +68,7 @@ void fileSelected(File selection) {
     //Read in data from loaded file
     reader = new FileReader(filename);
     reader.processFile(reader.getData());
-    
+    fileLoaded = true;
     //
     //UI.fileLoadedUI();
     
@@ -65,9 +76,9 @@ void fileSelected(File selection) {
     processor = new DataProcessor(reader.getMatches());
     
     //Get list of players from processed data
-    String[] players = processor.getMatchPlayers(0);
+    players = processor.getMatchPlayers(0);
     //Add player list to UI
-    //UI.addVisualizationOptions(players);
+    dataProcessed = true;
     
     //Draw bar chart
     drawBarChart();
