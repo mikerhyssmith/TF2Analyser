@@ -9,6 +9,8 @@ class Area {
   public Area(int aWidth, int aHeight, int x, int y){
     this.aWidth = aWidth;
     this.aHeight = aHeight;
+    this.x=x;
+    this.y=y;
   }
   
   public int getWidth(){
