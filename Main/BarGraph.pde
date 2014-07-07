@@ -1,5 +1,6 @@
 import java.util.Enumeration;
 import java.util.Hashtable;
+import controlP5.*;
 
 class BarGraph{
   //Table of deaths and causes
@@ -19,6 +20,9 @@ class BarGraph{
   Slider barSlider;
   //Width of the killicon image
   int barWidth=128;
+  //Whether the graph fits in its allocated area or not
+  boolean graphFits =true;
+  float xShift;
   
   
   public BarGraph(Hashtable<String,DeathCount> deaths, Area barArea, int seperation, ControlP5 control){
@@ -47,7 +51,9 @@ class BarGraph{
     {
       //Add a slider for horizontal scrolling
       // parameters  : name, minimum, maximum, default value (float), x, y, width, height
-      barSlider = barControl.addSlider("horizontal slider",0,graphWidth-width,0,0,80,width,10);
+      barSlider = barControl.addSlider("BarSlider",0,graphWidth-width,0,0,80,width,10);
+      
+      graphFits = false;
     }
     
     //Set up font
@@ -56,12 +62,18 @@ class BarGraph{
     
     println("graph position: ("+graphArea.getX()+","+graphArea.getY());
   }
-  
+
   public void draw(){
     int h=0;
     int x = 0;
     //Need to put checks in to make sure bars arent too narrow
     //int barWidth = (graphArea.getWidth() - ((deaths.size()-1)*seperation)) / deaths.size();
+    
+    //float xShift=0;
+    //if(!graphFits){
+    //  xShift = barSlider.getValue();
+    //}
+    
     
     //Just one colour for now
     fill(50);
@@ -76,26 +88,30 @@ class BarGraph{
       death = deaths.get(key);
       
       //Scale bar heights so that the highest is as tall as the graph
-      h =  (int) map(death.getCount(),0,maxKills,0,graphArea.getHeight());
+      h =  (int) map(death.getCount(),0,maxKills,0,graphArea.getHeight()); 
       
       //Set bar colour and draw bars
       fill(100);
-      rect(x+graphArea.getX(),graphArea.getHeight()+graphArea.getY()-h,barWidth,h);
+      rect(x+graphArea.getX()-xShift,graphArea.getHeight()+graphArea.getY()-h,barWidth,h);
       
       //Label each bar
       textFont(arial);       
       fill(0);
-      text(death.getCause(),x+barWidth/2,graphArea.getHeight()/2); 
+      text(death.getCause(),x+barWidth/2-xShift,graphArea.getHeight()/2); 
       
       //Draw crit kills if mouse is over the bar
       if((mouseX>x && mouseX<=x+barWidth)&&(mouseY>graphArea.getHeight()+graphArea.getY()-h)){
         fill(255,40,40);
         h = (int) map(death.getCritCount(),0,maxKills,0,graphArea.getHeight());
-        rect(x+graphArea.getX(),graphArea.getHeight()+graphArea.getY()-h,barWidth,h);
+        rect(x+graphArea.getX()-xShift,graphArea.getHeight()+graphArea.getY()-h,barWidth,h);
       }
       
       //Move to next bar position
       x+=(seperation+barWidth);
     }
+  }
+  
+  public void UpdateShift(float shift){
+    xShift=shift;
   }
 }
