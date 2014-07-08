@@ -111,7 +111,7 @@ class BarGraph{
       text(death.getCause(),x+barWidth/2-xShift,graphArea.getHeight()/2); 
       
       //Draw crit kills if mouse is over the bar
-      if((mouseX>x && mouseX<=x+barWidth)&&(mouseY>graphArea.getHeight()+graphArea.getY()-h)){
+      if((mouseX>xpos && mouseX<=xpos+barWidth)&&(mouseY>graphArea.getHeight()+graphArea.getY()-h)){
         fill(255,40,40);
         h = (int) map(death.getCritCount(),0,maxKills,0,graphArea.getHeight());
         ypos=graphArea.getHeight()+graphArea.getY()-h-sliderHeight;

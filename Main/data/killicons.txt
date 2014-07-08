@@ -1,0 +1,52 @@
+name: tf_projectile_rocket
+0,3
+name: dumpster_device
+5,3
+name: tf_projectile_pipe
+0,11
+name: obj_sentrygun
+5,17
+name: bleed_kill
+0,30
+name: backburner
+1,6
+name: blackbox
+0,0
+name: minigun
+0,0
+name: pep_brawlerblaster
+0,0
+name: pistol
+0,0
+name: syringegun_medic
+0,0
+name: smg
+0,0
+name: lava_axe
+0,0
+name: warfan
+0,0
+name: tf_projectile_arrow
+0,0
+name: obj_minisentry
+0,0
+name: world
+0,0
+name: axtinguisher
+0,0
+name: tf_projectile_pipe_remote
+0,0
+name: short_stop
+0,0
+name: degreaser
+0,0
+name: sword
+0,0
+name: sticky_resistance
+0,0
+name: skullbat
+0,0
+name: widowmaker
+0,0
+name: sniperrifle
+0,0
