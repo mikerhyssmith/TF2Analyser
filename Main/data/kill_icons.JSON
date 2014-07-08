@@ -1,0 +1,1775 @@
+{
+		"skull_tf":
+		{
+				"section":	"0",
+				"x":		"116",
+				"y":		"288",
+				"width":	"52",
+				"height":	"32"
+		},
+
+		"obj_sentrygun":
+		{
+				"section":	"0",
+				"x":		"96",
+				"y":		"160",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"obj_sentrygun2":
+		{
+				"section":	"0",
+				"x":		"256",
+				"y":		"0",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"obj_sentrygun3":
+		{
+				"section":  	"0",
+				"x":		"256",
+				"y":		"32",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"bat":
+		{
+				"section": 	"0",
+				"x":		"0",
+				"y":		"0",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"pistol":
+		{
+				"section": 	"0",
+				"x":		"0",
+				"y":		"32",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"pistol_scout":
+		{
+				"section": 	"0",
+				"x":		"0",
+				"y":		"32",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"nailgun":
+		{
+				"section": 	"0",
+				"x":		"0",
+				"y":		"64",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"sniperrifle":
+		{
+				"section": 	"0",
+				"x":		"16",
+				"y":		"96",
+				"width":	"32",
+				"height":	"32"
+		},
+
+		"smg":
+		{
+				"section": 	"0",
+				"x":		"0",
+				"y":		"128",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"club":
+		{
+				"section": 	"0",
+				"x":		"0",
+				"y":		"160",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"shovel":
+		{
+				"section": 	"0",
+				"x":		"0",
+				"y":		"192",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"tf_projectile_rocket":
+		{
+				"section": 	"0",
+				"x":		"0",
+				"y":		"224",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"shotgun_primary":
+		{
+				"section": 	"0",
+				"x":		"0",
+				"y":		"256",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"shotgun_soldier":
+		{
+				"section": 	"0",
+				"x":		"0",
+				"y":		"256",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"shotgun_hwg":
+		{
+				"section": 	"0",
+				"x":		"0",
+				"y":		"256",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"shotgun_pyro":
+		{
+				"section": 	"0",
+				"x":		"0",
+				"y":		"256",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"tf_projectile_pipe":
+		{
+				"section": 	"0",
+				"x":		"0",
+				"y":		"288",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"bottle":
+		{
+				"section": 	"0",
+				"x":		"0",
+				"y":		"320",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"syringegun_medic":
+		{
+				"section": 	"0",
+				"x":		"0",
+				"y":		"352",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"minigun":
+		{
+				"section": 	"0",
+				"x":		"0",
+				"y":		"384",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"pipe":
+		{
+				"section": 	"0",
+				"x":		"0",
+				"y":		"448",
+				"width":	"96",
+				"height":	"32"
+		},
+	
+		"flamethrower":
+		{
+				"section": 	"0",
+				"x":		"0",
+				"y":		"416",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"fists":
+		{
+				"section": 	"0",
+				"x":		"191",
+				"y":		"446",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"fireaxe":
+		{
+				"section": 	"0",
+				"x":		"0",
+				"y":		"480",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"bonesaw":
+		{
+				"section": 	"0",
+				"x":		"96",
+				"y":		"128",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"knife":
+		{
+				"section": 	"0",
+				"x":		"96",
+				"y":		"0",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"revolver":
+		{
+				"section": 	"0",
+				"x":		"96",
+				"y":		"32",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"flaregun":
+		{
+				"section": 	"0",
+				"x":		"96",
+				"y":		"64",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"wrench":
+		{
+				"section": 	"0",
+				"x":		"96",
+				"y":		"96",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"scattergun":
+		{
+				"section": 	"0",
+				"x":		"96",
+				"y":		"192",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"tf_projectile_pipe_remote":
+		{
+				"section": 	"0",
+				"x":		"96",
+				"y":		"224",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"vehicle":
+		{
+				"section": 	"0",
+				"x":		"96",
+				"y":		"256",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"skull":
+		{
+				"section": 	"0",
+				"x":		"96",
+				"y":		"288",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"headshot":
+		{
+				"section": 	"0",
+				"x":		"120",
+				"y":		"352",
+				"width":	"42",
+				"height":	"32"
+		},
+
+		"backstab":
+		{
+				"section":	 "0",
+				"x":		"116",
+				"y":		"384",
+				"width":	"48",
+				"height":	"32"
+		},
+
+		"ubersaw":
+		{
+				"section": 	"0",
+				"x":		"96",
+				"y":		"416",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"axtinguisher":
+		{
+				"section":	 "0",
+				"x":		"96",
+				"y":		"448",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"taunt_pyro":
+		{
+				"section": 	"0",
+				"x":		"96",
+				"y":		"480",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"bluedefend":
+		{
+				"section": 	"0",
+				"x":		"194",
+				"y":		"0",
+				"width":	"32",
+				"height":	"32"
+		},
+
+		"bluecapture":
+		{
+				"section":	 "0",
+				"x":		"194",
+				"y":		"32",
+				"width":	"32",
+				"height":	"32"
+		},
+
+		"reddefend":
+		{
+				"section": 	"0",
+				"x":		"226",
+				"y":		"0",
+				"width":	"32",
+				"height":	"32"
+		},
+
+		"redcapture":
+		{
+				"section": 	"0",
+				"x":		"226",
+				"y":		"32",
+				"width":	"32",
+				"height":	"32"
+		},
+
+		"obj_attachment_sapper":
+		{
+				"section": 	"0",
+				"x":		"0",
+				"y":		"64",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"deflect_promode":
+		{
+				"section": 	"0",
+				"x":		"194",
+				"y":		"64",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"deflect_sticky":
+		{
+				"section": 	"0",
+				"x":		"194",
+				"y":		"96",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"deflect_rocket":
+		{
+				"section": 	"0",
+				"x":		"194",
+				"y":		"128",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"deflect_flare":
+		{
+				"section": 	"0",
+				"x":		"194",
+				"y":		"160",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"bat_wood":
+		{
+				"section": 	"0",
+				"x":		"0",
+				"y":		"0",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"ball":
+		{
+				"section":	"0",
+				"x":		"192",
+				"y":		"192",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"taunt_heavy":
+		{
+				"section": 	"0",
+				"x":		"191",
+				"y":		"479",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"taunt_scout":
+		{
+				"section":	 "0",
+				"x":		"192",
+				"y":		"224",
+				"width":	"64",
+				"height":	"64"
+		},
+
+		"gloves":
+		{
+				"section": 	"0",
+				"x":		"0",
+				"y":		"448",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"crit":
+		{
+				"section": 	"0",
+				"x":		"192",
+				"y":		"409",
+				"width":	"64",
+				"height":	"34"
+		},
+
+		"ambassador":
+		{
+				"section": 	"0",
+				"x":		"263",
+				"y":		"67",
+				"width":	"92",
+				"height":	"32"
+		},
+
+		"huntsman":
+		{
+				"section": 	"0",
+				"x":		"263",
+				"y":		"98",
+				"width":	"96", 
+				"height":	"32"
+		},
+
+		"huntsman_burning":
+		{
+				"section":	 "0",
+				"x":		"263",
+				"y":		"190",
+				"width":	"68",
+				"height":	"33"
+		},
+
+		"huntsman_flyingburn":
+		{
+				"section": 	"0",
+				"x":		"263",
+				"y":		"223",
+				"width":	"103",
+				"height":	"32"
+		},
+
+		"taunt_spy":
+		{
+				"section": 	"0",
+				"x":		"263",
+				"y":		"129",
+				"width":	"92",
+				"height":	"32"
+		},
+
+		"huntsman_headshot":
+		{
+				"section": 	"0",
+				"x":		"192",
+				"y":		"289",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"ambassador_headshot":
+		{
+				"section": 	"0",
+				"x":		"192",
+				"y":		"322",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"taunt_sniper":
+		{
+				"section": 	"0",
+				"x":		"263",
+				"y":		"161",
+				"width":	"94",
+				"height":	"27"
+		},
+
+		"saw_kill":
+		{
+				"section":	 "0",
+				"x":		"192",
+				"y":		"359",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"deflect_arrow":
+		{
+				"section": 	"0",
+				"x":		"360",
+				"y":		"0",
+				"width":	"64",
+				"height":	"30"
+		},
+
+		"firedeath":
+		{
+				"section": 	"0",
+				"x":		"263",
+				"y":		"256",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"pumpkindeath":
+		{
+				"section": 	"0",
+				"x":		"263",
+				"y":		"358",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"taunt_soldier":
+		{
+				"section": 	"0",
+				"x":		"323",
+				"y":		"446",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"taunt_demoman":
+		{
+				"section": 	"0",
+				"x":		"323",
+				"y":		"479",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"sword":
+		{
+				"section": 	"0",
+				"x":		"258",
+				"y":		"464",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"demoshield":
+		{
+				"section": 	"0",
+				"x":		"258",
+				"y":		"398",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"pickaxe":
+		{
+				"section": 	"0",
+				"x":		"258",
+				"y":		"431",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"rocketlauncher_directhit":
+		{
+				"section": 	"0",
+				"x":		"368",
+				"y":		"263",
+				"width":	"92",
+				"height":	"32"
+		},
+
+		"sticky_resistance":
+		{
+				"section": 	"0",
+				"x":		"323",
+				"y":		"413",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"player_sentry":
+		{
+				"section": 	"0",
+				"x":		"388",
+				"y":		"446",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"battleaxe":
+		{
+				"section": 	"0",
+				"x":		"368",
+				"y":		"164",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"tribalkukri":
+		{
+				"section": 	"0",
+				"x":		"368",
+				"y":		"65",
+				"width":	"92",
+				"height":	"32"
+		},
+
+		"sledgehammer":
+		{
+				"section":	 "0",
+				"x":		"368",
+				"y":		"98",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"paintrain":
+		{
+				"section":	 "0",
+				"x":		"368",
+				"y":		"131",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"deflect_huntsman_headshot":
+		{
+				"section":	 "0",
+				"x":		"258",
+				"y":		"289",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"huntsman_flyingburn_headshot":
+		{
+				"section": 	"0",
+				"x":		"368",
+				"y":		"32",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"taunt_medic":
+		{
+				"section": 	"0",
+				"x":		"368",
+				"y":		"197",
+				"width":	"128",
+				"height":	"32"
+		},
+
+		"samrevolver":
+		{
+				"section":	 "0",
+				"x":		"368",
+				"y":		"230",
+				"width":	"98",
+				"height":	"32"
+		},
+
+		"natascha":
+		{
+				"section": 	"0",
+				"x":		"368",
+				"y":		"297",
+				"width":	"98",
+				"height":	"32"
+		},
+
+		"maxgun":
+		{
+				"section":	 "0",
+				"x":		"368",
+				"y":		"330",
+				"width":	"98",
+				"height":	"32"
+		},
+
+		"force_a_nature":
+		{
+				"section": 	"0",
+				"x":		"368",
+				"y":		"363",
+				"width":	"128",
+				"height":	"32"
+		},
+
+		"deflect_huntsman_flyingburn_headshot":
+		{
+				"section":	 "0",
+				"x":		"404",
+				"y":		"396",
+				"width":	"98",
+				"height":	"32"
+		},
+
+		"deflect_huntsman_flyingburn":
+		{
+				"section": 	"0",
+				"x":		"433",
+				"y":		"32",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"deflect_ball":
+		{
+				"section": 	"0",
+				"x":		"433",
+				"y":		"131",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"building_carried_destroyed":
+		{
+				"section": 	"1",
+				"x":		"0",
+				"y":		"768",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"taunt_guitar_kill":
+		{
+				"section": 	"1",
+				"x":		"0",
+				"y":		"704",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"frontier_kill":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"96",
+				"width":	"128",
+				"height":	"32"
+		},
+
+		"wrench_golden":
+		{
+				"section":	 "1",
+				"x":		"0",
+				"y":		"736",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"southern_comfort_kill":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"992",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"bleed_kill":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"928",
+				"width":	"32",
+				"height":	"32"
+		},
+
+		"wrangler_kill":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"960",
+				"width":	"32",
+				"height":	"32"
+		},
+
+		"robot_arm_kill":
+		{
+				"section": 	"1",
+				"x":		"0",
+				"y":		"800",
+				"width":	"96",
+				"height":	"32",
+		},
+
+		"robot_arm_combo_kill":
+		{
+				"section": 	"1",
+				"x":		"0",
+				"y":		"832",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"robot_arm_blender_kill":
+		{
+				"section": 	"1",
+				"x":		"0",
+				"y":		"864",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"degreaser":
+		{
+				"section": 	"1",
+				"x":		"0",
+				"y":		"896",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"powerjack":
+		{
+				"section": 	"1",
+				"x":		"0",
+				"y":		"928",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"eternal_reward":
+		{
+				"section": 	"1",
+				"x":		"0",
+				"y":		"960",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"letranger":
+		{
+				"section":	 "1",
+				"x":		"0",
+				"y":		"992",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"short_stop":
+		{
+				"section":	 "1",
+				"x":		"256",
+				"y":		"896",
+				"width":	"64",
+				"height":	"32",
+		},
+
+		"holy_mackerel":
+		{
+				"section":	 "1",
+				"x":		"96",
+				"y":		"992",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"headtaker":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"128",
+				"width":	"128",
+				"height":	"32"
+		},
+
+		"fryingpan":
+		{
+				"section":	 "1",
+				"x":		"96",
+				"y":		"768",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"back_scratcher":
+		{
+				"section":	 "1",
+				"x":		"96",
+				"y":		"800",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"boston_basher":
+		{
+				"section": 	"1",
+				"x":		"96",
+				"y":		"832",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"claidheamohmor":
+		{
+				"section":	 "1",
+				"x":		"96",
+				"y":		"864",
+				"width":	"96",
+				"height":	"32"
+		},
+	
+		"steel_fists":
+		{
+				"section": 	"1",
+				"x":		"96",
+				"y":		"896",
+				"width":	"96",
+				"height":	"32"
+		},
+					
+		"ullapool_caber_explosion":
+		{
+				"section": 	"1",
+				"x":		"96",
+				"y":		"928",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"ullapool_caber":
+		{
+				"section": 	"1",
+				"x":		"96",
+				"y":		"960",
+				"width":	"96",
+				"height":	"32"
+		},
+	
+		"candy_cane":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"768",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"amputator":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"800",
+				"width":	"96",
+				"height":	"32"
+		},
+	
+		"blackbox":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"160",
+				"width":	"128",
+				"height":	"32"
+		},
+
+		"wrench_jag":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"864",
+				"width":	"64",
+				"height":	"32"
+		},
+	
+		"warrior_spirit":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"832",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"loch_n_load":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"736",
+				"width":	"96",
+				"height":	"32"
+		},
+	
+		"iron_curtain":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"704",
+				"width":	"96",
+				"height":	"32"
+		},
+	
+		"crusaders_crossbow":
+		{
+				"section":	 "1",
+				"x":		"256",
+				"y":		"672",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"battleneedle":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"640",
+				"width":	"96",
+				"height":	"32"
+		},
+	
+		"sydney_sleeper":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"192",
+				"width":	"128",
+				"height":	"32"
+		},
+	
+		"cow_mangler":
+		{
+				"section":	 "1",
+				"x":		"256",
+				"y":		"224",
+				"width":	"128",
+				"height":	"32"
+		},
+	
+		"righteous_bison":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"256",
+				"width":	"128",
+				"height":	"32"
+		},
+	
+		"bushwacka":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"608",
+				"width":	"96",
+				"height":	"32"
+		},
+	
+		"taunt_soldier_lumbricus":
+		{
+				"section":	 "1",
+				"x":		"320",
+				"y":		"864",
+				"width":	"64",
+				"height":	"32"
+		},
+						
+		"brass_beast":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"576",
+				"width":	"96",
+				"height":	"32"
+		},
+			
+		"gloves_running_urgently":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"544",
+				"width":	"96",
+				"height":	"32"
+		},
+			
+		"blutsauger":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"512",
+				"width":	"96",
+				"height":	"32"
+		},
+			
+		"sandman":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"480",
+				"width":	"96",
+				"height":	"32"
+		},
+	
+		"backburner":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"448",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"lava_bat":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"0",
+				"width":	"96",
+				"height":	"32"
+		},
+	
+		"lava_axe":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"32",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"obj_minisentry":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"416",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"kunai":
+		{
+				"section":	 "1",
+				"x":		"384",
+				"y":		"64",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"warfan":
+		{
+				"section":	 "1",
+				"x":		"384",
+				"y":		"96",
+				"width":	"64",
+				"height":	"32"
+		},
+
+		"demokatana":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"128",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"scout_sword":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"192",
+				"width":	"128",
+				"height":	"32"
+		},
+
+		"the_maul":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"224",
+				"width":	"96",
+				"height":	"32"
+		},
+
+		"saxxy":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"256",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"market_gardener":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"288",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"the_winger":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"320",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"tomislav":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"352",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"soda_popper":
+		{
+				"section":	 "1",
+				"x":		"384",
+				"y":		"384",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"atomizer":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"416",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"bazaar_bargain":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"448",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"big_earner":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"480",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"detonator":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"512",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"eviction_notice":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"544",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"family_business":
+		{
+				"section":	 "1",
+				"x":		"384",
+				"y":		"576",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"liberty_launcher":
+		{
+				"section":	 "1",
+				"x":		"384",
+				"y":		"608",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"proto_syringe":
+		{
+				"section":	 "1",
+				"x":		"384",
+				"y":		"640",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"persian_persuader":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"672",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"reserve_shooter":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"704",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"shahanshah":
+		{
+				"section":	 "1",
+				"x":		"384",
+				"y":		"736",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"enforcer":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"768",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"disciplinary_action":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"800",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"splendid_screen":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"832",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"mantreads":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"864",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"solemn_vow":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"896",
+				"width":	"96",
+				"height":	"32"
+		},
+		
+		"nessieclub":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"928",
+				"width":	"128",
+				"height":	"32"
+		},
+		
+		"mailbox":
+		{
+				"section":	 "1",
+				"x":		"384",
+				"y":		"960",
+				"width":	"128",
+				"height":	"32"
+		},
+		
+		"quake_rl":
+		{
+				"section": 	"1",
+				"x":		"384",
+				"y":		"992",
+				"width":	"128",
+				"height":	"32"
+		},
+		
+		"diamondback":
+		{
+				"section":	 "1",
+				"x":		"320",
+				"y":		"896",
+				"width":	"64",
+				"height":	"32"
+		},
+		
+		"widowmaker":
+		{
+				"section": 	"1",
+				"x":		"320",
+				"y":		"960",
+				"width":	"64",
+				"height":	"32"
+		},
+		
+		"short_circuit":
+		{
+				"section":	 "1",
+				"x":		"320",
+				"y":		"928",
+				"width":	"64",
+				"height":	"32"
+		},
+		"machina":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"288",
+				"width":	"128",
+				"height":	"32"		
+		},
+		"player_penetration":
+		{
+				"section": 	"1",
+				"x":		"256",
+				"y":		"320",
+				"width":	"128",
+				"height":	"32"		
+		},
+		"headshot_player_penetration":
+		{
+				"section":	 "1",
+				"x":		"256",
+				"y":		"352",
+				"width":	"128",
+				"height":	"32"		
+		},
+		"nonnonviolent_protest":
+		{
+				"section": 	"2",
+				"x":		"0",
+				"y":		"0",
+				"width":	"96",
+				"height":	"32"		
+		},
+		"scotland_shard":
+		{
+				"section": 	"2",
+				"x":		"0",
+				"y":		"32",
+				"width":	"96",
+				"height":	"32"		
+		},
+		"baleful_beacon":
+		{
+				"section":	 "2",
+				"x":		"0",
+				"y":		"64",
+				"width":	"96",
+				"height":	"32"		
+		},
+		"unarmed_combat":
+		{
+				"section": 	"2",
+				"x":		"0",
+				"y":		"96",
+				"width":	"96",
+				"height":	"32"		
+		},
+		"voodoo_pin":
+		{
+				"section": 	"2",
+				"x":		"0",
+				"y":		"128",
+				"width":	"96",
+				"height":	"32"		
+		},
+		"eyeball_rocket":
+		{
+				"section":	 "2",
+				"x":		"0",
+				"y":		"160",
+				"width":	"96",
+				"height":	"32"		
+		},
+		"purgatory":
+		{
+				"section":	 "2",
+				"x":		"0",
+				"y":		"192",
+				"width":	"96",
+				"height":	"32"		
+		},
+		"apocofists":
+		{
+				"section":	 "2",
+				"x":		"0",
+				"y":		"256",
+				"width":	"96",
+				"height":	"32"		
+		},
+		"sharp_dresser":
+		{
+				"section":	 "2",
+				"x":		"0",
+				"y":		"288",
+				"width":	"96",
+				"height":	"32"		
+		},
+		"sharp_dresser_backstab":
+		{
+				"section": 	"2",
+				"x":		"0",
+				"y":		"320",
+				"width":	"96",
+				"height":	"32"		
+		},				
+		"phlogistinator":
+		{
+				"section": 	"2",
+				"x":		"256",
+				"y":		"0",
+				"width":	"128",
+				"height":	"32"	
+		},
+		"manmelter":
+		{
+				"section": 	"2",
+				"x":		"256",
+				"y":		"32",
+				"width":	"128",
+				"height":	"32"	
+		},
+		"thirddegree":
+		{
+				"section": 	"2",
+				"x":		"0",
+				"y":		"352",
+				"width":	"96",
+				"height":	"32"	
+		},
+		"eureka_effect":
+		{
+				"section": 	"2",
+				"x":		"0",
+				"y":		"416",
+				"width":	"96",
+				"height":	"32"	
+		},
+		"pomson":
+		{
+				"section": 	"2",
+				"x":		"256",
+				"y":		"64",
+				"width":	"128",
+				"height":	"32"	
+		},
+		"holiday_punch":
+		{
+				"section": 	"2",
+				"x":		"0",
+				"y":		"448",
+				"width":	"96",
+				"height":	"32"	
+		},
+		"spy_cicle":
+		{
+				"section": 	"2",
+				"x":		"0",
+				"y":		"512",
+				"width":	"96",
+				"height":	"32"	
+		},
+		"wrap_assassin":
+		{
+				"section": 	"2",
+				"x":		"256",
+				"y":		"96",
+				"width":	"128",
+				"height":	"32"
+		},
+		"black_rose":
+		{
+				"section": 	"2",
+				"x":		"0",
+				"y":		"576",
+				"width":	"96",
+				"height":	"32"	
+		},
+		"lollichop":
+		{
+				"section":	 "2",
+				"x":		"0",
+				"y":		"608",
+				"width":	"96",
+				"height":	"32"	
+		},
+		"scorchshot":
+		{
+				"section":	 "2",
+				"x":		"0",
+				"y":		"640",
+				"width":	"96",
+				"height":	"32"	
+		},
+		"rainblower":
+		{
+				"section": 	"2",
+				"x":		"0",
+				"y":		"672",
+				"width":	"96",
+				"height":	"32"	
+		},
+		"pro_smg":
+		{
+				"section":	 "2",
+				"x":		"0",
+				"y":		"705",
+				"width":	"64",
+				"height":	"31"
+		},
+		"pep_pistol":
+		{
+				"section":	 "2",
+				"x":		"0",
+				"y":		"737",
+				"width":	"48",
+				"height":	"31"
+		},
+		"armageddon":
+		{
+				"section": 	"2",
+				"x":		"0",
+				"y":		"769",
+				"width":	"96",
+				"height":	"31"
+		},
+		"pro_rifle":
+		{
+				"section": 	"2",
+				"x":		"256",
+				"y":		"125",
+				"width":	"128",
+				"height":	"35"
+		},
+		"pep_brawlerblaster":
+		{
+				"section":	 "2",
+				"x":		"256",
+				"y":		"161",
+				"width":	"128",
+				"height":	"31"
+		},
+		"dumpster_device":
+		{
+				"section":	 "2",
+				"x":		"256",
+				"y":		"187",
+				"width":	"128",
+				"height":	"36"
+		},
+		"long_heatmaker":
+		{
+				"section":	 "2",
+				"x":		"0",
+				"y":		"800",
+				"width":	"96",
+				"height":	"31"
+		},
+		"annihilator":
+		{
+				"section": 	"2",
+				"x":		"0",
+				"y":		"832",
+				"width":	"96",
+				"height":	"31"
+		},
+		"guillotine":
+		{
+				"section":	 "2",
+				"x":		"0",
+				"y":		"864",
+				"width":	"96",
+				"height":	"31"
+		},
+		"recorder":
+		{
+				"section": 	"2",
+				"x":		"0",
+				"y":		"896",
+				"width":	"96",
+				"height":	"31"
+		},
+}

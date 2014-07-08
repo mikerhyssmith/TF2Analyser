@@ -105,6 +105,7 @@ class VisualizationStats {
     return roundedPercent;
   }
   
+  /*
   public String getMostKills(int match){
 
     if(match == -1 ){
@@ -140,7 +141,7 @@ class VisualizationStats {
     
     return "";
   }
-  
+  */
   
   
   

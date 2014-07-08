@@ -74,7 +74,7 @@ class BarGraph{
     arial = createFont("Arial",12,true);
     textAlign(CENTER);
     
-    icons = new IconHandler("killicons.png", barWidth, iconHeight);
+    icons = new IconHandler("killicons_final.png", barWidth, iconHeight);
   }
 
   public void draw(){

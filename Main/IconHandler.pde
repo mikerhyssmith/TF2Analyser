@@ -1,3 +1,4 @@
+
 class IconHandler{
   PImage icons;
   int xPos;
@@ -5,26 +6,32 @@ class IconHandler{
   int iconWidth;
   int iconHeight;
   
-  Hashtable<String, PVector> iconLocations;
-  Boolean locationsLoaded;
+  //Hashtable<String, PVector> iconLocations;
+  //Boolean locationsLoaded;
+  JSONObject iconData;
   
   public IconHandler(String fileName, int iconWidth, int iconHeight){
     icons = loadImage(fileName);
     this.iconWidth = iconWidth;
     this.iconHeight = iconHeight;
     
+    /*
     //Try to load icon positions from text file
     locationsLoaded = SetupIconTable("killicons.txt");
     //If loading fails, print an error
     if(!locationsLoaded){
       System.out.println("Icon location file format error.");
-    }
+    }*/
+    
+    iconData=loadJSONObject("kill_icons.JSON");
   }
   
   public void Draw(String weapon, float x, float y){
     PVector position; 
-    int u=0,v=0; 
+    int u=0,v=0,section=0,width=0,height=0; 
+    JSONObject icon;    
     
+    /*
     //If icon positions were loaded
     if(locationsLoaded){
       //Look for the kill icon in the hashtable
@@ -42,11 +49,24 @@ class IconHandler{
     }
     else{
       System.out.println("No icons loaded!");
+    }*/
+    
+    try{
+      icon = iconData.getJSONObject(weapon);
+      section = icon.getInt("section");
+      u = icon.getInt("x");
+      v = icon.getInt("y");
+      width = icon.getInt("width");
+      height = icon.getInt("height");
+      
+      image(icons,x, y, width, height, u+(section*512), v, u+width+(section*512),v+height);
+    } catch(Exception e){
+      System.err.println("Exception: " + e.getMessage());
     }
-
+    
   }
 
-
+/*
   Boolean  SetupIconTable(String fileName)
   {
     iconLocations = new Hashtable<String, PVector>();
@@ -83,6 +103,6 @@ class IconHandler{
       }
     }
     return true;
-  }
+  }*/
 }
 
