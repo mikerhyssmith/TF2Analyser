@@ -37,7 +37,7 @@ class IconHandler{
         image(icons,x, y, (float)iconWidth, (float)iconHeight, u*iconWidth, v*iconHeight, (u+1)*iconWidth, (v+1)*iconHeight);
       }
       else{
-        System.out.println("Icon location not found for "+ weapon);
+        //System.out.println("Icon location not found for "+ weapon);
       }
     }
     else{

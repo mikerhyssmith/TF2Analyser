@@ -105,7 +105,7 @@ void drawBarChart(){
 }
 
 void drawVisualizationStats(){
-  vs = new VisualizationStats(reader.getMatches(),processor.getAllDeaths());
+  vs = new VisualizationStats(reader.getMatches(),processor);
   
 }
 
