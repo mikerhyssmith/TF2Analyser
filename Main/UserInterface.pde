@@ -3,7 +3,7 @@ import java.text.Normalizer;
 
 class UserInterface {
   ControlP5 cP5;
-  DropdownList dropdown,playersDropDown;
+  DropdownList dropdown,playersDropDown,matchList;
   ListBox l,playerList;
   Textarea myTextarea;
   boolean fileLoaded = false;
@@ -57,11 +57,14 @@ class UserInterface {
     
   }
   
-  void addVisualizationOptions(String[] Players) {
+  void addVisualizationOptions(String[] Players, ArrayList<Match> matches) {
     //Create a drop down list of available players.
-    playersDropDown = cP5.addDropdownList("PlayerChoice").setPosition(200,15).setSize(120,70);
+    playersDropDown = cP5.addDropdownList("PlayerChoice").setPosition(320,15).setSize(120,70);
+    matchList = cP5.addDropdownList("MatchChoice").setPosition(200,15).setSize(120,70);
+    matchList.addItem("All Matchs",0);
     playersDropDown.addItem("All Players",0);
     customizeDropDownList(playersDropDown);
+    customizeDropDownList(matchList);
     int counter = 0;
     for(int i = 0 ; i < Players.length; i ++){
       try{
@@ -73,6 +76,11 @@ class UserInterface {
         System.out.println("Player Name Not Supported");
         playersDropDown.addItem("Unsupported Player Name " + i, i);
       }
+    }
+    
+    for(int i =0 ; i< matches.size(); i++){
+       Match currentMatch = matches.get(i);
+       matchList.addItem(currentMatch.getMapName(),i+1); 
     }
   }
   

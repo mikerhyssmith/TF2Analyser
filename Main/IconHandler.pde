@@ -36,8 +36,8 @@ class IconHandler{
       case BACKBURNER:            u=1;
                                   v=6;
            break;
-      default: println("UNKNOWN KILL");
-                break;
+     // default: println("UNKNOWN KILL");
+              //  break;
     }
     
     image(icons,x, y, (float)iconWidth, (float)iconHeight, u*iconWidth, v*iconHeight, (u+1)*iconWidth, (v+1)*iconHeight);

@@ -16,6 +16,8 @@ DataProcessor processor;
 boolean fileLoaded;
 boolean dataProcessed;
 String[] players;
+ArrayList<Match> matches;
+VisualizationStats vs;
 
 void setup() {
   
@@ -40,7 +42,7 @@ void draw(){
     fileLoaded = false;
   }
   if(dataProcessed){
-    UI.addVisualizationOptions(players);
+    UI.addVisualizationOptions(players,matches);
     dataProcessed = false;
   }
   if(graphDrawn){
@@ -81,14 +83,13 @@ void fileSelected(File selection) {
     reader = new FileReader(filename);
     reader.processFile(reader.getData());
     fileLoaded = true;
-    //
-    //UI.fileLoadedUI();
-    
+
     //Process data from file
     processor = new DataProcessor(reader.getMatches());
     
     //Get list of players from processed data
     players = processor.getMatchPlayers(0);
+    matches = reader.getMatches();
     //Add player list to UI
     dataProcessed = true;
     
@@ -97,9 +98,15 @@ void fileSelected(File selection) {
 
 void drawBarChart(){
    Hashtable<String, DeathCount> deaths;
-   deaths = processor.getMatchDeaths(1);
+   deaths = processor.getAllDeaths();
    graph = new BarGraph(deaths,graphArea,10,barControl);
    graphDrawn = true;
+   drawVisualizationStats();
+}
+
+void drawVisualizationStats(){
+  vs = new VisualizationStats(reader.getMatches(),processor.getAllDeaths());
+  
 }
 
 
