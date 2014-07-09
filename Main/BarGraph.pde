@@ -77,7 +77,7 @@ class BarGraph{
   }
 
   public void draw(){
-    int h=0;
+    int h = 0;
     int x = 0;
 
     //Set up iterator for deaths
@@ -90,11 +90,11 @@ class BarGraph{
       death = deaths.get(key);
       
       //Scale bar heights so that the highest is as tall as the graph
-      h =  (int) map(death.getCount(),0,maxKills,0,graphArea.getHeight()-iconHeight-sliderHeight); 
+      h =  (int) map(death.getCount(), 0, maxKills, 0, graphArea.getHeight()-iconHeight-sliderHeight); 
       
       float xpos=x+graphArea.getX()-xShift;
       //Calculate y position of rectangle
-      float ypos=graphArea.getHeight()+graphArea.getY()-h-sliderHeight;
+      float ypos= graphArea.getHeight() + graphArea.getY() - h - sliderHeight;
       
       //Draw icon
       icons.Draw(death.getCause(), xpos, ypos-iconHeight);
@@ -115,8 +115,8 @@ class BarGraph{
       if((mouseX>xpos && mouseX<=xpos+barWidth)&&(mouseY>graphArea.getHeight()+graphArea.getY()-h-sliderHeight)){
         //Draw bar on top showing crit kills
         fill(255,40,40);
-        h = (int) map(death.getCritCount(),0,maxKills,0,graphArea.getHeight());
-        ypos=graphArea.getHeight()+graphArea.getY()-h-sliderHeight;
+        h = (int) map(death.getCritCount(),0,maxKills,0,graphArea.getHeight()-iconHeight-sliderHeight);
+        ypos=graphArea.getHeight() + graphArea.getY() - h - sliderHeight;
         rect(xpos,ypos,barWidth,h);
         
         //Draw tooltip over highlighted bar
