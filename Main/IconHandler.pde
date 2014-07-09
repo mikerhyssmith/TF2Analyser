@@ -3,26 +3,11 @@ class IconHandler{
   PImage icons;
   int xPos;
   int yPos;
-  int iconWidth;
-  int iconHeight;
-  
-  //Hashtable<String, PVector> iconLocations;
-  //Boolean locationsLoaded;
+
   JSONObject iconData;
   
-  public IconHandler(String fileName, int iconWidth, int iconHeight){
+  public IconHandler(String fileName){
     icons = loadImage(fileName);
-    this.iconWidth = iconWidth;
-    this.iconHeight = iconHeight;
-    
-    /*
-    //Try to load icon positions from text file
-    locationsLoaded = SetupIconTable("killicons.txt");
-    //If loading fails, print an error
-    if(!locationsLoaded){
-      System.out.println("Icon location file format error.");
-    }*/
-    
     iconData=loadJSONObject("kill_icons.JSON");
   }
   
@@ -31,26 +16,7 @@ class IconHandler{
     int u=0,v=0,section=0,width=0,height=0; 
     JSONObject icon;    
     
-    /*
-    //If icon positions were loaded
-    if(locationsLoaded){
-      //Look for the kill icon in the hashtable
-      position = iconLocations.get(weapon);
-      if(position!=null){
-        //If the icon was found, draw it
-        u=(int)position.x;
-        v=(int)position.y;
-        
-        image(icons,x, y, (float)iconWidth, (float)iconHeight, u*iconWidth, v*iconHeight, (u+1)*iconWidth, (v+1)*iconHeight);
-      }
-      else{
-        //System.out.println("Icon location not found for "+ weapon);
-      }
-    }
-    else{
-      System.out.println("No icons loaded!");
-    }*/
-    
+    //Look for the cause of death in the icon data
     try{
       icon = iconData.getJSONObject(weapon);
       section = icon.getInt("section");
@@ -61,48 +27,9 @@ class IconHandler{
       
       image(icons,x, y, width, height, u+(section*512), v, u+width+(section*512),v+height);
     } catch(Exception e){
+      //Handle the exception and print an error if icon not found
       System.err.println("Exception: " + e.getMessage());
     }
-    
   }
-
-/*
-  Boolean  SetupIconTable(String fileName)
-  {
-    iconLocations = new Hashtable<String, PVector>();
-    String[] data = loadStrings(fileName);
-
-    String weapon;
-    PVector location;
-    int dividerPos;
-    
-    for(int i =0; i<data.length;i++){
-      //Look for a weapon name
-      if(data[i].substring(0,6).equals("name: ")){
-        //Store weapon name
-        weapon=data[i].substring(6);
-        //Move to next line and read in position
-        i++;
-        dividerPos = data[i].indexOf(",");
-        //Check that there is a divider
-        if(dividerPos!=-1){
-          //Save the weapon to the hashtable
-          location = new PVector(Float.parseFloat(data[i].substring(0,dividerPos)), Float.parseFloat(data[i].substring(dividerPos+1)));
-          iconLocations.put(weapon,location);
-        }
-        else{
-          //If line is not formatted correctly, return an error
-          System.out.println("Invalid file format at line: " +i);
-          return false;
-        }
-      }
-      else{
-        //If line is not formatted correctly, return an error
-        System.out.println("Invalid file format at line: " +i);
-        return false;
-      }
-    }
-    return true;
-  }*/
 }
 

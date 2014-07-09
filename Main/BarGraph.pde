@@ -30,7 +30,6 @@ class BarGraph{
   
   IconHandler icons;
   
-  
   public BarGraph(Hashtable<String,DeathCount> deaths, Area barArea, int seperation, ControlP5 control){
     this.deaths = deaths;
     this.graphArea = barArea;
@@ -74,14 +73,13 @@ class BarGraph{
     arial = createFont("Arial",12,true);
     textAlign(CENTER);
     
-    icons = new IconHandler("killicons_final.png", barWidth, iconHeight);
+    icons = new IconHandler("killicons_final.png");
   }
 
   public void draw(){
     int h=0;
     int x = 0;
 
-    
     //Set up iterator for deaths
     Enumeration<String> enumDeath = deaths.keys();
     String key;

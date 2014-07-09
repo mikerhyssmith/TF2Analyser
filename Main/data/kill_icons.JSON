@@ -1772,4 +1772,86 @@
 				"width":	"96",
 				"height":	"31"
 		},
+				
+		"the_classic":
+		{
+				"section": 	"2",
+				"x":		"256",
+				"y":		"577",
+				"width":	"128",
+				"height":	"32"
+		},
+		"tide_turner":
+		{
+				"section": 	"2",
+				"x":		"192",
+				"y":		"545",
+				"width":	"64",
+				"height":	"32"
+		},
+		"bread_bite":
+		{
+				"section": 	"2",
+				"x":		"192",
+				"y":		"577",
+				"width":	"64",
+				"height":	"32"
+		},
+		"snack_attack":
+		{
+				"section": 	"2",
+				"x":		"256",
+				"y":		"608",
+				"width":	"128",
+				"height":	"32"
+		},
+		"back_scatter":
+		{
+				"section": 	"2",
+				"x":		"256",
+				"y":		"512",
+				"width":	"128",
+				"height":	"32"
+		},
+		"airstrike":
+		{
+				"section": 	"2",
+				"x":		"256",
+				"y":		"545",
+				"width":	"128",
+				"height":	"32"
+		},
+
+		"skullbat":
+		{
+				"section": 	"0",
+				"x":		"96",
+				"y":		"288",
+				"width":	"96",
+				"height":	"32"
+		},
+		"tf_projectile_arrow":
+		{
+				"section": 	"0",
+				"x":		"263",
+				"y":		"98",
+				"width":	"96", 
+				"height":	"32"
+		},
+		"player":
+		{
+				"section": 	"0",
+				"x":		"96",
+				"y":		"288",
+				"width":	"96",
+				"height":	"32"
+		},
+		"world":
+		{
+				"section": 	"0",
+				"x":		"96",
+				"y":		"288",
+				"width":	"96",
+				"height":	"32"
+		},
 }

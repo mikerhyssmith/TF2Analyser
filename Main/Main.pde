@@ -20,7 +20,6 @@ ArrayList<Match> matches;
 VisualizationStats vs;
 
 void setup() {
-  
   size(800,600);
   smooth();
   background(128);
@@ -116,7 +115,6 @@ void drawMatchTimeline(){
 
 void BarSlider(float shift) {
   graph.UpdateShift(shift);
-  System.out.println("Shifting graph by: "+shift);
 }
 
 
