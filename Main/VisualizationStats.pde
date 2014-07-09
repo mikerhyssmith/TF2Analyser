@@ -8,6 +8,7 @@ class VisualizationStats {
   Hashtable<String,DeathCount> deaths;
   DataProcessor reader;
   PFont arial;
+  String currentSelectedPlayer = "";
   
   
   public VisualizationStats(ArrayList<Match> matches,DataProcessor reader){
@@ -17,12 +18,12 @@ class VisualizationStats {
     this.reader = reader;
     arial = createFont("Arial",11,true);
     
-    getInitialStats();
+    
     
   }
   
   public void getInitialStats(){
-    
+    System.out.println("INIT");
     mostPopularWeapon = getMostPopularWeapon(-1);
     System.out.println(mostPopularWeapon);
     percentCrits = getPercentCrits(-1,"") + "%";
@@ -31,7 +32,6 @@ class VisualizationStats {
     System.out.println(mostKills);
     mostDeaths = getMostDeaths(-1);
     System.out.println(mostDeaths);
-    draw();
     
   }
   public void draw(){
@@ -84,25 +84,23 @@ class VisualizationStats {
   public int getPercentCrits(int match, String playerName){
     //If match is -1 get data for all matches.
     //If player name is "" get data for all players.
-    
+    currentSelectedPlayer = playerName;
+
     Hashtable<String,DeathCount> deaths = new Hashtable<String,DeathCount>();
     
     if(match == -1 && playerName.equals("")){
       deaths = reader.getAllDeaths();
-      System.out.println("All Matches, All Players");
       
     }else if (match != -1 && playerName.equals("")){
       deaths = reader.getMatchDeaths(match);
-      System.out.println("Match: " + match + " All Players");
-      
+
       
     }else if (match == -1 && !playerName.equals("")){
       deaths = reader.getDeaths(playerName,-1);
-      System.out.println("All Matches " + "Players " + playerName);
       
     }else{
       deaths = reader.getDeaths(playerName,match);
-      System.out.println("All Matches " + "Players " + playerName);
+      
     }
     
     Enumeration<String> enumDeath = deaths.keys();
@@ -249,6 +247,15 @@ class VisualizationStats {
       
     }
     return maxKillsPlayer + ": " + maxKillsNo;  
+  }
+  
+  public void updateMatchStatistics(int match){
+    
+    mostPopularWeapon = getMostPopularWeapon(match);
+    percentCrits = getPercentCrits(match,currentSelectedPlayer) + "%";
+    mostKills = getMostKills(match);
+    mostDeaths = getMostDeaths(match);
+    
   }
   
   

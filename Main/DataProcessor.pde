@@ -162,8 +162,18 @@ class DataProcessor {
     
     synchronized(matches){
     List<String> matchPlayers = new ArrayList<String>();
-    Match currentMatch = matches.get(match);
-    ArrayList<Event> matchEvents = currentMatch.getEvents();
+    ArrayList<Event> matchEvents = new ArrayList<Event>();
+    
+    if(match !=-1){
+      Match currentMatch = matches.get(match);
+      matchEvents = currentMatch.getEvents();
+    }else{
+     for(int i = 0 ; i< matches.size(); i++){
+      Match currentMatch = matches.get(i);
+      matchEvents.addAll(currentMatch.getEvents());
+     } 
+    }
+    
     for(int i = 0; i< matchEvents.size(); i++){
       Event currentEvent = matchEvents.get(i);
       if (currentEvent.getEventType().equals(EventTypes.KILL)) {

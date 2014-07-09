@@ -73,7 +73,7 @@ class UserInterface {
     //Create a drop down list of available players.
     playersDropDown = cP5.addDropdownList("PlayerChoice").setPosition(320,15).setSize(120,70);
     matchList = cP5.addDropdownList("MatchChoice").setPosition(200,15).setSize(120,70);
-    matchList.addItem("All Matchs",0);
+    matchList.addItem("All Matches",0);
     playersDropDown.addItem("All Players",0);
     customizeDropDownList(playersDropDown);
     customizeDropDownList(matchList);
@@ -83,10 +83,10 @@ class UserInterface {
         //Must convert the string to bytes to handle unsupported characters.
         byte[] playerBytes = Players[i].getBytes("WINDOWS-1256");
         String playerName = new String(playerBytes);
-      playersDropDown.addItem(playerName,i);
+      playersDropDown.addItem(playerName,i+1);
       }catch(Exception e){
         System.out.println("Player Name Not Supported");
-        playersDropDown.addItem("Unsupported Player Name " + i, i);
+        playersDropDown.addItem("Unsupported Player Name " + i, i+1);
       }
     }
     
@@ -104,7 +104,36 @@ class UserInterface {
   ddl.captionLabel().style().marginLeft = 3;
   ddl.valueLabel().style().marginTop = 3;
 }
+  public String getPlayer(int playerMenuIndex){
+    return playersDropDown.getItem(playerMenuIndex).getText();
+  }
   
+  public void updatePlayerDropDown(int match){
+    String[] players = null;
+    if(match != -1){
+      players = processor.getMatchPlayers(match);
+      }else{
+        players = processor.getMatchPlayers(match);
+      }
+      playersDropDown = cP5.addDropdownList("PlayerChoice").setPosition(320,15).setSize(120,70);
+      playersDropDown.addItem("All Players",0);
+      customizeDropDownList(playersDropDown);
+      
+      int counter = 0;
+      for(int i = 0 ; i < players.length; i ++){
+        try{
+          //Must convert the string to bytes to handle unsupported characters.
+          byte[] playerBytes = players[i].getBytes("WINDOWS-1256");
+          String playerName = new String(playerBytes);
+          playersDropDown.addItem(playerName,i+1);
+        }catch(Exception e){
+          System.out.println("Player Name Not Supported");
+          playersDropDown.addItem("Unsupported Player Name " + i, i+1);
+        }
+      
+    }
+    
+  }
  
 
   

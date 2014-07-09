@@ -18,6 +18,8 @@ boolean dataProcessed;
 String[] players;
 ArrayList<Match> matches;
 VisualizationStats vs;
+Hashtable<String, DeathCount> deaths;
+int m_number = -1;
 
 void setup() {
   size(800,600);
@@ -63,13 +65,33 @@ void controlEvent(ControlEvent theEvent) {
     // if the name of the event is equal to ImageSelect (aka the name of our dropdownlist)
     if (theEvent.group().name() == "VisualizationChoice") {
       if(theEvent.group().value() == 0){
+        deaths = processor.getAllDeaths();
         drawBarChart();
         UI.drawVisualizationStats(vs);
+        vs.getInitialStats();
       }else{
-      
+        //Draw match timeline
       }
-    
-    }  
+    }
+    if(theEvent.group().name() == "MatchChoice"){
+      int matchNumber = (int)theEvent.group().value();
+      m_number = matchNumber -1;
+      System.out.println("Match Number: " + m_number);
+      
+      updateVisualisationMatch(matchNumber);
+    }
+    if(theEvent.group().name()=="PlayerChoice"){
+      int playerNumber = (int)theEvent.group().value();
+      String playerName;
+      if(playerNumber == 0){
+        playerName = ""; 
+      }else{
+         playerName = UI.getPlayer(playerNumber);
+      }
+      
+      
+      updateVisualisationPlayer(playerName);
+    }
  }
 }
 
@@ -93,19 +115,16 @@ void fileSelected(File selection) {
     matches = reader.getMatches();
     //Add player list to UI
     dataProcessed = true;
-    
-    
-    
   }
 }
 
 void drawBarChart(){
-   Hashtable<String, DeathCount> deaths;
-   deaths = processor.getAllDeaths();
    graph = new BarGraph(deaths,graphArea,10,barControl);
    graphDrawn = true;
    drawVisualizationStats();
 }
+
+
 
 void drawVisualizationStats(){
   vs = new VisualizationStats(reader.getMatches(),processor);
@@ -116,6 +135,39 @@ void drawVisualizationStats(){
 void drawMatchTimeline(){
   
 }
+
+void updateVisualisationMatch(int matchNumber){
+  
+  if(matchNumber == 0){
+    deaths = processor.getAllDeaths();
+    vs.updateMatchStatistics(-1);
+    UI.drawVisualizationStats(vs);
+    UI.updatePlayerDropDown(-1);
+
+  }else{
+    deaths = processor.getMatchDeaths(matchNumber-1);
+    vs.updateMatchStatistics(matchNumber-1);
+    UI.drawVisualizationStats(vs);
+    UI.updatePlayerDropDown(matchNumber-1);
+
+  }
+  drawBarChart();
+}
+void updateVisualisationPlayer(String playerName){
+  System.out.println(playerName);
+  
+  if(playerName.equals("")){
+    if(m_number != -1){
+      deaths = processor.getMatchDeaths(m_number); 
+    }else{
+      deaths = processor.getAllDeaths();
+    }
+  }else if(!playerName.equals("")){
+      deaths = processor.getDeaths(playerName,m_number); 
+  }
+  drawBarChart();
+}
+
 
 void BarSlider(float shift) {
   graph.UpdateShift(shift);
