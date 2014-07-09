@@ -71,7 +71,7 @@ class BarGraph{
     
     //Set up font
     arial = createFont("Arial",12,true);
-    textAlign(CENTER);
+
     
     icons = new IconHandler("killicons_final.png");
   }
@@ -103,17 +103,25 @@ class BarGraph{
       fill(52,47,44);
       rect(xpos,ypos,barWidth,h);
       
+      /*
       //Label each bar
       textFont(arial);       
       fill(0);
+      textAlign(CENTER);
       text(death.getCause(),x+barWidth/2-xShift,graphArea.getHeight()/2); 
+      */
       
-      //Draw crit kills if mouse is over the bar
-      if((mouseX>xpos && mouseX<=xpos+barWidth)&&(mouseY>graphArea.getHeight()+graphArea.getY()-h)){
+      //Draw crit kills and tooltip if mouse is over the bar
+      if((mouseX>xpos && mouseX<=xpos+barWidth)&&(mouseY>graphArea.getHeight()+graphArea.getY()-h-sliderHeight)){
+        //Draw bar on top showing crit kills
         fill(255,40,40);
         h = (int) map(death.getCritCount(),0,maxKills,0,graphArea.getHeight());
         ypos=graphArea.getHeight()+graphArea.getY()-h-sliderHeight;
         rect(xpos,ypos,barWidth,h);
+        
+        //Draw tooltip over highlighted bar
+        ToolTip tip = new ToolTip("Weapon: "+death.getCause() +"\n" + "Kills: " + death.getCount() + "\n" + "Crits: " + death.getCritCount(), color(248,185,138), arial);
+        tip.draw(xShift);
       }
       
       //Move to next bar position
