@@ -42,6 +42,7 @@ void draw(){
   }
   if(dataProcessed){
     UI.addVisualizationOptions(players,matches);
+ 
     dataProcessed = false;
   }
   if(graphDrawn){
@@ -63,6 +64,7 @@ void controlEvent(ControlEvent theEvent) {
     if (theEvent.group().name() == "VisualizationChoice") {
       if(theEvent.group().value() == 0){
         drawBarChart();
+        UI.drawVisualizationStats(vs);
       }else{
       
       }
@@ -91,6 +93,8 @@ void fileSelected(File selection) {
     matches = reader.getMatches();
     //Add player list to UI
     dataProcessed = true;
+    
+    
     
   }
 }

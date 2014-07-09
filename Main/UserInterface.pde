@@ -8,6 +8,8 @@ class UserInterface {
   Textarea myTextarea;
   boolean fileLoaded = false;
   int colour = 0;
+  VisualizationStats vs;
+  boolean vst = false;
   
   public UserInterface(ControlP5 cp5){
     
@@ -17,7 +19,7 @@ class UserInterface {
     cP5.setColorLabel(0xffdddddd);
     cP5.setColorValue(0xff342F2C);
     cP5.setColorActive(0xff9D302F);
-    
+
     setupGUI();
 
   }
@@ -40,6 +42,9 @@ class UserInterface {
         
       }
     }
+    if(vst){
+      vs.draw();
+    }
   }
   
   void fileLoadedUI(){
@@ -54,6 +59,13 @@ class UserInterface {
     myTextarea = cP5.addTextarea("LoadSuccesful").setPosition(0,35);
     myTextarea.setText("File Loaded Succesfully !");
     fileLoaded = true;
+    
+  }
+  
+  void drawVisualizationStats(VisualizationStats vs){
+    
+    this.vs = vs;
+    vst = true;
     
   }
   

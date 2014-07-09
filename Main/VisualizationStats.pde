@@ -7,12 +7,15 @@ class VisualizationStats {
   String mostDeaths;
   Hashtable<String,DeathCount> deaths;
   DataProcessor reader;
+  PFont arial;
+  
   
   public VisualizationStats(ArrayList<Match> matches,DataProcessor reader){
     
     this.matches = matches;
     this.deaths = reader.getAllDeaths();
     this.reader = reader;
+    arial = createFont("Arial",11,true);
     
     getInitialStats();
     
@@ -20,13 +23,28 @@ class VisualizationStats {
   
   public void getInitialStats(){
     
-    mostPopularWeapon = getMostPopularWeapon(0);
+    mostPopularWeapon = getMostPopularWeapon(-1);
     System.out.println(mostPopularWeapon);
-    percentCrits = getPercentCrits(1,"") + "%";
+    percentCrits = getPercentCrits(-1,"") + "%";
     System.out.println(percentCrits);
     mostKills = getMostKills(-1);
     System.out.println(mostKills);
-    //mostDeaths = getMostDeaths();
+    mostDeaths = getMostDeaths(-1);
+    System.out.println(mostDeaths);
+    draw();
+    
+  }
+  public void draw(){
+    fill(0,128,0,0);
+    rect(560, 20, 200, 130, 7);
+    //textSize(32);
+    textFont(arial);       
+    fill(0);
+    text("Match Statistics", 660, 40);
+    text("Most Effective Weapon: "+ System.getProperty("line.separator")  + mostPopularWeapon, 660, 60); 
+    text("Percentage of Crit Kills: " + percentCrits, 660, 95); 
+    text("Most Kills: " + mostKills , 660, 115); 
+    text("Most Deaths: " + mostDeaths , 660, 135); 
     
   }
   
@@ -156,18 +174,80 @@ class VisualizationStats {
            killCount.put(killer,newKills);
          }else{
             killCount.put(killer,1); 
-           
          }
-       
-       
      }
-
+    if(maxKillsPlayer.length() > 13){
+      int nameLength = maxKillsPlayer.length();
+      int difference = nameLength - 13;
+      String nameSubstring = maxKillsPlayer.substring(0,nameLength-difference);
+      maxKillsPlayer = nameSubstring + "..";
+      
+      
+    }
     return maxKillsPlayer + ": " + maxKillsNo;    
   }
   
-  public String getMostDeaths(){
+  public String getMostDeaths(int match){
     
-    return "";
+    ArrayList<KillEvent> killEvents = new ArrayList<KillEvent>();
+    String maxKillsPlayer = "";
+    int maxKillsNo = 0;
+    Match currentMatch;
+    ArrayList<Event> currentEvents;
+    Event currentEvent;
+
+    if(match == -1 ){
+      for(int i =0; i< matches.size(); i++){
+        currentMatch = matches.get(i);
+        currentEvents = currentMatch.getEvents();
+        for (int j = 0; j < currentEvents.size(); j++) {
+          currentEvent = currentEvents.get(j);
+          if (currentEvent.getEventType().equals(EventTypes.KILL)) {
+            KillEvent kill = (KillEvent) currentEvent;
+            killEvents.add(kill);
+          }
+        }
+      }
+      
+    }else if (match != -1 ){
+      currentMatch = matches.get(match);
+       currentEvents = currentMatch.getEvents();
+        for (int j = 0; j < currentMatch.getEvents().size(); j++) {
+          currentEvent = currentEvents.get(j);
+          if (currentEvent.getEventType().equals(EventTypes.KILL)) {
+               KillEvent kill = (KillEvent) currentEvent;
+               killEvents.add(kill);
+          }
+        }
+      
+    }
+     Hashtable<String,Integer> killCount = new Hashtable<String,Integer>();
+     //Set up iterator for deaths
+     for(int i =0; i< killEvents.size(); i++){
+        KillEvent kill = killEvents.get(i);
+        String killer = kill.getVictim();
+         if (killCount.containsKey(killer)) {
+           int currentKills = killCount.get(killer);
+           int newKills = currentKills + 1;
+           if(newKills > maxKillsNo){
+             maxKillsPlayer = killer;
+             maxKillsNo = newKills;
+           }
+           killCount.put(killer,newKills);
+         }else{
+            killCount.put(killer,1); 
+         }
+     }
+     
+      if(maxKillsPlayer.length() > 13){
+      int nameLength = maxKillsPlayer.length();
+      int difference = nameLength - 13;
+      String nameSubstring = maxKillsPlayer.substring(0,nameLength-difference);
+      maxKillsPlayer = nameSubstring + "..";
+      
+      
+    }
+    return maxKillsPlayer + ": " + maxKillsNo;  
   }
   
   
