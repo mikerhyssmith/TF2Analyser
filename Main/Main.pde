@@ -119,6 +119,7 @@ void fileSelected(File selection) {
 }
 
 void drawBarChart(){
+   barControl.remove("BarSlider");
    graph = new BarGraph(deaths,graphArea,10,barControl);
    graphDrawn = true;
    drawVisualizationStats();

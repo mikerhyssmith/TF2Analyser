@@ -26,7 +26,7 @@ class BarGraph{
   //Shift value of horizontal slider
   float xShift=0;
   //Height of horizontal slider
-  int sliderHeight = 20;
+  int sliderHeight;
   
   IconHandler icons;
   
@@ -63,10 +63,14 @@ class BarGraph{
     //If graph is wider than its allocated area, add a horizontal scrollbar
     if(graphWidth>graphArea.getWidth())
     {
+      sliderHeight = 20;
       //Add a slider for horizontal scrolling
       barSlider = barControl.addSlider("BarSlider",0,graphWidth-width,0,0,graphArea.getY()+graphArea.getHeight()-sliderHeight,width,sliderHeight);
       
       graphFits = false;
+    }
+    else{
+      sliderHeight = 0;
     }
     
     //Set up font
