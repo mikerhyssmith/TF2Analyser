@@ -40,6 +40,7 @@ class VisualizationStats {
     //textSize(32);
     textFont(arial);       
     fill(0);
+    textAlign(CENTER);
     text("Match Statistics", 660, 40);
     text("Most Effective Weapon: "+ System.getProperty("line.separator")  + mostPopularWeapon, 660, 60); 
     text("Percentage of Crit Kills: " + percentCrits, 660, 95); 

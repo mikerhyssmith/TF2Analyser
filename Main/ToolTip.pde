@@ -27,10 +27,10 @@ class ToolTip{
   }
   
   
-  public void draw(float xShift){
+  public void draw(){
     //Draw a box for the tooltip
     fill(tipColour);
-    rect(tipArea.getX()-2 + xShift, tipArea.getY()-2, tipArea.getWidth()+2,tipArea.getHeight()+2);
+    rect(tipArea.getX()-2, tipArea.getY()-2, tipArea.getWidth()+2,tipArea.getHeight()+2);
     
     //Draw the tooltip text
     textFont(font);       
@@ -38,7 +38,7 @@ class ToolTip{
     
     textAlign(LEFT,TOP);
     for(int i=0;i<tipText.length;i++){
-      text(tipText[i],tipArea.getX()-1 + xShift, tipArea.getY()-1 + ((tipArea.getHeight()/tipText.length)*i));
+      text(tipText[i],tipArea.getX()-1 , tipArea.getY()-1 + ((tipArea.getHeight()/tipText.length)*i));
       
     }
   }

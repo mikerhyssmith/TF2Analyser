@@ -121,7 +121,7 @@ class BarGraph{
         
         //Draw tooltip over highlighted bar
         ToolTip tip = new ToolTip("Weapon: "+death.getCause() +"\n" + "Kills: " + death.getCount() + "\n" + "Crits: " + death.getCritCount(), color(248,185,138), arial);
-        tip.draw(xShift);
+        tip.draw();
       }
       
       //Move to next bar position
