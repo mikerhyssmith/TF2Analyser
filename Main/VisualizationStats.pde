@@ -24,7 +24,8 @@ class VisualizationStats {
     System.out.println(mostPopularWeapon);
     percentCrits = getPercentCrits(1,"") + "%";
     System.out.println(percentCrits);
-   // mostKills = getMostKills();
+    mostKills = getMostKills(-1);
+    System.out.println(mostKills);
     //mostDeaths = getMostDeaths();
     
   }
@@ -105,43 +106,70 @@ class VisualizationStats {
     return roundedPercent;
   }
   
-  /*
+  
   public String getMostKills(int match){
+    
+    ArrayList<KillEvent> killEvents = new ArrayList<KillEvent>();
+    String maxKillsPlayer = "";
+    int maxKillsNo = 0;
+    Match currentMatch;
+    ArrayList<Event> currentEvents;
+    Event currentEvent;
 
     if(match == -1 ){
-      deaths = reader.getAllDeaths();
-      System.out.println("All Matches, All Players");
+      for(int i =0; i< matches.size(); i++){
+        currentMatch = matches.get(i);
+        currentEvents = currentMatch.getEvents();
+        for (int j = 0; j < currentEvents.size(); j++) {
+          currentEvent = currentEvents.get(j);
+          if (currentEvent.getEventType().equals(EventTypes.KILL)) {
+            KillEvent kill = (KillEvent) currentEvent;
+            killEvents.add(kill);
+          }
+        }
+      }
       
     }else if (match != -1 ){
-      deaths = reader.getMatchDeaths(match);
-      System.out.println("Match: " + match + " All Players");
+      currentMatch = matches.get(match);
+       currentEvents = currentMatch.getEvents();
+        for (int j = 0; j < currentMatch.getEvents().size(); j++) {
+          currentEvent = currentEvents.get(j);
+          if (currentEvent.getEventType().equals(EventTypes.KILL)) {
+               KillEvent kill = (KillEvent) currentEvent;
+               killEvents.add(kill);
+          }
+        }
       
     }
-     Hashtable<String,int> killCount = new Hashtable<String,int>();
+     Hashtable<String,Integer> killCount = new Hashtable<String,Integer>();
      //Set up iterator for deaths
-    Enumeration<String> enumDeath = deaths.keys();
-    String key;
-    DeathCount death;
-    //Work out the highest kill value
-    while(enumDeath.hasMoreElements()){
-      key = enumDeath.nextElement();
-      death = deaths.get(key);
-      
-      if (killCount.containsKey(key)) {
-        int currentKillCount = killCount.get(key) + 1;
-      }else{
+     for(int i =0; i< killEvents.size(); i++){
+        KillEvent kill = killEvents.get(i);
+        String killer = kill.getKiller();
+         if (killCount.containsKey(killer)) {
+           int currentKills = killCount.get(killer);
+           int newKills = currentKills + 1;
+           if(newKills > maxKillsNo){
+             maxKillsPlayer = killer;
+             maxKillsNo = newKills;
+           }
+           killCount.put(killer,newKills);
+         }else{
+            killCount.put(killer,1); 
+           
+         }
        
-      } 
-    }
-    return mostUsedWeapon;    
-  }
+       
+     }
+
+    return maxKillsPlayer + ": " + maxKillsNo;    
   }
   
   public String getMostDeaths(){
     
     return "";
   }
-  */
+  
   
   
   
