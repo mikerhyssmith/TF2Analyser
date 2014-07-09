@@ -177,9 +177,9 @@ class VisualizationStats {
             killCount.put(killer,1); 
          }
      }
-    if(maxKillsPlayer.length() > 13){
+    if(maxKillsPlayer.length() > 15){
       int nameLength = maxKillsPlayer.length();
-      int difference = nameLength - 13;
+      int difference = nameLength - 15;
       String nameSubstring = maxKillsPlayer.substring(0,nameLength-difference);
       maxKillsPlayer = nameSubstring + "..";
       
@@ -240,9 +240,9 @@ class VisualizationStats {
          }
      }
      
-      if(maxKillsPlayer.length() > 13){
+      if(maxKillsPlayer.length() > 15){
       int nameLength = maxKillsPlayer.length();
-      int difference = nameLength - 13;
+      int difference = nameLength - 15;
       String nameSubstring = maxKillsPlayer.substring(0,nameLength-difference);
       maxKillsPlayer = nameSubstring + "..";
       
