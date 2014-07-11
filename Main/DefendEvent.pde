@@ -14,7 +14,6 @@ class DefendEvent extends Event{
     this.defender = defender;
     this.defendedObject = defendedObject;
     this.team = team;
-
   }
   
   public String getDefender(){

@@ -9,7 +9,6 @@ class DeathCount{
     this.deathCause = cause;
   }
   
-  
   public String getCause(){
     return deathCause;
   }

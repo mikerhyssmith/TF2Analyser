@@ -24,7 +24,7 @@ class IconHandler{
       v = icon.getInt("y");
       width = icon.getInt("width");
       height = icon.getInt("height");
-      
+      //Draw the icon
       image(icons,x, y, width, height, u+(section*512), v, u+width+(section*512),v+height);
     } catch(Exception e){
       //Handle the exception and print an error if icon not found

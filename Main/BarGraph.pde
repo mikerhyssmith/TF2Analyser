@@ -3,6 +3,7 @@ import java.util.Hashtable;
 import controlP5.*;
 
 class BarGraph{
+  
   //Table of deaths and causes
   Hashtable<String,DeathCount> deaths;
   //Distance between adjacent bars
@@ -76,7 +77,7 @@ class BarGraph{
     //Set up font
     arial = createFont("Arial",12,true);
 
-    
+    //Set up icons
     icons = new IconHandler("killicons_final.png");
   }
 

@@ -10,30 +10,22 @@ class VisualizationStats {
   PFont arial;
   String currentSelectedPlayer = "";
   
-  
   public VisualizationStats(ArrayList<Match> matches,DataProcessor reader){
-    
     this.matches = matches;
-    this.deaths = reader.getAllDeaths();
+    this.deaths = reader.getDeaths("",-1);
     this.reader = reader;
     arial = createFont("Arial",11,true);
-    
-    
-    
   }
   
+  //Initial stats are those considering all matches in the data file
   public void getInitialStats(){
-    System.out.println("INIT");
     mostPopularWeapon = getMostPopularWeapon(-1);
     System.out.println(mostPopularWeapon);
     percentCrits = getPercentCrits(-1,"") + "%";
-    System.out.println(percentCrits);
     mostKills = getMostKills(-1);
-    System.out.println(mostKills);
     mostDeaths = getMostDeaths(-1);
-    System.out.println(mostDeaths);
-    
   }
+  
   public void draw(){
     fill(0,128,0,0);
     rect(560, 20, 200, 130, 7);
@@ -49,24 +41,25 @@ class VisualizationStats {
     
   }
   
+  //Returns weapon with most kills in a match (or in all matches if passed -1)
   public String getMostPopularWeapon(int match){
     
     if(match == -1 ){
-      deaths = reader.getAllDeaths();
+      deaths = reader.getDeaths("",-1);
       System.out.println("All Matches, All Players");
       
     }else if (match != -1 ){
-      deaths = reader.getMatchDeaths(match);
-      System.out.println("Match: " + match + " All Players");
-      
+      deaths = reader.getDeaths("",match);
+      System.out.println("Match: " + match + " All Players");  
     }
 
-     //Set up iterator for deaths
+    //Set up iterator for deaths
     int maxKills = 0;
     String mostUsedWeapon = "";
     Enumeration<String> enumDeath = deaths.keys();
     String key;
     DeathCount death;
+    
     //Work out the highest kill value
     while(enumDeath.hasMoreElements()){
       key = enumDeath.nextElement();
@@ -78,9 +71,9 @@ class VisualizationStats {
       }
     }
     return mostUsedWeapon;
-    
   }
   
+  //Returns percentage of crit deaths
   public int getPercentCrits(int match, String playerName){
     //If match is -1 get data for all matches.
     //If player name is "" get data for all players.
@@ -88,19 +81,18 @@ class VisualizationStats {
 
     Hashtable<String,DeathCount> deaths = new Hashtable<String,DeathCount>();
     
+    //Get deaths based on what match/player is selected
     if(match == -1 && playerName.equals("")){
-      deaths = reader.getAllDeaths();
-      
-    }else if (match != -1 && playerName.equals("")){
-      deaths = reader.getMatchDeaths(match);
-
-      
-    }else if (match == -1 && !playerName.equals("")){
+      deaths = reader.getDeaths("",-1);
+    }
+    else if (match != -1 && playerName.equals("")){
+      deaths = reader.getDeaths("",match);
+    }
+    else if (match == -1 && !playerName.equals("")){
       deaths = reader.getDeaths(playerName,-1);
-      
-    }else{
-      deaths = reader.getDeaths(playerName,match);
-      
+    }
+    else{
+      deaths = reader.getDeaths(playerName,match); 
     }
     
     Enumeration<String> enumDeath = deaths.keys();
@@ -108,13 +100,12 @@ class VisualizationStats {
     DeathCount death;
     int critCount =0;
     int totalCount=0;
-    //Work out the highest kill value
+    //Work out the highest crit kill value
     while(enumDeath.hasMoreElements()){
       key = enumDeath.nextElement();
       death = deaths.get(key);
       critCount = critCount + death.getCritCount();
       totalCount = totalCount + death.getCount();
-      
     }
     
     double percentage =  (double) critCount/totalCount *100;
@@ -123,16 +114,16 @@ class VisualizationStats {
     return roundedPercent;
   }
   
-  
+  //Returns player with the most kills in a match, or in all matches if passed -1
   public String getMostKills(int match){
-    
     ArrayList<KillEvent> killEvents = new ArrayList<KillEvent>();
     String maxKillsPlayer = "";
     int maxKillsNo = 0;
     Match currentMatch;
     ArrayList<Event> currentEvents;
     Event currentEvent;
-
+    
+    //Consider all matches if passed -1
     if(match == -1 ){
       for(int i =0; i< matches.size(); i++){
         currentMatch = matches.get(i);
@@ -144,50 +135,49 @@ class VisualizationStats {
             killEvents.add(kill);
           }
         }
-      }
-      
-    }else if (match != -1 ){
-      currentMatch = matches.get(match);
-       currentEvents = currentMatch.getEvents();
-        for (int j = 0; j < currentMatch.getEvents().size(); j++) {
-          currentEvent = currentEvents.get(j);
-          if (currentEvent.getEventType().equals(EventTypes.KILL)) {
-               KillEvent kill = (KillEvent) currentEvent;
-               killEvents.add(kill);
-          }
-        }
-      
+      }  
     }
-     Hashtable<String,Integer> killCount = new Hashtable<String,Integer>();
-     //Set up iterator for deaths
-     for(int i =0; i< killEvents.size(); i++){
-        KillEvent kill = killEvents.get(i);
-        String killer = kill.getKiller();
-         if (killCount.containsKey(killer)) {
-           int currentKills = killCount.get(killer);
-           int newKills = currentKills + 1;
-           if(newKills > maxKillsNo){
-             maxKillsPlayer = killer;
-             maxKillsNo = newKills;
-           }
-           killCount.put(killer,newKills);
-         }else{
-            killCount.put(killer,1); 
-         }
-     }
+    //Otherwise just consider selected match
+    else if (match != -1 ){
+      currentMatch = matches.get(match);
+      currentEvents = currentMatch.getEvents();
+      for (int j = 0; j < currentMatch.getEvents().size(); j++) {
+        currentEvent = currentEvents.get(j);
+        if (currentEvent.getEventType().equals(EventTypes.KILL)) {
+          KillEvent kill = (KillEvent) currentEvent;
+          killEvents.add(kill);
+        }
+      }
+    }
+    Hashtable<String,Integer> killCount = new Hashtable<String,Integer>();
+    //Set up iterator for deaths
+    for(int i =0; i< killEvents.size(); i++){
+      KillEvent kill = killEvents.get(i);
+      String killer = kill.getKiller();
+      if (killCount.containsKey(killer)) {
+        int currentKills = killCount.get(killer);
+        int newKills = currentKills + 1;
+        if(newKills > maxKillsNo){
+          maxKillsPlayer = killer;
+          maxKillsNo = newKills;
+        }
+        killCount.put(killer,newKills);
+      }else{
+        killCount.put(killer,1); 
+      }
+    }
+    //Handles if the player name is too long to display
     if(maxKillsPlayer.length() > 15){
       int nameLength = maxKillsPlayer.length();
       int difference = nameLength - 15;
       String nameSubstring = maxKillsPlayer.substring(0,nameLength-difference);
       maxKillsPlayer = nameSubstring + "..";
-      
-      
     }
     return maxKillsPlayer + ": " + maxKillsNo;    
   }
   
+  //Returns player with most deaths in a match, or player with most deaths out of all matches if passed -1
   public String getMostDeaths(int match){
-    
     ArrayList<KillEvent> killEvents = new ArrayList<KillEvent>();
     String maxKillsPlayer = "";
     int maxKillsNo = 0;
@@ -195,6 +185,7 @@ class VisualizationStats {
     ArrayList<Event> currentEvents;
     Event currentEvent;
 
+    //Consider all matches if passed -1
     if(match == -1 ){
       for(int i =0; i< matches.size(); i++){
         currentMatch = matches.get(i);
@@ -207,58 +198,49 @@ class VisualizationStats {
           }
         }
       }
-      
     }else if (match != -1 ){
       currentMatch = matches.get(match);
-       currentEvents = currentMatch.getEvents();
-        for (int j = 0; j < currentMatch.getEvents().size(); j++) {
-          currentEvent = currentEvents.get(j);
-          if (currentEvent.getEventType().equals(EventTypes.KILL)) {
-               KillEvent kill = (KillEvent) currentEvent;
-               killEvents.add(kill);
-          }
+      currentEvents = currentMatch.getEvents();
+      for (int j = 0; j < currentMatch.getEvents().size(); j++) {
+        currentEvent = currentEvents.get(j);
+        if (currentEvent.getEventType().equals(EventTypes.KILL)) {
+          KillEvent kill = (KillEvent) currentEvent;
+          killEvents.add(kill);
         }
-      
+      }
     }
-     Hashtable<String,Integer> killCount = new Hashtable<String,Integer>();
-     //Set up iterator for deaths
-     for(int i =0; i< killEvents.size(); i++){
-        KillEvent kill = killEvents.get(i);
-        String killer = kill.getVictim();
-         if (killCount.containsKey(killer)) {
-           int currentKills = killCount.get(killer);
-           int newKills = currentKills + 1;
-           if(newKills > maxKillsNo){
-             maxKillsPlayer = killer;
-             maxKillsNo = newKills;
-           }
-           killCount.put(killer,newKills);
-         }else{
-            killCount.put(killer,1); 
-         }
-     }
-     
-      if(maxKillsPlayer.length() > 15){
+    Hashtable<String,Integer> killCount = new Hashtable<String,Integer>();
+    //Set up iterator for deaths
+    for(int i =0; i< killEvents.size(); i++){
+      KillEvent kill = killEvents.get(i);
+      String killer = kill.getVictim();
+      if (killCount.containsKey(killer)) {
+        int currentKills = killCount.get(killer);
+        int newKills = currentKills + 1;
+        if(newKills > maxKillsNo){
+          maxKillsPlayer = killer;
+          maxKillsNo = newKills;
+        }
+        killCount.put(killer,newKills);
+      }else{
+        killCount.put(killer,1); 
+      }
+    }
+    //Handles if the player name is too long to display
+    if(maxKillsPlayer.length() > 15){
       int nameLength = maxKillsPlayer.length();
       int difference = nameLength - 15;
       String nameSubstring = maxKillsPlayer.substring(0,nameLength-difference);
       maxKillsPlayer = nameSubstring + "..";
-      
-      
     }
     return maxKillsPlayer + ": " + maxKillsNo;  
   }
   
+  //Update the statistics based on what match is selected
   public void updateMatchStatistics(int match){
-    
     mostPopularWeapon = getMostPopularWeapon(match);
     percentCrits = getPercentCrits(match,currentSelectedPlayer) + "%";
     mostKills = getMostKills(match);
     mostDeaths = getMostDeaths(match);
-    
   }
-  
-  
-  
-  
 }

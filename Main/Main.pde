@@ -65,7 +65,7 @@ void controlEvent(ControlEvent theEvent) {
     // if the name of the event is equal to ImageSelect (aka the name of our dropdownlist)
     if (theEvent.group().name() == "VisualizationChoice") {
       if(theEvent.group().value() == 0){
-        deaths = processor.getAllDeaths();
+        deaths = processor.getDeaths("",-1);
         drawBarChart();
         UI.drawVisualizationStats(vs);
         vs.getInitialStats();
@@ -140,13 +140,13 @@ void drawMatchTimeline(){
 void updateVisualisationMatch(int matchNumber){
   
   if(matchNumber == 0){
-    deaths = processor.getAllDeaths();
+    deaths = processor.getDeaths("",-1);
     vs.updateMatchStatistics(-1);
     UI.drawVisualizationStats(vs);
     UI.updatePlayerDropDown(-1);
 
   }else{
-    deaths = processor.getMatchDeaths(matchNumber-1);
+    deaths = processor.getDeaths("",matchNumber-1);
     vs.updateMatchStatistics(matchNumber-1);
     UI.drawVisualizationStats(vs);
     UI.updatePlayerDropDown(matchNumber-1);
@@ -159,9 +159,9 @@ void updateVisualisationPlayer(String playerName){
   
   if(playerName.equals("")){
     if(m_number != -1){
-      deaths = processor.getMatchDeaths(m_number); 
+      deaths = processor.getDeaths("",m_number); 
     }else{
-      deaths = processor.getAllDeaths();
+      deaths = processor.getDeaths("",-1);
     }
   }else if(!playerName.equals("")){
       deaths = processor.getDeaths(playerName,m_number); 

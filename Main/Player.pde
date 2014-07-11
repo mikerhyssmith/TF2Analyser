@@ -1,6 +1,4 @@
 class Player {
-  
-  
   String name;
   ArrayList<Event> events;
   String[] deaths;

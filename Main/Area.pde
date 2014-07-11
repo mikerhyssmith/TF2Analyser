@@ -4,7 +4,6 @@ class Area {
   public int aHeight;
   public int x;
   public int y;
-
   
   public Area(int aWidth, int aHeight, int x, int y){
     this.aWidth = aWidth;
@@ -16,16 +15,13 @@ class Area {
   public int getWidth(){
     return aWidth;
   }
-  
   public int getHeight(){
-   return aHeight; 
+    return aHeight; 
   }
   public int getX(){
     return x;
   }
-  
   public int getY(){
-   return y; 
+    return y; 
   }
-  
 }

@@ -7,98 +7,92 @@ class FileReader {
   ArrayList<Match> matches;
   Match currentMatch;
 
-
   public FileReader(String fileName){
     
     data = loadStrings(fileName);
     matches = new ArrayList<Match>();
   }
   
+  //Processes an array of strings that have been read in from a data file
   public boolean processFile(String[] data) {
     boolean matchCreated = false;
 
     for (int i = 0; i < data.length; i++) {
-      
       synchronized(matches){
-      // New Match
-      if (data[i].startsWith("Map: ")) {
+        //New match when a new map is detected
+        if (data[i].startsWith("Map: ")) {
+          String mapName = data[i].substring(5);
+          currentMatch = new Match(mapName);
+          matchCreated = true;
+          matches.add(currentMatch);
+        }
 
-        String mapName = data[i].substring(5);
-        System.out.println("Map Name: " + mapName);
-        currentMatch = new Match(mapName);
-        matchCreated = true;
-        matches.add(currentMatch);
-        System.out.println("Match added");
+        //Detects if a data entry is a kill event
+        if (data[i].contains(" killed ") && data[i].contains(" with ")) {
+          //Get the time of the event
+          int timePosition = data[i].indexOf(": ");
+          int hours = Integer.valueOf(data[i].substring(timePosition - 8, timePosition - 6));
+          int minutes = Integer.valueOf(data[i].substring(timePosition - 5,timePosition - 3));
+          int seconds = Integer.valueOf(data[i].substring(timePosition - 2, timePosition));
+          Time time = new Time(hours,minutes,seconds);
+            
+          String eventDesc = data[i].substring(timePosition + 2);
+
+          int killedPosition = eventDesc.indexOf(" killed ");
+          int withPosition = eventDesc.indexOf(" with ");
+
+          String killer = eventDesc.substring(0, killedPosition);
+          String victim = eventDesc.substring(killedPosition + 8,withPosition);
+          String weaponName;
+          Boolean crit = false;
+
+          if (eventDesc.endsWith("(crit)")) {
+            crit = true;
+            weaponName = eventDesc.substring(withPosition + 6,eventDesc.length() - 8);
+          } else {
+            weaponName = eventDesc.substring(withPosition + 6,eventDesc.length()-1);
+          }
+
+          KillEvent currentEvent = new KillEvent(time, killer, victim,weaponName, crit);
+          currentMatch.addEvent(currentEvent);
+        }
+        //Detects if a data entry is a defence event
+        else {
+          if (data[i].contains(" defended ") && data[i].contains(" for team ")) {
+            //Get the time of the event
+            int timePosition = data[i].indexOf(": ");
+            int hours = Integer.valueOf(data[i].substring(timePosition - 8, timePosition - 6));
+            int minutes = Integer.valueOf(data[i].substring(timePosition - 5,timePosition - 3));
+            int seconds = Integer.valueOf(data[i].substring(timePosition - 2, timePosition));
+            Time time = new Time(hours,minutes,seconds);
+            
+            String eventDesc = data[i].substring(timePosition + 2);
+        
+            int defendedPosition = eventDesc.indexOf(" defended ");
+            int teamPosition = eventDesc.indexOf(" for ");
+        
+            String defender = eventDesc.substring(0, defendedPosition);
+            String team = eventDesc.substring(teamPosition + 5);
+            String defendedObject = eventDesc.substring(defendedPosition+14, teamPosition);
+          
+            DefendEvent currentEvent = new DefendEvent(time,defender,defendedObject,team);
+            currentMatch.addEvent(currentEvent);
+          }
+        }
       }
-
-      // Kills
-      if (data[i].contains(" killed ") && data[i].contains(" with ")) {
-
-        int timePosition = data[i].indexOf(": ");
-        int hours = Integer.valueOf(data[i].substring(timePosition - 8, timePosition - 6));
-        int minutes = Integer.valueOf(data[i].substring(timePosition - 5,timePosition - 3));
-        int seconds = Integer.valueOf(data[i].substring(timePosition - 2, timePosition));
-        Time time = new Time(hours,minutes,seconds);
-            
-
-        String eventDesc = data[i].substring(timePosition + 2);
-
-        int killedPosition = eventDesc.indexOf(" killed ");
-        int withPosition = eventDesc.indexOf(" with ");
-
-        String killer = eventDesc.substring(0, killedPosition);
-        String victim = eventDesc.substring(killedPosition + 8,
-            withPosition);
-        String weaponName;
-        Boolean crit = false;
-
-        if (eventDesc.endsWith("(crit)")) {
-          crit = true;
-          weaponName = eventDesc.substring(withPosition + 6,
-              eventDesc.length() - 8);
-        } else {
-          weaponName = eventDesc.substring(withPosition + 6,eventDesc.length()-1);
-        }
-
-        KillEvent currentEvent = new KillEvent(time, killer, victim,
-            weaponName, crit);
-        currentMatch.addEvent(currentEvent);
-      }else  if (data[i].contains(" defended ") && data[i].contains(" for team ")) {
-            
-        int timePosition = data[i].indexOf(": ");
-        int hours = Integer.valueOf(data[i].substring(timePosition - 8, timePosition - 6));
-        int minutes = Integer.valueOf(data[i].substring(timePosition - 5,timePosition - 3));
-        int seconds = Integer.valueOf(data[i].substring(timePosition - 2, timePosition));
-        Time time = new Time(hours,minutes,seconds);
-            
-        String eventDesc = data[i].substring(timePosition + 2);
-        
-        int defendedPosition = eventDesc.indexOf(" defended ");
-        int teamPosition = eventDesc.indexOf(" for ");
-        
-        String defender = eventDesc.substring(0, defendedPosition);
-        String team = eventDesc.substring(teamPosition + 5);
-        String defendedObject = eventDesc.substring(defendedPosition+14, teamPosition);
-        
-        DefendEvent currentEvent = new DefendEvent(time,defender,defendedObject,team);
-        currentMatch.addEvent(currentEvent);
-        }
     }
-   }
     return false;
   }
 
-
   public String[] getData() {
-    System.out.println("Data Returned");
     String[] newArray = new String[data.length];
     for(int i = 0; i< data.length; i++){
        newArray[i] = data[i]; 
     }
     return newArray ;
   }
+  
   public ArrayList<Match> getMatches(){
-    System.out.println("Number of Matches " + matches.size());
     return new ArrayList<Match>(matches);
   }
 }
