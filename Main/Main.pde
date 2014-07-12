@@ -2,9 +2,11 @@ import controlP5.*;
 
 ControlP5 cP5;
 ControlP5 barControl;
+ControlP5 nodeControl;
 
 DropdownList d1, d2;
 BarGraph graph;
+NodeGraph nGraph;
 int col;
 String filename;
 boolean graphDrawn = false;
@@ -20,6 +22,7 @@ ArrayList<Match> matches;
 VisualizationStats vs;
 Hashtable<String, DeathCount> deaths;
 int m_number = -1;
+boolean nodeDrawn = false;
 
 void setup() {
   size(800,600);
@@ -27,6 +30,7 @@ void setup() {
   background(128);
   cP5 = new ControlP5(this);
   barControl = new ControlP5(this);
+  nodeControl = new ControlP5(this);
   
   UI = new UserInterface(cP5);
   
@@ -49,6 +53,9 @@ void draw(){
   }
   if(graphDrawn){
     graph.draw();
+  }
+  if(nodeDrawn){
+    nGraph.draw();
   }
   UI.UIDraw();
 }
@@ -115,6 +122,8 @@ void fileSelected(File selection) {
     matches = reader.getMatches();
     //Add player list to UI
     dataProcessed = true;
+    
+    drawMatchTimeline();
   }
 }
 
@@ -134,6 +143,8 @@ void drawVisualizationStats(){
 
 
 void drawMatchTimeline(){
+ nGraph = new NodeGraph(matches.get(0).getEvents(), graphArea, nodeControl, "sawyer");
+ nodeDrawn = true;
   
 }
 

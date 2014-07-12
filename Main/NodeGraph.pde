@@ -11,11 +11,14 @@ class NodeGraph {
   Area graphArea;
   ControlP5 nodeControl;
   String playerName;
-  final int INITIALSEPARATION = 10;
-  int killNodeYPosition ;
-  int defendCaptureNodeYPosition;
-  int deathNodeYPosition;
+  final int INITIALSEPARATION = 40;
+  float killNodeYPosition ;
+  float defendCaptureNodeYPosition;
+  float deathNodeYPosition;
   Slider nodeSlider;
+  int sliderHeight;
+  boolean graphFits =true;
+  ArrayList<Event> playerEvents;
  
  public NodeGraph(ArrayList<Event> events, Area graphArea, ControlP5 nodeControl, String playerName) {
    this.events = events;
@@ -31,19 +34,19 @@ class NodeGraph {
     nodeControl.setColorActive(0xff9D302F);
     
     //Get length of match to determine size of graph
-    Event finalEvent = events.get(events.size());
+    Event finalEvent = events.get(events.size()-1);
     Time finalTime = finalEvent.getEventTime();
     Event firstEvent = events.get(0);
     Time initialTime = firstEvent.getEventTime();
     int timeDifference = (int) getDateDiff(initialTime,finalTime);
     
     //Calculate Y position of each node type
-    deathNodeYPosition = 0.125*graphArea.getHeight();
-    killNodeYPosition = 0.875 * graphArea.getHeight();
-    defendCaptureNodeYPositon = 0.5*graphArea.getHeight();
+    deathNodeYPosition =  height - ( 0.125*graphArea.getHeight());
+    killNodeYPosition =  height - (0.875 * graphArea.getHeight());
+    defendCaptureNodeYPosition =  height - ( 0.5*graphArea.getHeight());
     
     //Get all events related to the chosen player
-    ArrayList<Event> playerEvents = getPlayerEvents(playerName);
+    playerEvents = getPlayerEvents(playerName);
     
     int numberOfNodes = playerEvents.size();
     int graphWidth = (numberOfNodes * INITIALSEPARATION) + (timeDifference * 2);
@@ -53,13 +56,53 @@ class NodeGraph {
     {
       sliderHeight = 20;
       //Add a slider for horizontal scrolling
-      barSlider = barControl.addSlider("BarSlider",0,graphWidth-width,0,0,graphArea.getY()+graphArea.getHeight()-sliderHeight,width,sliderHeight);
+      nodeSlider = nodeControl.addSlider("NodeSlider",0,graphWidth-width,0,0,graphArea.getY()+graphArea.getHeight()-sliderHeight,width,sliderHeight);
       
       graphFits = false;
     }
     else{
       sliderHeight = 0;
     }
+ }
+ 
+ void draw(){
+   Time firstEventTime = playerEvents.get(0).getEventTime();
+   Event currentEvent = playerEvents.get(0); 
+   float y =0;
+   int x =0;
+   System.out.println(playerEvents.size());
+   
+  // killNodeYPosition ;
+  // defendCaptureNodeYPosition;
+  // deathNodeYPosition;
+   
+   for(int i =0; i< playerEvents.size(); i ++){
+     currentEvent = playerEvents.get(i);
+     System.out.println("Entered loop");
+     //Get the y position dependent on the type of event
+      if(currentEvent.getEventType() == EventTypes.KILL){
+        KillEvent kill = (KillEvent) currentEvent;  
+        //Determine if the chosen player is the killer or victim
+        if(kill.getKiller().equalsIgnoreCase(playerName)){
+          y = killNodeYPosition;
+         
+          
+        }else if(kill.getVictim().equalsIgnoreCase(playerName)){
+           y = deathNodeYPosition;
+        }
+
+      }else if(currentEvent.getEventType() == EventTypes.DEFEND){
+         DefendEvent defend = (DefendEvent) currentEvent;
+         y = defendCaptureNodeYPosition;
+      }
+
+     int timeDifference = (int) getDateDiff(firstEventTime, currentEvent.getEventTime()) + INITIALSEPARATION;
+     x = timeDifference;
+     System.out.println("Y" + y);
+     ellipse(x, y, 10, 10);
+   }
+   
+   
  }
  
  
@@ -77,16 +120,17 @@ public ArrayList<Event> getPlayerEvents(String playerName){
     if(currentEvent.getEventType() == EventTypes.KILL){
       KillEvent kill = (KillEvent) currentEvent;  
       //Determine if the desired player killed or was a victim.
-      if(kill.getKiller().equals(playerName) || kill.getVictim().equals(playerName)){
+      if(kill.getKiller().equalsIgnoreCase(playerName) || kill.getVictim().equalsIgnoreCase(playerName)){
         playerEvents.add(currentEvent);
       }
     }else if(currentEvent.getEventType() == EventTypes.DEFEND){
        DefendEvent defend = (DefendEvent) currentEvent;
-       if(defend.getDefender().equals(playerName)){
+       if(defend.getDefender().equalsIgnoreCase(playerName)){
          playerEvents.add(currentEvent);
        }  
     }
    } 
+   return playerEvents;
 }
   
    
