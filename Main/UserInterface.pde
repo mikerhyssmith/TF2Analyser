@@ -54,7 +54,13 @@ class UserInterface {
     dropdown = cP5.addDropdownList("VisualizationChoice").setPosition(80,15).setSize(120,70);
     dropdown.addItem("Cause Of Death Chart",0);
     dropdown.addItem("Match Timeline",1);
-    customizeDropDownList(dropdown);
+    //dropdown.setItemHeight(25);
+    //dropdown.setBarHeight(15);
+    //dropdown.captionLabel().style().marginTop = 4;
+    //dropdown.captionLabel().style().marginLeft = 3;
+    //dropdown.valueLabel().style().marginTop = 3;
+    
+    
     
     //Create a notification to state file has loaded correctly.
     myTextarea = cP5.addTextarea("LoadSuccesful").setPosition(0,35);
@@ -99,10 +105,12 @@ class UserInterface {
     }
   }
   
+
+  
   //Changes the formatting of a drop-down list to match our chosen scheme
   void customizeDropDownList(DropdownList ddl) {
     ddl.setBackgroundColor(color(190));
-    ddl.setItemHeight(20);
+    ddl.setItemHeight(25);
     ddl.setBarHeight(15);
     ddl.captionLabel().style().marginTop = 3;
     ddl.captionLabel().style().marginLeft = 3;

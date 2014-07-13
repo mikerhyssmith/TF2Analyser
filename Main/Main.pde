@@ -47,11 +47,7 @@ void draw(){
     UI.fileLoadedUI();
     fileLoaded = false;
   }
-  if(dataProcessed){
-    UI.addVisualizationOptions(players,matches);
- 
-    dataProcessed = false;
-  }
+
   if(graphDrawn){
     graph.draw();
   }
@@ -74,11 +70,13 @@ void controlEvent(ControlEvent theEvent) {
     if (theEvent.group().name() == "VisualizationChoice") {
       if(theEvent.group().value() == 0){
         deaths = processor.getDeaths("",-1);
+        UI.addVisualizationOptions(players,matches);
         drawBarChart();
         UI.drawVisualizationStats(vs);
         vs.getInitialStats();
       }else{
-        //Draw match timeline
+        //Draw match timeline    
+        drawMatchTimeline();
       }
     }
     if(theEvent.group().name() == "MatchChoice"){
@@ -123,12 +121,13 @@ void fileSelected(File selection) {
     matches = reader.getMatches();
     //Add player list to UI
     dataProcessed = true;
-    
-    drawMatchTimeline();
+
   }
 }
 
 void drawBarChart(){
+   nodeDrawn = false;
+   graphDrawn = false;
    barControl.remove("BarSlider");
    graph = new BarGraph(deaths,graphArea,10,barControl);
    graphDrawn = true;
@@ -144,7 +143,9 @@ void drawVisualizationStats(){
 
 
 void drawMatchTimeline(){
- nGraph = new NodeGraph(matches.get(0).getEvents(), graphArea, nodeControl, "Megaman");
+ graphDrawn = false;
+ nodeDrawn = false;
+ nGraph = new NodeGraph(matches.get(0).getEvents(), graphArea, nodeControl, "captain morgan");
  nodeDrawn = true;
   
 }

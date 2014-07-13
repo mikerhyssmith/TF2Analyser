@@ -22,6 +22,8 @@ class NodeGraph {
   PFont arial;
   //Shift value of horizontal slider
   float xShift=0;
+  int offset = 30;
+  int graphWidth;
   
   //Get system independent new line character
   String newLineCharacter = System.getProperty("line.separator");
@@ -53,12 +55,14 @@ class NodeGraph {
     killNodeYPosition =  height - (0.875 * graphArea.getHeight());
     defendCaptureNodeYPosition =  height - ( 0.5*graphArea.getHeight());
     
+    
+    
     //Get all events related to the chosen player
     playerEvents = getPlayerEvents(playerName);
     
     int numberOfNodes = playerEvents.size();
-    int graphWidth = timeDifference + (numberOfNodes*10);
-    System.out.println(playerEvents.size());
+    //Width of graph is the length of time plus half a node each direction
+    graphWidth = timeDifference + 10 + offset;
     
     //Add a slider to the graph to control position
     if(graphWidth>graphArea.getWidth())
@@ -75,12 +79,29 @@ class NodeGraph {
  }
  
  void draw(){
+   
+   textFont(arial);       
+   fill(0);
+   //textAlign(CENTER);
+   text("Kills",5 - xShift,killNodeYPosition);
+   text("Match Events", 5- xShift , defendCaptureNodeYPosition );
+   text("Deaths" , 5 - xShift, deathNodeYPosition); 
+   rectMode(CENTER);
+   stroke(128);
+   fill(20,158,40,40);
+   rect(graphWidth/2, killNodeYPosition + 30, graphWidth, 100);
+   fill(80,15,60,40);
+   rect(graphWidth/2, defendCaptureNodeYPosition + 30, graphWidth, 100);
+   fill(80,15,170,40);
+   rect(graphWidth/2, deathNodeYPosition + 30 , graphWidth, 100);
+    
    Time firstEventTime = playerEvents.get(0).getEventTime();
    Event currentEvent = playerEvents.get(0); 
    
    float y =0;
    float x =0;
-   float previousX = 10;
+   float previousX = 0;
+   float previousY = 0;
    
    String toolTipText = "";
    
@@ -106,18 +127,27 @@ class NodeGraph {
       }
 
      //Get the difference between the initial time and the current event to calculate X position.
-     int timeDifference = (int) getDateDiff(firstEventTime, currentEvent.getEventTime());
+     int timeDifference = (int) getDateDiff(firstEventTime, currentEvent.getEventTime()) + offset;
      
      //Add a separation to reduce overlapped points
      float pointDifference = timeDifference - previousX;
      //System.out.println("Time DIfference" + timeDifference + " previousX " + previousX + "pointDifference " + pointDifference);
-     x =  previousX + timeDifference  -(previousX/2);
+     x =  (timeDifference +5);
      
      //Define the point to be drawn
      int ellipseSize = 10;
      fill(255);
-     int roundedX = (int) Math.floor((x - xShift) +0.5);
-     ellipse(roundedX , y, ellipseSize, ellipseSize);
+     int roundedX = (int) Math.floor((x - xShift) +0.5) ;
+     int adaptedY =0;
+     
+     if(roundedX < previousX-xShift  +10 && previousY < y + 60){
+        y = previousY+12; 
+     }else{
+       
+     }
+     
+     previousY = y;
+     ellipse(roundedX + offset , y, ellipseSize, ellipseSize);
      previousX = x;
      
      //Defines the behaviour when the mouse is over each node.
