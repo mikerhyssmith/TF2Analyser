@@ -111,12 +111,12 @@ class NodeGraph {
      //Add a separation to reduce overlapped points
      float pointDifference = timeDifference - previousX;
      //System.out.println("Time DIfference" + timeDifference + " previousX " + previousX + "pointDifference " + pointDifference);
-     x =  previousX + timeDifference + -(previousX/2);
+     x =  previousX + timeDifference  -(previousX/2);
      
      //Define the point to be drawn
      int ellipseSize = 10;
      fill(255);
-     int roundedX = (int) ((x - xShift) +0.5);
+     int roundedX = (int) Math.floor((x - xShift) +0.5);
      ellipse(roundedX , y, ellipseSize, ellipseSize);
      previousX = x;
      
