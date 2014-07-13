@@ -109,19 +109,19 @@ class NodeGraph {
      int timeDifference = (int) getDateDiff(firstEventTime, currentEvent.getEventTime());
      
      //Add a separation to reduce overlapped points
-     //float pointDifference = timeDifference - previousX;
+     float pointDifference = timeDifference - previousX;
      //System.out.println("Time DIfference" + timeDifference + " previousX " + previousX + "pointDifference " + pointDifference);
-     x =  previousX + timeDifference + -(previousX/2) -xShift;
+     x =  previousX + timeDifference + -(previousX/2);
      
      //Define the point to be drawn
      int ellipseSize = 10;
      fill(255);
-     int roundedX = (int) x;
-     ellipse(roundedX, y, ellipseSize, ellipseSize);
+     int roundedX = (int) ((x - xShift) +0.5);
+     ellipse(roundedX , y, ellipseSize, ellipseSize);
      previousX = x;
      
      //Defines the behaviour when the mouse is over each node.
-     if((mouseX < x + ellipseSize/2 && mouseX > x - ellipseSize/2)&&(mouseY> y - ellipseSize/2 && mouseY < y+ellipseSize/2)){
+     if((mouseX < roundedX + ellipseSize/2 && mouseX > roundedX - ellipseSize/2)&&(mouseY> y - ellipseSize/2 && mouseY < y+ellipseSize/2)){
        ToolTip tip = new ToolTip(toolTipText + newLineCharacter + roundedX, color(248,185,138), arial);
        tip.draw();
        
