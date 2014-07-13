@@ -28,6 +28,7 @@ void setup() {
   size(800,600);
   smooth();
   background(128);
+  frameRate(25);
   cP5 = new ControlP5(this);
   barControl = new ControlP5(this);
   nodeControl = new ControlP5(this);
@@ -143,7 +144,7 @@ void drawVisualizationStats(){
 
 
 void drawMatchTimeline(){
- nGraph = new NodeGraph(matches.get(0).getEvents(), graphArea, nodeControl, "sawyer");
+ nGraph = new NodeGraph(matches.get(0).getEvents(), graphArea, nodeControl, "captain morgan");
  nodeDrawn = true;
   
 }
