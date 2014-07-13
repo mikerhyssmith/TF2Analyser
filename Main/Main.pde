@@ -144,7 +144,7 @@ void drawVisualizationStats(){
 
 
 void drawMatchTimeline(){
- nGraph = new NodeGraph(matches.get(0).getEvents(), graphArea, nodeControl, "captain morgan");
+ nGraph = new NodeGraph(matches.get(0).getEvents(), graphArea, nodeControl, "Megaman");
  nodeDrawn = true;
   
 }
@@ -184,6 +184,10 @@ void updateVisualisationPlayer(String playerName){
 
 void BarSlider(float shift) {
   graph.UpdateShift(shift);
+}
+
+void NodeSlider(float shift){
+  nGraph.UpdateShift(shift);
 }
 
 

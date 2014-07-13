@@ -20,6 +20,11 @@ class NodeGraph {
   boolean graphFits =true;
   ArrayList<Event> playerEvents;
   PFont arial;
+  //Shift value of horizontal slider
+  float xShift=0;
+  
+  //Get system independent new line character
+  String newLineCharacter = System.getProperty("line.separator");
  
  public NodeGraph(ArrayList<Event> events, Area graphArea, ControlP5 nodeControl, String playerName) {
    this.events = events;
@@ -52,7 +57,8 @@ class NodeGraph {
     playerEvents = getPlayerEvents(playerName);
     
     int numberOfNodes = playerEvents.size();
-    int graphWidth = (numberOfNodes * INITIALSEPARATION) + (timeDifference * 2);
+    int graphWidth = timeDifference + (numberOfNodes*10);
+    System.out.println(playerEvents.size());
     
     //Add a slider to the graph to control position
     if(graphWidth>graphArea.getWidth())
@@ -73,46 +79,50 @@ class NodeGraph {
    Event currentEvent = playerEvents.get(0); 
    
    float y =0;
-   int x =0;
+   float x =0;
+   float previousX = 10;
    
-   String currentEventType = "";
+   String toolTipText = "";
    
    for(int i =0; i< playerEvents.size(); i ++){
      currentEvent = playerEvents.get(i);
-     System.out.println("Entered loop");
      //Get the y position dependent on the type of event
       if(currentEvent.getEventType() == EventTypes.KILL){
         KillEvent kill = (KillEvent) currentEvent;  
         //Determine if the chosen player is the killer or victim
         if(kill.getKiller().equalsIgnoreCase(playerName)){
           y = killNodeYPosition;
-          currentEventType = "Kill";
+          toolTipText = "Event Type: Kill" + newLineCharacter +  "Weapon: " + kill.getWeapon() + newLineCharacter + "Victim: " + kill.getVictim();
           
         }else if(kill.getVictim().equalsIgnoreCase(playerName)){
            y = deathNodeYPosition;
-           currentEventType = "Death";
+           toolTipText = "Event Type: Death" + newLineCharacter + "Weapon: " + kill.getWeapon() + newLineCharacter + "Killer: " + kill.getKiller();
         }
 
       }else if(currentEvent.getEventType() == EventTypes.DEFEND){
          DefendEvent defend = (DefendEvent) currentEvent;
          y = defendCaptureNodeYPosition;
-         currentEventType = "Defence";
+         toolTipText = "Event Type: Defence" + newLineCharacter + "Defended Object: " + defend.getDefendedObject();
       }
 
      //Get the difference between the initial time and the current event to calculate X position.
      int timeDifference = (int) getDateDiff(firstEventTime, currentEvent.getEventTime());
      
      //Add a separation to reduce overlapped points
-     x = timeDifference + INITIALSEPARATION ;
+     //float pointDifference = timeDifference - previousX;
+     //System.out.println("Time DIfference" + timeDifference + " previousX " + previousX + "pointDifference " + pointDifference);
+     x =  previousX + timeDifference + -(previousX/2) -xShift;
      
      //Define the point to be drawn
      int ellipseSize = 10;
      fill(255);
-     ellipse(x, y, ellipseSize, ellipseSize);
+     int roundedX = (int) x;
+     ellipse(roundedX, y, ellipseSize, ellipseSize);
+     previousX = x;
      
      //Defines the behaviour when the mouse is over each node.
      if((mouseX < x + ellipseSize/2 && mouseX > x - ellipseSize/2)&&(mouseY> y - ellipseSize/2 && mouseY < y+ellipseSize/2)){
-       ToolTip tip = new ToolTip("Event Type: " + currentEventType, color(248,185,138), arial);
+       ToolTip tip = new ToolTip(toolTipText + newLineCharacter + roundedX, color(248,185,138), arial);
        tip.draw();
        
      }
@@ -147,6 +157,10 @@ public ArrayList<Event> getPlayerEvents(String playerName){
     }
    } 
    return playerEvents;
+}
+
+public void UpdateShift(float shift){
+    xShift=shift;
 }
   
    
