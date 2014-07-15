@@ -25,6 +25,9 @@ class NodeGraph {
   int offset = 30;
   int graphWidth;
   
+  IconHandler icons;
+  int minSeperation = 10;
+  
   //Get system independent new line character
   String newLineCharacter = System.getProperty("line.separator");
  
@@ -76,6 +79,12 @@ class NodeGraph {
     else{
       sliderHeight = 0;
     }
+    
+    
+    //Set up icons
+    icons = new IconHandler("killicons_final.png");
+    icons.setScale(0.5);
+    icons.setOffset(-0.5, -1.25);
  }
  
  void draw(){
@@ -94,6 +103,8 @@ class NodeGraph {
    rect(graphWidth/2, defendCaptureNodeYPosition + 30, graphWidth, 100);
    fill(80,15,170,40);
    rect(graphWidth/2, deathNodeYPosition + 30 , graphWidth, 100);
+   stroke(0);
+   rectMode(CORNER);
     
    Time firstEventTime = playerEvents.get(0).getEventTime();
    Event currentEvent = playerEvents.get(0); 
@@ -105,26 +116,34 @@ class NodeGraph {
    
    String toolTipText = "";
    
+   EventTypes eType=null;
+   EventTypes previousType=null;
+
+   
    for(int i =0; i< playerEvents.size(); i ++){
      currentEvent = playerEvents.get(i);
+     
+     String weapon=null;
+     eType = currentEvent.getEventType();
+     
      //Get the y position dependent on the type of event
-      if(currentEvent.getEventType() == EventTypes.KILL){
-        KillEvent kill = (KillEvent) currentEvent;  
-        //Determine if the chosen player is the killer or victim
-        if(kill.getKiller().equalsIgnoreCase(playerName)){
-          y = killNodeYPosition;
-          toolTipText = "Event Type: Kill" + newLineCharacter +  "Weapon: " + kill.getWeapon() + newLineCharacter + "Victim: " + kill.getVictim();
-          
-        }else if(kill.getVictim().equalsIgnoreCase(playerName)){
-           y = deathNodeYPosition;
-           toolTipText = "Event Type: Death" + newLineCharacter + "Weapon: " + kill.getWeapon() + newLineCharacter + "Killer: " + kill.getKiller();
-        }
-
-      }else if(currentEvent.getEventType() == EventTypes.DEFEND){
-         DefendEvent defend = (DefendEvent) currentEvent;
-         y = defendCaptureNodeYPosition;
-         toolTipText = "Event Type: Defence" + newLineCharacter + "Defended Object: " + defend.getDefendedObject();
-      }
+     if(eType == EventTypes.KILL){
+       KillEvent kill = (KillEvent) currentEvent;
+       weapon = kill.getWeapon();
+       //Determine if the chosen player is the killer or victim
+       if(kill.getKiller().equalsIgnoreCase(playerName)){
+         y = killNodeYPosition;
+         toolTipText = "Event Type: Kill" + newLineCharacter +  "Weapon: " + kill.getWeapon() + newLineCharacter + "Victim: " + kill.getVictim();
+       }else if(kill.getVictim().equalsIgnoreCase(playerName)){
+         y = deathNodeYPosition;
+         toolTipText = "Event Type: Death" + newLineCharacter + "Weapon: " + kill.getWeapon() + newLineCharacter + "Killer: " + kill.getKiller();
+         eType = EventTypes.DEATH;
+       }  
+     }else if(eType == EventTypes.DEFEND){
+       DefendEvent defend = (DefendEvent) currentEvent;
+       y = defendCaptureNodeYPosition;
+       toolTipText = "Event Type: Defence" + newLineCharacter + "Defended Object: " + defend.getDefendedObject();
+     }
 
      //Get the difference between the initial time and the current event to calculate X position.
      int timeDifference = (int) getDateDiff(firstEventTime, currentEvent.getEventTime()) + offset;
@@ -140,25 +159,32 @@ class NodeGraph {
      int roundedX = (int) Math.floor((x - xShift) +0.5) ;
      int adaptedY =0;
      
-     if(roundedX < previousX-xShift  +10 && previousY < y + 60){
-        y = previousY+12; 
-     }else{
+     if(roundedX < previousX - xShift + minSeperation && previousY < y + 60){
        
+       if(eType==previousType){
+         y = previousY+12;
+       } 
      }
-     
+
      previousY = y;
      ellipse(roundedX + offset , y, ellipseSize, ellipseSize);
      previousX = x;
      
+     //Draw icon for kills
+     if(weapon!=null){
+       icons.Draw(weapon, (float)(roundedX + offset) , y);
+     }
+     
      //Defines the behaviour when the mouse is over each node.
-     if((mouseX < roundedX + ellipseSize/2 && mouseX > roundedX - ellipseSize/2)&&(mouseY> y - ellipseSize/2 && mouseY < y+ellipseSize/2)){
+     float r = (float)Math.sqrt( (mouseX-(roundedX + offset))*(mouseX-(roundedX + offset)) + (mouseY-y)*(mouseY-y));
+     
+     if(r<ellipseSize/2){
        ToolTip tip = new ToolTip(toolTipText + newLineCharacter + roundedX, color(248,185,138), arial);
        tip.draw();
-       
      }
+     
+     previousType = eType;
    }
-   
-   
  }
  
  

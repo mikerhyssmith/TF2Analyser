@@ -38,5 +38,6 @@ class ToolTip{
     for(int i=0;i<tipText.length;i++){
       text(tipText[i],tipArea.getX()-1 , tipArea.getY()-1 + ((tipArea.getHeight()/tipText.length)*i));
     }
+    textAlign(LEFT,BASELINE);
   }
 }

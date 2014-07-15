@@ -3,6 +3,9 @@ class IconHandler{
   PImage icons;
   int xPos;
   int yPos;
+  float scale=1.0;
+  float xOffset = 0;
+  float yOffset = 0;
 
   JSONObject iconData;
   
@@ -25,11 +28,25 @@ class IconHandler{
       width = icon.getInt("width");
       height = icon.getInt("height");
       //Draw the icon
-      image(icons,x, y, width, height, u+(section*512), v, u+width+(section*512),v+height);
+      image(icons, x + (xOffset*width*scale), y + (yOffset*height*scale), width*scale, height*scale, u+(section*512), v, u+width+(section*512),v+height);
     } catch(Exception e){
       //Handle the exception and print an error if icon not found
       System.err.println("Exception: " + e.getMessage());
     }
   }
+  
+  //Set scaling of icons to be drawn
+  public void setScale(float scale){
+    this.scale = scale;
+  }
+  
+  //Set percentage offset of icons from right-hand corner
+  public void setOffset(float xPercent, float yPercent){
+    xOffset = xPercent;
+    yOffset = yPercent;
+    
+  }
+  
+  
 }
 
