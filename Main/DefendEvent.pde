@@ -4,16 +4,14 @@ class DefendEvent extends Event{
   
   String defender;
   String defendedObject;
-  String team;
   
   
-  public DefendEvent(Time time, String defender, String defendedObject, String team){
+  public DefendEvent(Time time, String defender, String defendedObject){
     
     super(EventTypes.DEFEND, time);
           
     this.defender = defender;
     this.defendedObject = defendedObject;
-    this.team = team;
   }
   
   public String getDefender(){
@@ -24,7 +22,5 @@ class DefendEvent extends Event{
     return defendedObject;
   }
   
-  public String getTeam(){
-    return team;
-  }
+
 }

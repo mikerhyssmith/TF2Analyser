@@ -91,18 +91,28 @@ class NodeGraph {
    
    textFont(arial);       
    fill(0);
-   //textAlign(CENTER);
    text("Kills",5 - xShift,killNodeYPosition);
    text("Match Events", 5- xShift , defendCaptureNodeYPosition );
    text("Deaths" , 5 - xShift, deathNodeYPosition); 
    rectMode(CENTER);
    stroke(128);
-   fill(20,158,40,40);
-   rect(graphWidth/2, killNodeYPosition + 30, graphWidth, 100);
-   fill(80,15,60,40);
-   rect(graphWidth/2, defendCaptureNodeYPosition + 30, graphWidth, 100);
-   fill(80,15,170,40);
-   rect(graphWidth/2, deathNodeYPosition + 30 , graphWidth, 100);
+   
+   if(graphWidth > width){
+     fill(20,158,40,40);
+     rect(graphWidth/2, killNodeYPosition + 30, graphWidth, 100);
+     fill(80,15,60,40);
+     rect(graphWidth/2, defendCaptureNodeYPosition + 30, graphWidth, 100);
+     fill(80,15,170,40);
+     rect(graphWidth/2, deathNodeYPosition + 30 , graphWidth, 100);
+   }else{
+     fill(20,158,40,40);
+     rect(width/2, killNodeYPosition + 30, width, 100);
+     fill(80,15,60,40);
+     rect(width/2, defendCaptureNodeYPosition + 30, width, 100);
+     fill(80,15,170,40);
+     rect(width/2, deathNodeYPosition + 30 , width, 100);
+     
+   }
    stroke(0);
    rectMode(CORNER);
     
@@ -170,10 +180,12 @@ class NodeGraph {
      ellipse(roundedX + offset , y, ellipseSize, ellipseSize);
      previousX = x;
      
+     /**
      //Draw icon for kills
      if(weapon!=null){
        icons.Draw(weapon, (float)(roundedX + offset) , y);
      }
+     */
      
      //Defines the behaviour when the mouse is over each node.
      float r = (float)Math.sqrt( (mouseX-(roundedX + offset))*(mouseX-(roundedX + offset)) + (mouseY-y)*(mouseY-y));
