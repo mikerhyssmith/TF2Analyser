@@ -11,6 +11,9 @@ class ToolTip{
   
   //Pixels added between text and edge of tooltip box
   int padding = 2;
+  //Used to flip the tooltip if its too close to an edge
+  float uOffset =0;
+  float vOffset =0;
   
   public ToolTip(String text, color colour, PFont font){
     this.tipText = text.split("\n");
@@ -61,16 +64,31 @@ class ToolTip{
   }
   
   public PVector getIconPosition(){
-    return new PVector(tipArea.getX() - padding, tipArea.getY() - padding + tipArea.getHeight() - iconArea.getHeight()); 
+    return new PVector(tipArea.getX() - padding + uOffset,
+                       tipArea.getY() - padding + vOffset + tipArea.getHeight() - iconArea.getHeight()); 
   }
   
   public void draw(){
     //Draw a box for the tooltip
     fill(tipColour);
-    rect(tipArea.getX()-(2*padding), 
-            tipArea.getY()-(2*padding) -iconArea.getHeight(), 
-            tipArea.getWidth() + (2*padding),
-            tipArea.getHeight()+ (2*padding) + iconArea.getHeight());
+    
+    float u=tipArea.getX()-(2*padding);
+    float v= tipArea.getY()-(2*padding) -iconArea.getHeight();
+    float w=tipArea.getWidth() + (2*padding);
+    float h=tipArea.getHeight()+ (2*padding) + iconArea.getHeight();
+
+    float uOffset =0;
+    float vOffset =0;
+    
+    //Handle the tooltip being too close to the screen edge
+    if(mouseX<w){
+      uOffset = w;
+    }
+    if(mouseY<v){
+      vOffset = h;
+    }
+    
+    rect(u+uOffset,v+vOffset,w,h);
     
     //Draw the tooltip text
     textFont(font);       
@@ -78,9 +96,11 @@ class ToolTip{
     
     textAlign(LEFT,TOP);
     for(int i=0;i<tipText.length;i++){
-      text(tipText[i], tipArea.getX()-padding, 
-                        tipArea.getY()-padding + ((tipArea.getHeight()/tipText.length)*i -  iconArea.getHeight()));
+      text(tipText[i], tipArea.getX()-padding + uOffset, 
+                       tipArea.getY()-padding + vOffset + ((tipArea.getHeight()/tipText.length)*i -  iconArea.getHeight()));
     }
+    
+    
     textAlign(LEFT,BASELINE);
   }
 }
