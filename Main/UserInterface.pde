@@ -3,7 +3,7 @@ import java.text.Normalizer;
 
 class UserInterface {
   ControlP5 cP5;
-  DropdownList dropdown,playersDropDown,matchList;
+  DropdownList dropdown,playersDropDown,matchList,temp;
   ListBox l,playerList;
   Textarea myTextarea;
   boolean fileLoaded = false;
@@ -12,6 +12,7 @@ class UserInterface {
   
   //Whether or not to draw a statistics box
   boolean vst = false;
+  boolean notificationDisplayed = false;
   
   public UserInterface(ControlP5 cp5){
     
@@ -33,7 +34,7 @@ class UserInterface {
   
   void UIDraw(){
     //Notification message on successful file load
-    if(fileLoaded){
+    if(notificationDisplayed){
       if(colour < 128){
         colour = colour +1;
         myTextarea.setColor(colour);
@@ -51,20 +52,22 @@ class UserInterface {
   void fileLoadedUI(){
     colour = 0;
     //Create a drop down box for visualization selection.
+
     dropdown = cP5.addDropdownList("VisualizationChoice").setPosition(80,15).setSize(120,70);
     dropdown.addItem("Cause Of Death Chart",0);
     dropdown.addItem("Match Timeline",1);
-    //dropdown.setItemHeight(25);
-    //dropdown.setBarHeight(15);
-    //dropdown.captionLabel().style().marginTop = 4;
-    //dropdown.captionLabel().style().marginLeft = 3;
-    //dropdown.valueLabel().style().marginTop = 3;
+    dropdown.setItemHeight(25);
+    dropdown.setBarHeight(15);
+    dropdown.captionLabel().style().marginTop = 4;
+    dropdown.captionLabel().style().marginLeft = 3;
+    dropdown.valueLabel().style().marginTop = 3;
     
     
     
     //Create a notification to state file has loaded correctly.
     myTextarea = cP5.addTextarea("LoadSuccesful").setPosition(0,35);
     myTextarea.setText("File Loaded Succesfully !");
+    notificationDisplayed = true;
     fileLoaded = true;
   }
   

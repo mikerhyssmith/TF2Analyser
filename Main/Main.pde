@@ -169,8 +169,11 @@ void drawVisualizationStats(){
 
 void drawMatchTimeline(int matchNumber, String playerName){
  nodeDrawn = false;
- nGraph.dataSelection(matches.get(matchNumber).getEvents(),playerName);
- nodeDrawn = true;
+ if(nGraph.getPlayerEvents(playerName,matches.get(matchNumber).getEvents()).size() >0){
+   nGraph.dataSelection(matches.get(matchNumber).getEvents(),playerName);
+   nodeDrawn = true;
+ }
+
   
 }
 

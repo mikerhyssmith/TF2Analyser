@@ -63,8 +63,8 @@ class NodeGraph {
     int timeDifference = (int) getDateDiff(initialTime,finalTime);
     
      //Get all events related to the chosen player
-    playerEvents = getPlayerEvents(playerName);
-    
+    playerEvents = getPlayerEvents(playerName,events);
+   
     int numberOfNodes = playerEvents.size();
     //Width of graph is the length of time plus half a node each direction
     graphWidth = timeDifference + 10 + offset;
@@ -236,7 +236,7 @@ public long getDateDiff(Time time1, Time time2) {
     return TimeUnit.SECONDS.convert(diffInMillies,TimeUnit.MILLISECONDS);
 }
 
-public ArrayList<Event> getPlayerEvents(String playerName){
+public ArrayList<Event> getPlayerEvents(String playerName, ArrayList<Event> events){
   ArrayList<Event> playerEvents = new ArrayList<Event>();
   //Get all events that are performed by, or on a specific player.
    for(int i =0; i< events.size(); i++){
