@@ -53,14 +53,15 @@ class UserInterface {
     colour = 0;
     //Create a drop down box for visualization selection.
 
-    dropdown = cP5.addDropdownList("VisualizationChoice").setPosition(80,15).setSize(120,70);
+    dropdown = cP5.addDropdownList("VisualizationChoice").setPosition(80,15).setWidth(120).setHeight(40);
+    
     dropdown.addItem("Cause Of Death Chart",0);
     dropdown.addItem("Match Timeline",1);
-    dropdown.setItemHeight(25);
     dropdown.setBarHeight(15);
-    dropdown.captionLabel().style().marginTop = 4;
+    dropdown.captionLabel().style().marginTop = 3;
     dropdown.captionLabel().style().marginLeft = 3;
-    dropdown.valueLabel().style().marginTop = 3;
+    dropdown.valueLabel().style().marginTop = 4;
+
     
     
     
