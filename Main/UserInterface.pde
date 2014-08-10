@@ -74,6 +74,10 @@ class UserInterface {
     vst = true;
   }
   
+  void removeVisualizationStats(){
+     vst = false; 
+  }
+  
   
   //Create the rest of the UI once a type of graph has been chosen
   void addVisualizationOptions(String[] Players, ArrayList<Match> matches) {

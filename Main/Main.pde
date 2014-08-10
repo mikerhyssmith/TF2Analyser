@@ -26,11 +26,11 @@ boolean nodeDrawn = false;
 
 //TF2 Analyser logo file
 PImage logo;
-int windowWidth=1000;
-int windowHeight=600;
+static final int WINDOWWIDTH=1000;
+static final int WINDOWHEIGHT=600;
 
 void setup() {
-  size(windowWidth,windowHeight);
+  size(WINDOWWIDTH,WINDOWHEIGHT);
   logo = loadImage("logo.png");
   smooth();
   background(128);
@@ -42,7 +42,7 @@ void setup() {
   UI = new UserInterface(cP5);
   
   //Define containing areas for various features
-  graphArea = new Area(800,500,0,100);
+  graphArea = new Area(900,500,0,100);
   statsArea = new Area(150,200,width-10,height-10);
 
 }
@@ -51,7 +51,7 @@ void draw(){
   background(128);
   
   if(!graphDrawn&&!nodeDrawn){
-    image(logo, windowWidth/2 - logo.width/2, windowHeight/2-logo.height/2, logo.width, logo.height);
+    image(logo, WINDOWWIDTH/2 - logo.width/2, WINDOWHEIGHT/2-logo.height/2, logo.width, logo.height);
   }
   
   if(fileLoaded){
@@ -154,6 +154,7 @@ void drawVisualizationStats(){
 
 
 void drawMatchTimeline(){
+ UI.removeVisualizationStats();
  graphDrawn = false;
  nodeDrawn = false;
  nGraph = new NodeGraph(matches.get(0).getEvents(), graphArea, nodeControl, "captain morgan");
