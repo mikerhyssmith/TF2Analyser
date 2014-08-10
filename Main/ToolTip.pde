@@ -77,9 +77,6 @@ class ToolTip{
     float w=tipArea.getWidth() + (2*padding);
     float h=tipArea.getHeight()+ (2*padding) + iconArea.getHeight();
 
-    float uOffset =0;
-    float vOffset =0;
-    
     //Handle the tooltip being too close to the screen edge
     if(mouseX<w){
       uOffset = w;
