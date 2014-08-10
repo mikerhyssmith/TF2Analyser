@@ -78,16 +78,30 @@ class UserInterface {
      vst = false; 
   }
   
+  void removeOptions(){
+    playersDropDown.hide();
+    dropdown.hide();
+    matchList.hide();
+  }
+  
   
   //Create the rest of the UI once a type of graph has been chosen
-  void addVisualizationOptions(String[] Players, ArrayList<Match> matches) {
+  void addVisualizationOptions(String[] Players, ArrayList<Match> matches,boolean node) {
     //Create a drop down list of available players.
     playersDropDown = cP5.addDropdownList("PlayerChoice").setPosition(320,15).setSize(120,70);
     matchList = cP5.addDropdownList("MatchChoice").setPosition(200,15).setSize(120,70);
-    matchList.addItem("All Matches",0);
-    playersDropDown.addItem("All Players",0);
+    if(!node){
+      matchList.addItem("All Matches",0);
+      playersDropDown.addItem("All Players",0);
+    }
     customizeDropDownList(playersDropDown);
     customizeDropDownList(matchList);
+    int adjustment = 0;
+    if(node){
+      adjustment = 0;
+    }else{
+       adjustment = 1; 
+    }
     
     //Add all players to the drop-down list
     for(int i = 0 ; i < Players.length; i ++){
@@ -95,17 +109,17 @@ class UserInterface {
         //Must convert the string to bytes to handle unsupported characters.
         byte[] playerBytes = Players[i].getBytes("WINDOWS-1256");
         String playerName = new String(playerBytes);
-        playersDropDown.addItem(playerName,i+1);
+        playersDropDown.addItem(playerName,i+adjustment);
       }catch(Exception e){
         System.out.println("Player Name Not Supported");
-        playersDropDown.addItem("Unsupported Player Name " + i, i+1);
+        playersDropDown.addItem("Unsupported Player Name " + i, i+adjustment);
       }
     }
     
     //Add all matches to the drop-down list
     for(int i =0 ; i< matches.size(); i++){
        Match currentMatch = matches.get(i);
-       matchList.addItem(currentMatch.getMapName(),i+1); 
+       matchList.addItem(currentMatch.getMapName(),i+adjustment); 
     }
   }
   

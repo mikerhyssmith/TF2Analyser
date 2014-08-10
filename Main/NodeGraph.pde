@@ -31,12 +31,10 @@ class NodeGraph {
   //Get system independent new line character
   String newLineCharacter = System.getProperty("line.separator");
  
- public NodeGraph(ArrayList<Event> events, Area graphArea, ControlP5 nodeControl, String playerName) {
-   this.events = events;
+ public NodeGraph(Area graphArea, ControlP5 nodeControl) {
    this.graphArea = graphArea;
    this.nodeControl = nodeControl;
-   this.playerName = playerName;
-   
+
    arial = createFont("Arial",12,true);
    
    //Apply custom colour scheme to all ControlP5 objects
@@ -46,6 +44,17 @@ class NodeGraph {
     nodeControl.setColorValue(0xff342F2C);
     nodeControl.setColorActive(0xff9D302F);
     
+    //Calculate Y position of each node type
+    deathNodeYPosition =  height - ( 0.125*graphArea.getHeight());
+    killNodeYPosition =  height - (0.875 * graphArea.getHeight());
+    defendCaptureNodeYPosition =  height - ( 0.5*graphArea.getHeight());
+
+ }
+ 
+ void dataSelection(ArrayList<Event> events, String playerName){
+   this.events = events;
+   this.playerName = playerName;
+   
     //Get length of match to determine size of graph
     Event finalEvent = events.get(events.size()-1);
     Time finalTime = finalEvent.getEventTime();
@@ -53,14 +62,7 @@ class NodeGraph {
     Time initialTime = firstEvent.getEventTime();
     int timeDifference = (int) getDateDiff(initialTime,finalTime);
     
-    //Calculate Y position of each node type
-    deathNodeYPosition =  height - ( 0.125*graphArea.getHeight());
-    killNodeYPosition =  height - (0.875 * graphArea.getHeight());
-    defendCaptureNodeYPosition =  height - ( 0.5*graphArea.getHeight());
-    
-    
-    
-    //Get all events related to the chosen player
+     //Get all events related to the chosen player
     playerEvents = getPlayerEvents(playerName);
     
     int numberOfNodes = playerEvents.size();
@@ -83,8 +85,8 @@ class NodeGraph {
     
     //Set up icons
     icons = new IconHandler("killicons_final.png");
-   // icons.setScale(0.5);
-   // icons.setOffset(-0.5, -1.25);
+   
+   
  }
  
  void draw(){

@@ -22,7 +22,8 @@ ArrayList<Match> matches;
 VisualizationStats vs;
 Hashtable<String, DeathCount> deaths;
 int m_number = -1;
-boolean nodeDrawn = false;
+boolean nodeDrawn,nodeSelected = false;
+int currentMatchNo = 0;
 
 //TF2 Analyser logo file
 PImage logo;
@@ -73,21 +74,34 @@ void controlEvent(ControlEvent theEvent) {
   if(theEvent.isController()) { 
 
     if(theEvent.controller().name()=="Load File") {
-         selectInput("Select a file to process:", "fileSelected");
+      if(nodeDrawn || graphDrawn){
+        UI.removeVisualizationStats();
+        UI.removeOptions();
+      }
+      nodeDrawn = false;
+      graphDrawn = false;
+      selectInput("Select a file to process:", "fileSelected");
     }
     
   }else if (theEvent.isGroup()) {
     // if the name of the event is equal to ImageSelect (aka the name of our dropdownlist)
     if (theEvent.group().name() == "VisualizationChoice") {
       if(theEvent.group().value() == 0){
+        nodeSelected = false;
         deaths = processor.getDeaths("",-1);
-        UI.addVisualizationOptions(players,matches);
+        UI.addVisualizationOptions(players,matches,false);
         drawBarChart();
         UI.drawVisualizationStats(vs);
         vs.getInitialStats();
       }else{
-        //Draw match timeline    
-        drawMatchTimeline();
+        //Draw match timeline
+        UI.addVisualizationOptions(players,matches,true); 
+        UI.removeVisualizationStats();
+        graphDrawn = false;   
+        nGraph = new NodeGraph(graphArea, nodeControl);
+        nodeSelected = true;
+
+        //drawMatchTimeline();
       }
     }
     if(theEvent.group().name() == "MatchChoice"){
@@ -153,45 +167,55 @@ void drawVisualizationStats(){
 }
 
 
-void drawMatchTimeline(){
- UI.removeVisualizationStats();
- graphDrawn = false;
+void drawMatchTimeline(int matchNumber, String playerName){
  nodeDrawn = false;
- nGraph = new NodeGraph(matches.get(0).getEvents(), graphArea, nodeControl, "captain morgan");
+ nGraph.dataSelection(matches.get(matchNumber).getEvents(),playerName);
  nodeDrawn = true;
   
 }
 
 void updateVisualisationMatch(int matchNumber){
   
-  if(matchNumber == 0){
-    deaths = processor.getDeaths("",-1);
-    vs.updateMatchStatistics(-1);
-    UI.drawVisualizationStats(vs);
-    UI.updatePlayerDropDown(-1);
-
+  if(nodeSelected){
+    currentMatchNo = matchNumber;
+    UI.updatePlayerDropDown(matchNumber);
+    
   }else{
-    deaths = processor.getDeaths("",matchNumber-1);
-    vs.updateMatchStatistics(matchNumber-1);
-    UI.drawVisualizationStats(vs);
-    UI.updatePlayerDropDown(matchNumber-1);
+  
+    if(matchNumber == 0){
+      deaths = processor.getDeaths("",-1);
+      vs.updateMatchStatistics(-1);
+      UI.drawVisualizationStats(vs);
+      UI.updatePlayerDropDown(-1);
 
+    }else{
+      deaths = processor.getDeaths("",matchNumber-1);
+      vs.updateMatchStatistics(matchNumber-1);
+      UI.drawVisualizationStats(vs);
+      UI.updatePlayerDropDown(matchNumber-1);
+
+    }
+    drawBarChart();
   }
-  drawBarChart();
+  
 }
 void updateVisualisationPlayer(String playerName){
   System.out.println(playerName);
-  
-  if(playerName.equals("")){
-    if(m_number != -1){
-      deaths = processor.getDeaths("",m_number); 
-    }else{
-      deaths = processor.getDeaths("",-1);
+  if(nodeSelected){
+    drawMatchTimeline(currentMatchNo, playerName);
+    
+  }else{ 
+    if(playerName.equals("")){
+      if(m_number != -1){
+        deaths = processor.getDeaths("",m_number); 
+      }else{
+        deaths = processor.getDeaths("",-1);
+      }
+    }else if(!playerName.equals("")){
+        deaths = processor.getDeaths(playerName,m_number); 
     }
-  }else if(!playerName.equals("")){
-      deaths = processor.getDeaths(playerName,m_number); 
+    drawBarChart();
   }
-  drawBarChart();
 }
 
 
