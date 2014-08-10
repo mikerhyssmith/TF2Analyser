@@ -16,9 +16,7 @@ class FileReader {
   //Processes an array of strings that have been read in from a data file
      public boolean processFile(String[] data) {
         boolean matchCreated = false;
-        System.out.println(data.length);
         for (int i = 0; i < data.length; i++) {
-          //System.out.println("i" + i);
           synchronized(matches){
             //New match when a new map is detected
             if (data[i].startsWith("Map: ")) {
@@ -75,7 +73,6 @@ class FileReader {
                 String defendedObject = eventDesc.substring(defendedPosition);
               
                 DefendEvent currentEvent = new DefendEvent(time,defender,defendedObject);
-                System.out.println(defendedObject);
                 currentMatch.addEvent(currentEvent);
             }else if(data[i].contains(" captured ")){
               
@@ -103,6 +100,7 @@ class FileReader {
         }
         return false;
       }
+      
   public String[] getData() {
     String[] newArray = new String[data.length];
     for(int i = 0; i< data.length; i++){

@@ -96,23 +96,24 @@ class NodeGraph {
    text("Deaths" , 5 - xShift, deathNodeYPosition); 
    rectMode(CENTER);
    stroke(128);
-   
+   colorMode(HSB,100);
    if(graphWidth > width){
-     fill(20,158,40,40);
+     fill(13,71,80);
      rect(graphWidth/2, killNodeYPosition + 30, graphWidth, 100);
-     fill(80,15,60,40);
+     fill(13,71,80);
      rect(graphWidth/2, defendCaptureNodeYPosition + 30, graphWidth, 100);
-     fill(80,15,170,40);
+     fill(13,71,80);
      rect(graphWidth/2, deathNodeYPosition + 30 , graphWidth, 100);
    }else{
-     fill(20,158,40,40);
+     fill(13,71,80);
      rect(width/2, killNodeYPosition + 30, width, 100);
-     fill(80,15,60,40);
+     fill(13,71,80);
      rect(width/2, defendCaptureNodeYPosition + 30, width, 100);
-     fill(80,15,170,40);
+     fill(13,71,80);
      rect(width/2, deathNodeYPosition + 30 , width, 100);
      
    }
+   colorMode(RGB,255);
    stroke(0);
    rectMode(CORNER);
     
@@ -123,6 +124,7 @@ class NodeGraph {
    float x =0;
    float previousX = 0;
    float previousY = 0;
+   boolean crit = false;
    
    String toolTipText = "";
    
@@ -140,6 +142,7 @@ class NodeGraph {
      if(eType == EventTypes.KILL){
        KillEvent kill = (KillEvent) currentEvent;
        weapon = kill.getWeapon();
+       crit = kill.getCrit();
        //Determine if the chosen player is the killer or victim
        if(kill.getKiller().equalsIgnoreCase(playerName)){
          y = killNodeYPosition;
@@ -150,9 +153,17 @@ class NodeGraph {
          eType = EventTypes.DEATH;
        }  
      }else if(eType == EventTypes.DEFEND){
+       crit = false;
        DefendEvent defend = (DefendEvent) currentEvent;
        y = defendCaptureNodeYPosition;
        toolTipText = "Event Type: Defence" + newLineCharacter + "Defended Object: " + defend.getDefendedObject();
+     }else if (eType == EventTypes.CAPTURE){
+       System.out.println("Capture");
+       crit = false;
+       CaptureEvent capture = (CaptureEvent) currentEvent;
+       y = defendCaptureNodeYPosition + defendCaptureNodeYPosition/6;
+       toolTipText = "Event Type: Defence" + newLineCharacter + "Capture Description: " + capture.getCapturedObject();
+       
      }
 
      //Get the difference between the initial time and the current event to calculate X position.
@@ -165,7 +176,11 @@ class NodeGraph {
      
      //Define the point to be drawn
      int ellipseSize = 10;
-     fill(255);
+     if(crit){
+        fill(208,32,52); 
+     }else{
+       fill(255);
+     }
      int roundedX = (int) Math.floor((x - xShift) +0.5) ;
      int adaptedY =0;
      
@@ -179,18 +194,13 @@ class NodeGraph {
      previousY = y;
      ellipse(roundedX + offset , y, ellipseSize, ellipseSize);
      previousX = x;
-     
-     /**
-     //Draw icon for kills
-     if(weapon!=null){
-       icons.Draw(weapon, (float)(roundedX + offset) , y);
-     }
-     */
-     
+
      //Defines the behaviour when the mouse is over each node.
      float r = (float)Math.sqrt( (mouseX-(roundedX + offset))*(mouseX-(roundedX + offset)) + (mouseY-y)*(mouseY-y));
      
      if(r<ellipseSize/2){
+       
+
        if(weapon!=null){
          ToolTip tip = new ToolTip(toolTipText, color(248,185,138), arial, icons.getIconSize(weapon));
          tip.draw();
@@ -230,7 +240,16 @@ public ArrayList<Event> getPlayerEvents(String playerName){
        if(defend.getDefender().equalsIgnoreCase(playerName)){
          playerEvents.add(currentEvent);
        }  
-    }
+    }else if (currentEvent.getEventType() == EventTypes.CAPTURE){
+      CaptureEvent capture = (CaptureEvent) currentEvent;
+      String[] capturingPlayers = capture.getCapturingPlayers();
+      for(int j = 0; j < capturingPlayers.length; j++){
+        if(capturingPlayers[j].trim().equalsIgnoreCase(playerName)){
+          playerEvents.add(currentEvent);
+        
+        }
+      }
+   }
    } 
    return playerEvents;
 }
