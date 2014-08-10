@@ -18,7 +18,7 @@ class FileReader {
         boolean matchCreated = false;
         System.out.println(data.length);
         for (int i = 0; i < data.length; i++) {
-          System.out.println("i" + i);
+          //System.out.println("i" + i);
           synchronized(matches){
             //New match when a new map is detected
             if (data[i].startsWith("Map: ")) {

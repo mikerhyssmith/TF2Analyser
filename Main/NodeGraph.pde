@@ -83,8 +83,8 @@ class NodeGraph {
     
     //Set up icons
     icons = new IconHandler("killicons_final.png");
-    icons.setScale(0.5);
-    icons.setOffset(-0.5, -1.25);
+   // icons.setScale(0.5);
+   // icons.setOffset(-0.5, -1.25);
  }
  
  void draw(){
@@ -128,7 +128,7 @@ class NodeGraph {
    
    EventTypes eType=null;
    EventTypes previousType=null;
-
+   
    
    for(int i =0; i< playerEvents.size(); i ++){
      currentEvent = playerEvents.get(i);
@@ -191,8 +191,16 @@ class NodeGraph {
      float r = (float)Math.sqrt( (mouseX-(roundedX + offset))*(mouseX-(roundedX + offset)) + (mouseY-y)*(mouseY-y));
      
      if(r<ellipseSize/2){
-       ToolTip tip = new ToolTip(toolTipText + newLineCharacter + roundedX, color(248,185,138), arial);
-       tip.draw();
+       if(weapon!=null){
+         ToolTip tip = new ToolTip(toolTipText, color(248,185,138), arial, icons.getIconSize(weapon));
+         tip.draw();
+         PVector iconPos=tip.getIconPosition();
+         icons.Draw(weapon, iconPos.x, iconPos.y);
+       }
+       else{
+         ToolTip tip = new ToolTip(toolTipText, color(248,185,138), arial);
+         tip.draw();
+       }
      }
      
      previousType = eType;

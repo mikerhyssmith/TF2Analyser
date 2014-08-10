@@ -35,6 +35,20 @@ class IconHandler{
     }
   }
   
+  public Area getIconSize(String weapon){
+    JSONObject icon;    
+    Area size = new Area(0,0,0,0);
+    //Look for the icon of death in the icon data
+    try{
+      icon = iconData.getJSONObject(weapon);
+      size = new Area(icon.getInt("width"), icon.getInt("height"), icon.getInt("x"), icon.getInt("y"));
+    } catch(Exception e){
+      //Handle the exception and print an error if icon not found
+      System.err.println("Exception: " + e.getMessage());
+    }
+    return size;
+  }
+  
   //Set scaling of icons to be drawn
   public void setScale(float scale){
     this.scale = scale;
