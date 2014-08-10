@@ -24,8 +24,14 @@ Hashtable<String, DeathCount> deaths;
 int m_number = -1;
 boolean nodeDrawn = false;
 
+//TF2 Analyser logo file
+PImage logo;
+int windowWidth=1000;
+int windowHeight=600;
+
 void setup() {
-  size(800,600);
+  size(windowWidth,windowHeight);
+  logo = loadImage("logo.png");
   smooth();
   background(128);
   frameRate(25);
@@ -43,6 +49,11 @@ void setup() {
 
 void draw(){
   background(128);
+  
+  if(!graphDrawn&&!nodeDrawn){
+    image(logo, windowWidth/2 - logo.width/2, windowHeight/2-logo.height/2, logo.width, logo.height);
+  }
+  
   if(fileLoaded){
     UI.fileLoadedUI();
     fileLoaded = false;

@@ -207,9 +207,19 @@ class NodeGraph {
          PVector iconPos=tip.getIconPosition();
          icons.Draw(weapon, iconPos.x, iconPos.y);
        }
-       else{
-         ToolTip tip = new ToolTip(toolTipText, color(248,185,138), arial);
+       else if (eType == EventTypes.DEFEND){
+         String def = "bluedefend";
+         ToolTip tip = new ToolTip(toolTipText, color(248,185,138), arial,icons.getIconSize(def));
          tip.draw();
+         PVector iconPos=tip.getIconPosition();
+         icons.Draw(def, iconPos.x, iconPos.y);
+       }
+       else if (eType == EventTypes.CAPTURE){
+         String def = "bluecapture";
+         ToolTip tip = new ToolTip(toolTipText, color(248,185,138), arial,icons.getIconSize(def));
+         tip.draw();
+         PVector iconPos=tip.getIconPosition();
+         icons.Draw(def, iconPos.x, iconPos.y);
        }
      }
      
