@@ -1,0 +1,21 @@
+{
+		"tf_projectile_rocket":
+		{
+				"dfile":	"HUD/d_images",
+				"dnegfile":	"HUD/dneg_images",
+				"x":		"0",
+				"y":		"224",
+				"width":		"96",
+				"height":	"32"
+		},
+		"scattergun":
+		{
+				"dfile":	"HUD/d_images",
+				"dnegfile":	"HUD/dneg_images",
+				"x":		"96",
+				"y":		"192",
+				"width":		"96",
+				"height":	"32"
+		}	
+}
+
