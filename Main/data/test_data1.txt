@@ -1,0 +1,385 @@
+07/04/2014 - 12:20:56: Quickplay client scoring
+07/04/2014 - 12:20:56: Selected game mode: 2
+07/04/2014 - 12:20:56: Hours played: 236.5
+07/04/2014 - 12:20:56: Valve server bonus: 0.00, noob map bonus: 0.00
+07/04/2014 - 12:20:56: Search duration: 5.2
+07/04/2014 - 12:20:56: Found 396 total servers, 376 met minimum score threshold, 25 will be sent to GC for scoring
+07/04/2014 - 12:20:56: Received 25 server scores from GC
+07/04/2014 - 12:20:56: Best GC score was 1.75
+07/04/2014 - 12:20:56: Quickplay connecting to 146.66.159.73:27055
+07/04/2014 - 12:20:56: Network: IP 192.168.1.69, mode MP, dedicated No, ports 27015 SV / 27005 CL
+07/04/2014 - 12:20:56: Connecting to 146.66.159.73:27055...
+07/04/2014 - 12:20:57: Connected to 146.66.159.73:27055
+07/04/2014 - 12:20:59: 
+Team Fortress
+Map: cp_dustbowl
+Players: 22 / 24
+Build: 2298883
+Server Number: 6
+
+07/04/2014 - 12:21:03: The server is using sv_pure 0.  (Enforcing consistency for select files only)
+07/04/2014 - 12:21:30: SOLID_VPHYSICS static prop with no vphysics model! (models/props_foliage/grass_02_cluster01.mdl)
+07/04/2014 - 12:21:30: Requesting texture value from var "$basetexture" which is not a texture value (material: skybox/sky_dustbowl_01rt)
+07/04/2014 - 12:21:30: Requesting texture value from var "$basetexture" which is not a texture value (material: skybox/sky_dustbowl_01bk)
+07/04/2014 - 12:21:30: Requesting texture value from var "$basetexture" which is not a texture value (material: skybox/sky_dustbowl_01lf)
+07/04/2014 - 12:21:30: Requesting texture value from var "$basetexture" which is not a texture value (material: skybox/sky_dustbowl_01ft)
+07/04/2014 - 12:21:30: Requesting texture value from var "$basetexture" which is not a texture value (material: skybox/sky_dustbowl_01up)
+07/04/2014 - 12:21:30: Requesting texture value from var "$basetexture" which is not a texture value (material: skybox/sky_dustbowl_01dn)
+07/04/2014 - 12:21:33: Beef connected
+07/04/2014 - 12:21:36: Compact freed 1064960 bytes
+07/04/2014 - 12:21:37: Redownloading all lightmaps
+07/04/2014 - 12:21:51: masterman (BEL) connected
+07/04/2014 - 12:22:03: Unknown command: +statekey
+07/04/2014 - 12:22:03: Unknown command: -statekey
+07/04/2014 - 12:22:07: Sawyer killed DavidAkaYolo with machina. (crit)
+07/04/2014 - 12:22:08: Teams will be auto-balanced in 5 seconds.
+07/04/2014 - 12:22:08: DavidAkaYolo was moved to the other team for game balance
+07/04/2014 - 12:22:08: James killed thetitle13 with tf_projectile_pipe_remote.
+07/04/2014 - 12:22:10: про100килер killed Rabbit with flamethrower.
+07/04/2014 - 12:22:13: Unknown command: +statekey
+07/04/2014 - 12:22:13: Mr.Sacha[FR] killed про100килер with quake_rl.
+07/04/2014 - 12:22:13: Unknown command: -statekey
+07/04/2014 - 12:22:16: Mr.Sacha[FR] killed janaruzickova with quake_rl. (crit)
+07/04/2014 - 12:22:16: Mr.Sacha[FR] killed Atrayou with quake_rl. (crit)
+07/04/2014 - 12:22:19: Шоник killed McKlon_347Rs with obj_sentrygun2.
+07/04/2014 - 12:22:21: James killed gravius with tf_projectile_pipe. (crit)
+07/04/2014 - 12:22:25: Mr.Sacha[FR] killed Шоник with quake_rl.
+07/04/2014 - 12:22:28: Sawyer killed maxmail07 with machina. (crit)
+07/04/2014 - 12:22:31: Mr.Sacha[FR] killed mido2 with quake_rl.
+07/04/2014 - 12:22:32: spacefactor captured First Cap, Stage Three for team #3
+07/04/2014 - 12:22:32: James killed thetitle13 with tf_projectile_pipe.
+07/04/2014 - 12:22:36: Mr.Sacha[FR] killed James with quake_rl.
+07/04/2014 - 12:22:45: Sawyer killed McKlon_347Rs with machina.
+07/04/2014 - 12:22:49: pawel.plisinski connected
+07/04/2014 - 12:22:55: про100килер killed Derpsta with flamethrower.
+07/04/2014 - 12:22:55: Mr.Sacha[FR] killed про100килер with quake_rl.
+07/04/2014 - 12:23:02: mido2 suicided.
+07/04/2014 - 12:23:09: Ptit_ski killed maxmail07 with obj_sentrygun3.
+07/04/2014 - 12:23:13: Ptit_ski killed [ШД]Daniallo with obj_sentrygun3.
+07/04/2014 - 12:23:15: No such variable "$basetexture" for material "effects/circle2"
+07/04/2014 - 12:23:16: No such variable "$basetexture" for material "effects/healsign"
+07/04/2014 - 12:23:19: masterman (BEL) killed Sawyer with flamethrower.
+07/04/2014 - 12:23:19: Шоник killed masterman (BEL) with obj_sentrygun.
+07/04/2014 - 12:23:22: phlegmo killed pawel.plisinski with obj_sentrygun.
+07/04/2014 - 12:23:22: Tomaszo111  (PSP 3 ) connected
+07/04/2014 - 12:23:31: Atrayou killed McKlon_347Rs with flamethrower.
+07/04/2014 - 12:23:39: Mr.Sacha[FR] killed Ptit_ski with quake_rl.
+07/04/2014 - 12:23:40: про100килер killed Mr.Sacha[FR] with world.
+07/04/2014 - 12:23:41: janaruzickova killed gravius with flamethrower.
+07/04/2014 - 12:23:41: spacefactor killed janaruzickova with syringegun_medic.
+07/04/2014 - 12:23:43: Derpsta killed про100килер with dumpster_device.
+07/04/2014 - 12:23:48: Sawyer killed Derpsta with machina. (crit)
+07/04/2014 - 12:23:52: gravius was moved to the other team for game balance
+07/04/2014 - 12:23:57: thetitle13 killed mido2 with tf_projectile_pipe.
+07/04/2014 - 12:23:59: Spookyz connected
+07/04/2014 - 12:24:01: Шоник defended the Rocket, Final Cap for team #2
+07/04/2014 - 12:24:01: Шоник killed maxmail07 with obj_sentrygun2.
+07/04/2014 - 12:24:04: James killed Mr.Sacha[FR] with tf_projectile_pipe_remote. (crit)
+07/04/2014 - 12:24:07: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:08: thetitle13 killed Sawyer with tf_projectile_pipe.
+07/04/2014 - 12:24:10: DavidAkaYolo killed thetitle13 with machina. (crit)
+07/04/2014 - 12:24:13: McKlon_347Rs killed Atrayou with backburner.
+07/04/2014 - 12:24:15: McKlon_347Rs killed Ptit_ski with backburner.
+07/04/2014 - 12:24:16: Cannot update control point 0 for effect 'player_sparkles_red'.
+07/04/2014 - 12:24:19: про100килер killed Tomaszo111  (PSP 3 ) with flamethrower.
+07/04/2014 - 12:24:22: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:22: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:22: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:22: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:22: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:22: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:22: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:22: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:22: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:22: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:22: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:22: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:22: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:22: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:22: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:22: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:22: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:22: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:22: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:22: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:22: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:22: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:23: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:23: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:23: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:23: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:24: *DEAD* Tomaszo111  (PSP 3 ) :  gey 
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:25: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:37: про100килер killed thetitle13 with flamethrower.
+07/04/2014 - 12:24:43: про100килер killed Derpsta with flamethrower.
+07/04/2014 - 12:24:43: Tomaszo111  (PSP 3 ) killed Sawyer with smg.
+07/04/2014 - 12:24:44: McKlon_347Rs killed про100килер with backburner.
+07/04/2014 - 12:24:48: gravius killed masterman (BEL) with dumpster_device.
+07/04/2014 - 12:24:52: Tomaszo111  (PSP 3 ) killed janaruzickova with sniperrifle. (crit)
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:54: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:24:57: thetitle13 killed gravius with sword.
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:01: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:07: McKlon_347Rs killed Шоник with backburner. (crit)
+07/04/2014 - 12:25:08: Mr.Sacha[FR] killed Ptit_ski with quake_rl.
+07/04/2014 - 12:25:08: McKlon_347Rs killed про100килер with backburner.
+07/04/2014 - 12:25:11: DavidAkaYolo killed [ШД]Daniallo with machina.
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:11: Attempt to set particle collection dxhr_sniper_muzzleflash to invalid orientation matrix
+07/04/2014 - 12:25:12: [ШД]Daniallo killed DavidAkaYolo with tf_projectile_pipe.
+07/04/2014 - 12:25:13: Mr.Sacha[FR], thetitle13, McKlon_347Rs captured the Rocket, Final Cap for team #3
+07/04/2014 - 12:25:13: mido2 killed McKlon_347Rs with tf_projectile_rocket.
+07/04/2014 - 12:25:16: Mr.Sacha[FR] killed Spookyz with quake_rl. (crit)
+07/04/2014 - 12:25:17: Mr.Sacha[FR] killed janaruzickova with quake_rl. (crit)
+07/04/2014 - 12:25:48: 
+Team Fortress
+Map: cp_gorge
+Players: 20 / 24
+Build: 2298883
+Server Number: 7
+
+07/04/2014 - 12:25:50: The server is using sv_pure 0.  (Enforcing consistency for select files only)
+07/04/2014 - 12:25:54: Requesting texture value from var "$basetexture" which is not a texture value (material: skybox/sky_trainyard_01rt)
+07/04/2014 - 12:25:54: Requesting texture value from var "$basetexture" which is not a texture value (material: skybox/sky_trainyard_01bk)
+07/04/2014 - 12:25:54: Requesting texture value from var "$basetexture" which is not a texture value (material: skybox/sky_trainyard_01lf)
+07/04/2014 - 12:25:54: Requesting texture value from var "$basetexture" which is not a texture value (material: skybox/sky_trainyard_01ft)
+07/04/2014 - 12:25:55: Beef connected
+07/04/2014 - 12:25:57: Compact freed 1576960 bytes
+07/04/2014 - 12:25:57: Redownloading all lightmaps
+07/04/2014 - 12:25:57: Ptit_ski connected
+07/04/2014 - 12:25:57: James connected
+07/04/2014 - 12:25:59: Derpsta connected
+07/04/2014 - 12:25:59: gravius connected
+07/04/2014 - 12:25:59: Шоник connected
+07/04/2014 - 12:25:59: mido2 connected
+07/04/2014 - 12:26:03: [ШД]Daniallo connected
+07/04/2014 - 12:26:03: про100килер connected
+07/04/2014 - 12:26:04: Atrayou connected
+07/04/2014 - 12:26:05: thetitle13 connected
+07/04/2014 - 12:26:05: McKlon_347Rs connected
+07/04/2014 - 12:26:06: janaruzickova connected
+07/04/2014 - 12:26:06: Spookyz connected
+07/04/2014 - 12:26:07: phlegmo connected
+07/04/2014 - 12:26:10: maza [BY] connected
+07/04/2014 - 12:26:14: Mr.Sacha[FR] connected
+07/04/2014 - 12:26:15: masterman (BEL) connected
+07/04/2014 - 12:26:20: IxumaVoid connected
+07/04/2014 - 12:26:29: Шоник suicided.
+07/04/2014 - 12:26:53: DavidAkaYolo connected
+07/04/2014 - 12:26:57: kacper.kobylt connected
+07/04/2014 - 12:27:01: ViteX connected
+07/04/2014 - 12:27:14: про100килер connected
+07/04/2014 - 12:27:54: McKlon_347Rs killed gravius with backburner.
+07/04/2014 - 12:27:57: Mr.Sacha[FR] killed thetitle13 with obj_minisentry.
+07/04/2014 - 12:27:57: про100килер killed masterman (BEL) with sniperrifle. (crit)
+07/04/2014 - 12:27:59: maza [BY] killed Ptit_ski with sticky_resistance.
+07/04/2014 - 12:28:06: McKlon_347Rs killed про100килер with backburner.
+07/04/2014 - 12:28:10: phlegmo killed McKlon_347Rs with pep_brawlerblaster.
+07/04/2014 - 12:28:14: thetitle13 killed IxumaVoid with tf_projectile_pipe. (crit)
+07/04/2014 - 12:28:38: thetitle13 killed Derpsta with tf_projectile_pipe.
+07/04/2014 - 12:28:44: про100килер suicided.
+07/04/2014 - 12:28:47: Mr.Sacha[FR] killed gravius with widowmaker.
+07/04/2014 - 12:28:47: janaruzickova killed Atrayou with pistol.
+07/04/2014 - 12:28:51: James killed Mr.Sacha[FR] with airstrike.
+07/04/2014 - 12:28:55: phlegmo killed mido2 with pep_brawlerblaster.
+07/04/2014 - 12:28:58: phlegmo killed ViteX with pep_brawlerblaster.
+07/04/2014 - 12:29:01: gravius :  sacha fr va te faire xD
+07/04/2014 - 12:29:09: Ptit_ski killed maza [BY] with short_stop.
+07/04/2014 - 12:29:11: thetitle13 killed DavidAkaYolo with sword.
+07/04/2014 - 12:29:13: kacper.kobylt killed janaruzickova with sniperrifle.
+07/04/2014 - 12:29:15: Mr.Sacha[FR] :  j'adore faire rager xDDD
+07/04/2014 - 12:29:19: thetitle13 killed masterman (BEL) with tf_projectile_pipe.
+07/04/2014 - 12:29:22: RotációsKapa connected
+07/04/2014 - 12:29:26: IxumaVoid killed thetitle13 with scattergun.
+07/04/2014 - 12:29:27: gravius killed Derpsta with skullbat.
+07/04/2014 - 12:29:28: James killed IxumaVoid with airstrike.
+07/04/2014 - 12:29:31: Derpsta killed gravius with lava_axe.
+07/04/2014 - 12:29:37: phlegmo killed ViteX with pep_brawlerblaster. (crit)
+07/04/2014 - 12:29:43: Kicking down dem doors connected
+07/04/2014 - 12:29:43: phlegmo killed про100килер with pep_brawlerblaster. (crit)
+07/04/2014 - 12:29:46: McKlon_347Rs killed Ptit_ski with backburner.
+07/04/2014 - 12:29:46: James killed McKlon_347Rs with airstrike. (crit)
+07/04/2014 - 12:29:51: Mr.Sacha[FR] killed [ШД]Daniallo with obj_minisentry.
+07/04/2014 - 12:30:07: thetitle13 killed Mr.Sacha[FR] with sword.
+07/04/2014 - 12:30:10: maza [BY] killed Atrayou with tf_projectile_pipe.
+07/04/2014 - 12:30:13: RotációsKapa killed Derpsta with blackbox.
+07/04/2014 - 12:30:13: mido2 killed phlegmo with smg.
+07/04/2014 - 12:30:15: thetitle13 killed DavidAkaYolo with sword.
+07/04/2014 - 12:30:17: thetitle13 killed IxumaVoid with sword.
+07/04/2014 - 12:30:18: RotációsKapa killed ViteX with blackbox. (crit)
+07/04/2014 - 12:30:22: McKlon_347Rs defended First Capture point for team #2
+07/04/2014 - 12:30:22: McKlon_347Rs killed Ptit_ski with backburner.
+07/04/2014 - 12:30:23: thetitle13 killed maza [BY] with sword.
+07/04/2014 - 12:30:25: RotációsKapa killed mido2 with blackbox. (crit)
+07/04/2014 - 12:30:30: McKlon_347Rs killed Spookyz with backburner.
+07/04/2014 - 12:30:33: McKlon_347Rs killed Шоник with backburner. (crit)
+07/04/2014 - 12:30:35: McKlon_347Rs killed James with backburner.
+07/04/2014 - 12:30:36: phlegmo killed про100килер with pep_brawlerblaster.
+07/04/2014 - 12:30:36: RotációsKapa killed masterman (BEL) with world.
+07/04/2014 - 12:30:37: McKlon_347Rs killed gravius with backburner.
+07/04/2014 - 12:30:38: kacper.kobylt killed janaruzickova with sniperrifle. (crit)
+07/04/2014 - 12:30:41: Teams will be auto-balanced in 5 seconds.
+07/04/2014 - 12:30:47: Kicking down dem doors killed Mr.Sacha[FR] with degreaser.
+07/04/2014 - 12:30:48: McKlon_347Rs killed Atrayou with backburner. (crit)
+07/04/2014 - 12:30:49: Mr.Sacha[FR] killed Kicking down dem doors with obj_minisentry.
+07/04/2014 - 12:30:49: Kicking down dem doors was moved to the other team for game balance
+07/04/2014 - 12:30:50: Ptit_ski killed McKlon_347Rs with tf_projectile_arrow.
+07/04/2014 - 12:30:51: thetitle13 killed Derpsta with sword. (crit)
+07/04/2014 - 12:30:54: Mr.Sacha[FR] killed RotációsKapa with obj_minisentry.
+07/04/2014 - 12:31:21: phlegmo killed maza [BY] with pep_brawlerblaster.
+07/04/2014 - 12:31:23: phlegmo killed ViteX with pep_brawlerblaster.
+07/04/2014 - 12:31:25: [ШД]Daniallo killed Kicking down dem doors with tf_projectile_pipe_remote.
+07/04/2014 - 12:31:25: [ШД]Daniallo killed про100килер with tf_projectile_pipe_remote.
+07/04/2014 - 12:31:27: [ШД]Daniallo killed masterman (BEL) with tf_projectile_pipe_remote. (crit)
+07/04/2014 - 12:31:28: McKlon_347Rs killed [ШД]Daniallo with backburner.
+07/04/2014 - 12:31:29: phlegmo killed Mr.Sacha[FR] with pep_brawlerblaster.
+07/04/2014 - 12:31:29: McKlon_347Rs killed James with backburner.
+07/04/2014 - 12:31:35: RotációsKapa killed janaruzickova with blackbox.
+07/04/2014 - 12:31:42: McKlon_347Rs killed Ptit_ski with backburner.
+07/04/2014 - 12:31:44: Ptit_ski killed McKlon_347Rs with bleed_kill.
+07/04/2014 - 12:31:46: phlegmo killed IxumaVoid with pep_brawlerblaster.
+07/04/2014 - 12:31:50: Шоник captured First Capture point for team #3
+07/04/2014 - 12:31:53: Derpsta killed phlegmo with dumpster_device.
+07/04/2014 - 12:31:53: phlegmo killed Derpsta with world.
+07/04/2014 - 12:31:56: Ptit_ski killed DavidAkaYolo with tf_projectile_arrow.
+07/04/2014 - 12:32:03: Kicking down dem doors killed kacper.kobylt with axtinguisher. (crit)
+07/04/2014 - 12:32:03: RotációsKapa killed про100килер with player.
+07/04/2014 - 12:32:04: maza [BY] killed RotációsKapa with tf_projectile_pipe.
+07/04/2014 - 12:32:07: Cannot update control point 0 for effect 'player_sparkles_red'.
+07/04/2014 - 12:32:11: Шоник killed Kicking down dem doors with syringegun_medic.
+07/04/2014 - 12:32:13: Cannot update control point 0 for effect 'player_sparkles_red'.
+07/04/2014 - 12:32:15: thetitle13 killed ViteX with sword.
+07/04/2014 - 12:32:18: IxumaVoid killed thetitle13 with tf_projectile_rocket.
+07/04/2014 - 12:32:18: Cannot update control point 0 for effect 'player_sparkles_red'.
+07/04/2014 - 12:32:21: McKlon_347Rs suicided.
+07/04/2014 - 12:32:24: Cannot update control point 0 for effect 'player_sparkles_red'.
+07/04/2014 - 12:32:29: janaruzickova killed James with obj_sentrygun.
+07/04/2014 - 12:32:30: Derpsta killed Ptit_ski with dumpster_device. (crit)
+07/04/2014 - 12:32:30: Derpsta suicided. (crit)
+07/04/2014 - 12:32:32: phlegmo killed Mr.Sacha[FR] with pep_brawlerblaster. (crit)
+07/04/2014 - 12:32:37: Cannot update control point 0 for effect 'player_sparkles_red'.
+07/04/2014 - 12:32:38: *DEAD* Derpsta :  LOL
+07/04/2014 - 12:32:44: Kicking down dem doors killed Spookyz with degreaser.
+07/04/2014 - 12:32:45: maza [BY] killed gravius with sticky_resistance.
+07/04/2014 - 12:32:52: Ptit_ski killed Kicking down dem doors with tf_projectile_arrow.
+07/04/2014 - 12:32:57: thetitle13 killed IxumaVoid with sword.
+07/04/2014 - 12:32:58: Mr.Sacha[FR] killed thetitle13 with obj_minisentry.
+07/04/2014 - 12:32:59: phlegmo killed DavidAkaYolo with warfan. (crit)
+07/04/2014 - 12:33:01: ViteX killed Atrayou with minigun.
+07/04/2014 - 12:33:06: Host_WriteConfiguration: Wrote cfg/config.cfg
+07/04/2014 - 12:33:06: CTFGCClientSystem::ShutdownGC
+07/04/2014 - 12:33:06: CTFGCClientSystem - adding listener
+07/04/2014 - 12:33:06: Unable to remove c:\program files (x86)\steam\steamapps\common\team fortress 2\tf\textwindow_temp.html!
+07/04/2014 - 12:33:08: Shutdown function ShutdownMixerControls() not in list!!!
