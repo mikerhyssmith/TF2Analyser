@@ -6,6 +6,8 @@ class KillEvent extends Event{
   String victim;
   String weapon;
   boolean crit;
+  int standardValue = 15;
+  int critValue = 10;
   
   public KillEvent(Time time, String killer, String victim, String weapon, boolean crit){
     
@@ -30,4 +32,12 @@ class KillEvent extends Event{
   public boolean getCrit(){
     return crit;
   }
+  public int getValue(){
+    int value= standardValue;
+    if(crit){
+      value = critValue;
+    }
+    return value;
+  }
+  
 }

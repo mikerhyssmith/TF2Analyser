@@ -18,4 +18,9 @@ class Event{
   public Time getEventTime(){
     return eventTime;
   }
+  
+  public int getEventValue(){
+    return 0;
+  
+  }
 }

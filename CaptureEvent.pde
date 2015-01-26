@@ -4,6 +4,7 @@ class CaptureEvent extends Event{
   
   String[] capturingPlayers;
   String capturedObject;
+  int eventValue = 5;
   
   public CaptureEvent(Time time, String[] capturingPlayers, String capturedObject){
     super(EventTypes.CAPTURE, time);
@@ -18,4 +19,9 @@ class CaptureEvent extends Event{
   public String getCapturedObject(){
     return capturedObject;
   }
+  
+  public int getValue(){
+    return eventValue;
+  }
+  
 }

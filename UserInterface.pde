@@ -66,7 +66,7 @@ class UserInterface {
     
     
     //Create a notification to state file has loaded correctly.
-    myTextarea = cP5.addTextarea("LoadSuccesful").setPosition(0,35);
+    myTextarea = cP5.addTextarea("LoadSuccesful").setPosition(0,35).setFont(createFont("arial",16));
     myTextarea.setText("File Loaded Succesfully !");
     notificationDisplayed = true;
     fileLoaded = true;

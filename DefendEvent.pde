@@ -4,6 +4,7 @@ class DefendEvent extends Event{
   
   String defender;
   String defendedObject;
+  int eventValue = 5;
   
   
   public DefendEvent(Time time, String defender, String defendedObject){
@@ -20,6 +21,9 @@ class DefendEvent extends Event{
   
   public String getDefendedObject(){
     return defendedObject;
+  }
+  public int getValue(){
+    return eventValue;
   }
   
 

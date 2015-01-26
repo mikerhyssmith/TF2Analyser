@@ -1,4 +1,4 @@
 
 public enum EventTypes {
-    KILL, DEATH, CAPTURE, DEFEND 
+    KILL,CAPTURE, DEFEND, DEATH
 }
