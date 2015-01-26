@@ -44,7 +44,7 @@ void setup() {
   
   //Define containing areas for various features
   graphArea = new Area(900,500,0,100);
-  statsArea = new Area(150,200,width-10,height-10);
+  statsArea = new Area(200,130,width-250,20);
 
 }
 
@@ -162,7 +162,7 @@ void drawBarChart(){
 
 
 void drawVisualizationStats(){
-  vs = new VisualizationStats(reader.getMatches(),processor);
+  vs = new VisualizationStats(reader.getMatches(),processor,statsArea);
   
 }
 
