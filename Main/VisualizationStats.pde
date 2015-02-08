@@ -9,11 +9,13 @@ class VisualizationStats {
   DataProcessor reader;
   PFont arial;
   String currentSelectedPlayer = "";
+  Area statsArea;
   
-  public VisualizationStats(ArrayList<Match> matches,DataProcessor reader){
+  public VisualizationStats(ArrayList<Match> matches,DataProcessor reader, Area statsArea){
     this.matches = matches;
     this.deaths = reader.getDeaths("",-1);
     this.reader = reader;
+    this.statsArea = statsArea;
     arial = createFont("Arial",11,true);
   }
   
@@ -28,16 +30,16 @@ class VisualizationStats {
   
   public void draw(){
     fill(0,128,0,0);
-    rect(560, 20, 200, 130, 7);
+    rect(statsArea.getX(), statsArea.getY(), statsArea.getWidth(), statsArea.getHeight(), 7);
     //textSize(32);
     textFont(arial);       
     fill(0);
     textAlign(CENTER);
-    text("Match Statistics", 660, 40);
-    text("Most Effective Weapon: "+ System.getProperty("line.separator")  + mostPopularWeapon, 660, 60); 
-    text("Percentage of Crit Kills: " + percentCrits, 660, 95); 
-    text("Most Kills: " + mostKills , 660, 115); 
-    text("Most Deaths: " + mostDeaths , 660, 135); 
+    text("Match Statistics", statsArea.getX()+100, statsArea.getY()+20);
+    text("Most Effective Weapon: "+ System.getProperty("line.separator")  + mostPopularWeapon, statsArea.getX()+100, statsArea.getY()+40); 
+    text("Percentage of Crit Kills: " + percentCrits, statsArea.getX()+100, statsArea.getY()+75); 
+    text("Most Kills: " + mostKills , statsArea.getX()+100, statsArea.getY()+95); 
+    text("Most Deaths: " + mostDeaths , statsArea.getX()+100, statsArea.getY()+115); 
     
   }
   
