@@ -1,4 +1,4 @@
-import controlP5.*;
+//.//import controlP5.*;
 import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 
@@ -13,9 +13,6 @@ class NodeGraph {
   ControlP5 nodeControl;
   String playerName;
   final int INITIALSEPARATION = 40;
-  float killNodeYPosition ;
-  float defendCaptureNodeYPosition;
-  float deathNodeYPosition;
   Slider nodeSlider;
   int sliderHeight;
   boolean graphFits =true;
@@ -89,7 +86,7 @@ class NodeGraph {
     //Set up icons
     icons = new IconHandler("killicons_final.png");
     
-    processEvents();
+    
    
    
  }
@@ -101,8 +98,8 @@ class NodeGraph {
    colorMode(RGB,255);
    stroke(0);
    rectMode(CORNER);
-    
-
+   
+   processEvents();
    
    
    
@@ -157,18 +154,16 @@ public void processEvents(){
    float y =0;
    float x =0;
    float previousX = 0;
-   float previousY = 0;
    boolean crit = false;
    
    String toolTipText = "";
    
    EventTypes eType=null;
-   EventTypes previousType=null;
+   playerScore = 0;
    
  for(int i =0; i< playerEvents.size(); i ++){
      currentEvent = playerEvents.get(i);
-     playerScore = 0;
-     String weapon=null;
+     crit = false;
      eType = currentEvent.getEventType();
      
      //Get the y position dependent on the type of event
@@ -178,26 +173,15 @@ public void processEvents(){
        crit = kill.getCrit();
        //Determine if the chosen player is the killer or victim
        if(kill.getKiller().equalsIgnoreCase(playerName)){
-         y = killNodeYPosition;
-         toolTipText = "Event Type: Kill" + newLineCharacter +  "Weapon: " + kill.getWeapon() + newLineCharacter + "Victim: " + kill.getVictim();
          playerScore += kill.getValue();
        }else if(kill.getVictim().equalsIgnoreCase(playerName)){
-         y = deathNodeYPosition;
-         toolTipText = "Event Type: Death" + newLineCharacter + "Weapon: " + kill.getWeapon() + newLineCharacter + "Killer: " + kill.getKiller();
-         eType = EventTypes.DEATH;
          playerScore -= kill.getValue();
        }  
      }else if(eType == EventTypes.DEFEND){
-       crit = false;
        DefendEvent defend = (DefendEvent) currentEvent;
-       y = defendCaptureNodeYPosition;
-       toolTipText = "Event Type: Defence" + newLineCharacter + "Defended Object: " + defend.getDefendedObject();
        playerScore += defend.getValue();
      }else if (eType == EventTypes.CAPTURE){
-       crit = false;
        CaptureEvent capture = (CaptureEvent) currentEvent;
-       y = defendCaptureNodeYPosition + defendCaptureNodeYPosition/6;
-       toolTipText = "Event Type: Defence" + newLineCharacter + "Capture Description: " + capture.getCapturedObject();
        playerScore += capture.getValue();
        
      }
@@ -208,7 +192,7 @@ public void processEvents(){
      //Add a separation to reduce overlapped points
      float pointDifference = timeDifference - previousX;
      //System.out.println("Time DIfference" + timeDifference + " previousX " + previousX + "pointDifference " + pointDifference);
-     x =  (timeDifference +5);
+     x =  (pointDifference +5);
      
      //Define the point to be drawn
      int ellipseSize = 10;
@@ -222,45 +206,18 @@ public void processEvents(){
      System.out.println("player score: " + playerScore);
      System.out.println("Height Calculation: " + (height-playerScore-padding));
      System.out.println("Padding: " + padding);
-     if(height - playerScore -padding > height){
-       padding +=10;
+     if(height-playerScore-padding > height){
+       padding +=30;
+       System.out.println("Called");
      }
      
      y = height - playerScore - padding;
-
-     previousY = y;
-     ellipse(roundedX + offset , y, ellipseSize, ellipseSize);
+     System.out.println("Y: " + y);
+     System.out.println("X: " + roundedX);
+     ellipse(roundedX +offset , y, ellipseSize, ellipseSize);
+     
      previousX = x;
-
-     //Defines the behaviour when the mouse is over each node.
-     float r = (float)Math.sqrt( (mouseX-(roundedX + offset))*(mouseX-(roundedX + offset)) + (mouseY-y)*(mouseY-y));
      
-     if(r<ellipseSize/2){
-       
-
-       if(weapon!=null){
-         ToolTip tip = new ToolTip(toolTipText, color(248,185,138), arial, icons.getIconSize(weapon));
-         tip.draw();
-         PVector iconPos=tip.getIconPosition();
-         icons.Draw(weapon, iconPos.x, iconPos.y);
-       }
-       else if (eType == EventTypes.DEFEND){
-         String def = "bluedefend";
-         ToolTip tip = new ToolTip(toolTipText, color(248,185,138), arial,icons.getIconSize(def));
-         tip.draw();
-         PVector iconPos=tip.getIconPosition();
-         icons.Draw(def, iconPos.x, iconPos.y);
-       }
-       else if (eType == EventTypes.CAPTURE){
-         String def = "bluecapture";
-         ToolTip tip = new ToolTip(toolTipText, color(248,185,138), arial,icons.getIconSize(def));
-         tip.draw();
-         PVector iconPos=tip.getIconPosition();
-         icons.Draw(def, iconPos.x, iconPos.y);
-       }
-     }
-     
-     previousType = eType;
    } 
 }
   
