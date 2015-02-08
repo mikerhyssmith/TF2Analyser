@@ -1,25 +1,25 @@
 class Node{
   
-  private int x;
-  private int y;
-  private Tooltip tip;
+  private float x;
+  private float y;
+  private ToolTip tip;
   
- public Node(int x, int y, Tooltip tip){
+ public Node(float x, float y, ToolTip tip ){
    this.x = x;
    this.y = y;
    this.tip = tip;
   
  } 
  
- public int  getX(){
+ public float  getX(){
    return x;
  }
  
- public int getY(){
+ public float getY(){
    return y; 
  }
  
- public Tooltip getTooltip(){
+ public ToolTip getTooltip(){
   return tip; 
  }
   

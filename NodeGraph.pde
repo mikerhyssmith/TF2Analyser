@@ -26,7 +26,6 @@ class NodeGraph {
   int playerScore = 0;
   int padding = 30;
   
-  
   IconHandler icons;
   int minSeperation = 10;
   
@@ -48,6 +47,9 @@ class NodeGraph {
     
     //Set the height of the graph
     graphHeight = graphArea.getHeight();
+    
+    //Initialise array of nodes
+    nodes = new ArrayList<Node>();
 
  }
  
@@ -81,13 +83,10 @@ class NodeGraph {
     else{
       sliderHeight = 0;
     }
-    
-    
     //Set up icons
     icons = new IconHandler("killicons_final.png");
     
-    
-   
+    processEvents();
    
  }
  
@@ -99,9 +98,11 @@ class NodeGraph {
    stroke(0);
    rectMode(CORNER);
    
-   processEvents();
    
-   
+   if(nodes.size() > 0){
+     drawNodes();
+   }
+
    
  }
  
@@ -160,30 +161,31 @@ public void processEvents(){
    
    EventTypes eType=null;
    playerScore = 0;
-   
+
  for(int i =0; i< playerEvents.size(); i ++){
      currentEvent = playerEvents.get(i);
      crit = false;
      eType = currentEvent.getEventType();
-     
      //Get the y position dependent on the type of event
      if(eType == EventTypes.KILL){
        KillEvent kill = (KillEvent) currentEvent;
-       weapon = kill.getWeapon();
        crit = kill.getCrit();
        //Determine if the chosen player is the killer or victim
        if(kill.getKiller().equalsIgnoreCase(playerName)){
          playerScore += kill.getValue();
+         toolTipText = "Event Type: Kill" + newLineCharacter +  "Weapon: " + kill.getWeapon() + newLineCharacter + "Victim: " + kill.getVictim();
        }else if(kill.getVictim().equalsIgnoreCase(playerName)){
          playerScore -= kill.getValue();
+         toolTipText = "Event Type: Death" + newLineCharacter + "Weapon: " + kill.getWeapon() + newLineCharacter + "Killer: " + kill.getKiller();
        }  
      }else if(eType == EventTypes.DEFEND){
        DefendEvent defend = (DefendEvent) currentEvent;
        playerScore += defend.getValue();
+       toolTipText = "Event Type: Defence" + newLineCharacter + "Defended Object: " + defend.getDefendedObject();
      }else if (eType == EventTypes.CAPTURE){
        CaptureEvent capture = (CaptureEvent) currentEvent;
        playerScore += capture.getValue();
-       
+       toolTipText = "Event Type: Defence" + newLineCharacter + "Capture Description: " + capture.getCapturedObject();
      }
 
      //Get the difference between the initial time and the current event to calculate X position.
@@ -191,37 +193,41 @@ public void processEvents(){
      
      //Add a separation to reduce overlapped points
      float pointDifference = timeDifference - previousX;
-     //System.out.println("Time DIfference" + timeDifference + " previousX " + previousX + "pointDifference " + pointDifference);
      x =  (pointDifference +5);
      
-     //Define the point to be drawn
-     int ellipseSize = 10;
-     if(crit){
-        fill(208,32,52); 
-     }else{
-       fill(255);
-     }
      int roundedX = (int) Math.floor((x - xShift) +0.5) ;
-     int adaptedY =0;
      System.out.println("player score: " + playerScore);
      System.out.println("Height Calculation: " + (height-playerScore-padding));
-     System.out.println("Padding: " + padding);
-     if(height-playerScore-padding > height){
-       padding +=30;
-       System.out.println("Called");
-     }
      
-     y = height - playerScore - padding;
+     y = playerScore;
      System.out.println("Y: " + y);
      System.out.println("X: " + roundedX);
-     ellipse(roundedX +offset , y, ellipseSize, ellipseSize);
+   
      
+     Node n = new Node((float) roundedX,y,new ToolTip(toolTipText, color(248,185,138), arial));
+     nodes.add(n);
      previousX = x;
+     System.out.println("EVENT");
      
-   } 
+   }
+}
+
+  public void drawNodes(){
+     Iterator<Node> it = nodes.iterator();
+     System.out.println(nodes.size());
+     while(it.hasNext()){
+       Node n = it.next();
+       fill(255);
+       stroke(1);
+       ellipse(n.getX(),n.getY(),10,10);
+       System.out.println("Node X: " + n.getX() + " Node Y: " + n.getY());
+       System.out.println("CALLED");
+     }
+   
+  } 
 }
   
    
   
   
-}
+
