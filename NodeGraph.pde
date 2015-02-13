@@ -25,9 +25,12 @@ class NodeGraph {
   int graphHeight;
   int playerScore = 0;
   int padding = 30;
+  NodeGraphRenderer render;
+  boolean rendered = false;
   
   IconHandler icons;
   int minSeperation = 10;
+  Thread renderThread;
   
   //Get system independent new line character
   String newLineCharacter = System.getProperty("line.separator");
@@ -87,6 +90,9 @@ class NodeGraph {
     icons = new IconHandler("killicons_final.png");
     
     processEvents();
+    render = new NodeGraphRenderer(nodes);
+    renderThread = new Thread(render);
+
    
  }
  
@@ -98,10 +104,12 @@ class NodeGraph {
    stroke(0);
    rectMode(CORNER);
    
-   
-   if(nodes.size() > 0){
-     drawNodes();
-   }
+   //Only draw nodes if the users game has been processed.
+    if(nodes.size() > 0 && !rendered){
+      render.setRendering(true);
+      renderThread.start();
+      rendered = true;
+    }
 
    
  }
@@ -197,34 +205,17 @@ public void processEvents(){
      
      int roundedX = (int) Math.floor((x - xShift) +0.5) ;
      System.out.println("player score: " + playerScore);
-     System.out.println("Height Calculation: " + (height-playerScore-padding));
      
      y = playerScore;
-     System.out.println("Y: " + y);
-     System.out.println("X: " + roundedX);
    
-     
+     //Create a node with player score, event time and a tooltip.
      Node n = new Node((float) roundedX,y,new ToolTip(toolTipText, color(248,185,138), arial));
      nodes.add(n);
      previousX = x;
-     System.out.println("EVENT");
      
    }
 }
 
-  public void drawNodes(){
-     Iterator<Node> it = nodes.iterator();
-     System.out.println(nodes.size());
-     while(it.hasNext()){
-       Node n = it.next();
-       fill(255);
-       stroke(1);
-       ellipse(n.getX(),n.getY(),10,10);
-       System.out.println("Node X: " + n.getX() + " Node Y: " + n.getY());
-       System.out.println("CALLED");
-     }
-   
-  } 
 }
   
    
