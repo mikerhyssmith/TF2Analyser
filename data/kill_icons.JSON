@@ -1393,7 +1393,8 @@
 				"x":		"384",
 				"y":		"256",
 				"width":	"96",
-				"height":	"32"
+				"height":	"32",
+				"class":      "multi-class"
 		},
 		
 		"market_gardener":
@@ -1402,7 +1403,8 @@
 				"x":		"384",
 				"y":		"288",
 				"width":	"96",
-				"height":	"32"
+				"height":	"32",
+				"class":      "soldier"
 		},
 		
 		"the_winger":
@@ -1411,7 +1413,8 @@
 				"x":		"384",
 				"y":		"320",
 				"width":	"96",
-				"height":	"32"
+				"height":	"32",
+				"class":      "scout"
 		},
 		
 		"tomislav":
@@ -1420,7 +1423,8 @@
 				"x":		"384",
 				"y":		"352",
 				"width":	"96",
-				"height":	"32"
+				"height":	"32",
+				"class":      "heavy"
 		},
 		
 		"soda_popper":
@@ -1429,7 +1433,8 @@
 				"x":		"384",
 				"y":		"384",
 				"width":	"96",
-				"height":	"32"
+				"height":	"32",
+				"class":      "scout"
 		},
 		
 		"atomizer":
@@ -1438,7 +1443,8 @@
 				"x":		"384",
 				"y":		"416",
 				"width":	"96",
-				"height":	"32"
+				"height":	"32",
+				"class":      "scout"
 		},
 		
 		"bazaar_bargain":
@@ -1447,7 +1453,8 @@
 				"x":		"384",
 				"y":		"448",
 				"width":	"96",
-				"height":	"32"
+				"height":	"32",
+				"class":      "sniper"
 		},
 		
 		"big_earner":
@@ -1456,7 +1463,8 @@
 				"x":		"384",
 				"y":		"480",
 				"width":	"96",
-				"height":	"32"
+				"height":	"32",
+				"class":      "pyro"
 		},
 		
 		"detonator":
@@ -1465,7 +1473,8 @@
 				"x":		"384",
 				"y":		"512",
 				"width":	"96",
-				"height":	"32"
+				"height":	"32",
+				"class":      "pyro"
 		},
 		
 		"eviction_notice":
@@ -1474,7 +1483,8 @@
 				"x":		"384",
 				"y":		"544",
 				"width":	"96",
-				"height":	"32"
+				"height":	"32",
+				"class":      "pyro"
 		},
 		
 		"family_business":
@@ -1483,7 +1493,8 @@
 				"x":		"384",
 				"y":		"576",
 				"width":	"96",
-				"height":	"32"
+				"height":	"32",
+				"class":      "heavy"
 		},
 		
 		"liberty_launcher":
@@ -1492,7 +1503,8 @@
 				"x":		"384",
 				"y":		"608",
 				"width":	"96",
-				"height":	"32"
+				"height":	"32",
+				"class":      "soldier"
 		},
 		
 		"proto_syringe":
@@ -1501,7 +1513,8 @@
 				"x":		"384",
 				"y":		"640",
 				"width":	"96",
-				"height":	"32"
+				"height":	"32",
+				"class":      "medic"
 		},
 		
 		"persian_persuader":
@@ -1510,7 +1523,8 @@
 				"x":		"384",
 				"y":		"672",
 				"width":	"96",
-				"height":	"32"
+				"height":	"32",
+				"class":      "demoman"
 		},
 		
 		"reserve_shooter":
@@ -1519,7 +1533,8 @@
 				"x":		"384",
 				"y":		"704",
 				"width":	"96",
-				"height":	"32"
+				"height":	"32",
+				"class":      "multi-class"
 		},
 		
 		"shahanshah":
@@ -1528,7 +1543,8 @@
 				"x":		"384",
 				"y":		"736",
 				"width":	"96",
-				"height":	"32"
+				"height":	"32",
+				"class":      "sniper"
 		},
 		
 		"enforcer":
@@ -1537,7 +1553,8 @@
 				"x":		"384",
 				"y":		"768",
 				"width":	"96",
-				"height":	"32"
+				"height":	"32",
+				"class":      "spy"
 		},
 		
 		"disciplinary_action":
@@ -1546,7 +1563,8 @@
 				"x":		"384",
 				"y":		"800",
 				"width":	"96",
-				"height":	"32"
+				"height":	"32",
+				"class":      "soldier"
 		},
 		
 		"splendid_screen":
@@ -1555,7 +1573,8 @@
 				"x":		"384",
 				"y":		"832",
 				"width":	"96",
-				"height":	"32"
+				"height":	"32",
+				"class":      "demoman"
 		},
 		
 		"mantreads":
@@ -1564,7 +1583,8 @@
 				"x":		"384",
 				"y":		"864",
 				"width":	"96",
-				"height":	"32"
+				"height":	"32",
+				"class":      "soldier"
 		},
 		
 		"solemn_vow":
@@ -1573,7 +1593,8 @@
 				"x":		"384",
 				"y":		"896",
 				"width":	"96",
-				"height":	"32"
+				"height":	"32",
+				"class":      "medic"
 		},
 		
 		"nessieclub":
@@ -1582,7 +1603,8 @@
 				"x":		"384",
 				"y":		"928",
 				"width":	"128",
-				"height":	"32"
+				"height":	"32",
+				"class":      "demoman"
 		},
 		
 		"mailbox":
@@ -1591,7 +1613,8 @@
 				"x":		"384",
 				"y":		"960",
 				"width":	"128",
-				"height":	"32"
+				"height":	"32",
+				"class":      "pyro"
 		},
 		
 		"quake_rl":
@@ -1600,7 +1623,8 @@
 				"x":		"384",
 				"y":		"992",
 				"width":	"128",
-				"height":	"32"
+				"height":	"32",
+				"class":      "soldier"
 		},
 		
 		"diamondback":
@@ -1609,7 +1633,8 @@
 				"x":		"320",
 				"y":		"896",
 				"width":	"64",
-				"height":	"32"
+				"height":	"32",
+				"class":      "spy"
 		},
 		
 		"widowmaker":
@@ -1618,7 +1643,8 @@
 				"x":		"320",
 				"y":		"960",
 				"width":	"64",
-				"height":	"32"
+				"height":	"32",
+				"class":      "engineer"
 		},
 		
 		"short_circuit":
@@ -1627,7 +1653,8 @@
 				"x":		"320",
 				"y":		"928",
 				"width":	"64",
-				"height":	"32"
+				"height":	"32",
+				"class":      "engineer"
 		},
 		"machina":
 		{
@@ -1635,7 +1662,8 @@
 				"x":		"256",
 				"y":		"288",
 				"width":	"128",
-				"height":	"32"		
+				"height":	"32",
+				"class":      "sniper"		
 		},
 		"player_penetration":
 		{
@@ -1643,7 +1671,8 @@
 				"x":		"256",
 				"y":		"320",
 				"width":	"128",
-				"height":	"32"		
+				"height":	"32",
+				"class":      "sniper"		
 		},
 		"headshot_player_penetration":
 		{
@@ -1651,7 +1680,8 @@
 				"x":		"256",
 				"y":		"352",
 				"width":	"128",
-				"height":	"32"		
+				"height":	"32",
+				"class":      "sniper"		
 		},
 		"nonnonviolent_protest":
 		{
@@ -1659,7 +1689,8 @@
 				"x":		"0",
 				"y":		"0",
 				"width":	"96",
-				"height":	"32"		
+				"height":	"32",
+				"class":      "multi-class"		
 		},
 		"scotland_shard":
 		{
@@ -1667,7 +1698,8 @@
 				"x":		"0",
 				"y":		"32",
 				"width":	"96",
-				"height":	"32"		
+				"height":	"32",
+				"class":      "demoman"		
 		},
 		"baleful_beacon":
 		{
@@ -1683,7 +1715,8 @@
 				"x":		"0",
 				"y":		"96",
 				"width":	"96",
-				"height":	"32"		
+				"height":	"32",
+				"class":      "multi-class"			
 		},
 		"voodoo_pin":
 		{
@@ -1691,7 +1724,8 @@
 				"x":		"0",
 				"y":		"128",
 				"width":	"96",
-				"height":	"32"		
+				"height":	"32",
+				"class":      "spy"			
 		},
 		"eyeball_rocket":
 		{
@@ -1699,7 +1733,8 @@
 				"x":		"0",
 				"y":		"160",
 				"width":	"96",
-				"height":	"32"		
+				"height":	"32",
+				"class":      "merasmus"			
 		},
 		"purgatory":
 		{
@@ -1707,7 +1742,8 @@
 				"x":		"0",
 				"y":		"192",
 				"width":	"96",
-				"height":	"32"		
+				"height":	"32",
+				"class":      "merasmus"			
 		},
 		"apocofists":
 		{
@@ -1715,7 +1751,8 @@
 				"x":		"0",
 				"y":		"256",
 				"width":	"96",
-				"height":	"32"		
+				"height":	"32",
+				"class":      "heavy"			
 		},
 		"sharp_dresser":
 		{
