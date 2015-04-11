@@ -117,11 +117,15 @@ class CircleGraph {
   
   void draw()
   {
+    /**
     if(remainingIterations > 0){
       packCircles();
       System.out.println("pack iteration " + remainingIterations);
       remainingIterations -= 1;
     }
+    */
+    packCircles();
+    System.out.println( frameRate);
     
     for (int i = 0; i < circles.size (); i++)
     {

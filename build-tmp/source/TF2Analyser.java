@@ -53,24 +53,31 @@ DropdownList d1, d2;
 BarGraph graph;
 NodeGraph nGraph;
 CircleGraph circleGraph;
+VisualizationStats vs;
+TreeGraph treeGraph;
 
 int col;
 String filename;
-boolean graphDrawn = false;
 Area graphArea;
 Area statsArea;
 UserInterface UI;
+
+//File input ant processing
 FileReader reader;
 DataProcessor processor;
 boolean fileLoaded;
 boolean dataProcessed;
+
+//Data
 String[] players;
 ArrayList<Match> matches;
-VisualizationStats vs;
 Hashtable<String, DeathCount> deaths;
-int m_number = -1;
-boolean nodeDrawn,nodeSelected = false;
+
 int currentMatchNo = 0;
+
+boolean drawBarGraph = false;
+boolean drawNodeGraph = false;
+boolean drawnTreeMap = false;
 
 //TF2 Analyser logo file
 PImage logo;
@@ -92,89 +99,117 @@ public void setup() {
   //Define containing areas for various features
   graphArea = new Area(900,500,0,100);
   statsArea = new Area(200,130,width-250,20);
-
 }
 
 public void draw(){
+  //Colour the background
   background(128);
   
-  if(!graphDrawn&&!nodeDrawn){
+  //Draw the logo if neither graph is displayed
+  if(!drawBarGraph&&!drawNodeGraph){
     image(logo, WINDOWWIDTH/2 - logo.width/2, WINDOWHEIGHT/2-logo.height/2, logo.width, logo.height);
   }
   
+  //Display file loaded message
   if(fileLoaded){
     UI.fileLoadedUI();
     fileLoaded = false;
   }
 
-  if(graphDrawn){
+  //Draw bargraph, if selected
+  if(drawBarGraph){
     graph.draw();
   }
-  if(nodeDrawn){
+  //Draw node graph, if selected
+  if(drawNodeGraph){
     circleGraph.draw();
   }
+
+  if(drawnTreeMap){
+    treeGraph.draw();
+  }
+  //Draw the UI
   UI.UIDraw();
 }
 
 public void controlEvent(ControlEvent theEvent) {
-
   if(theEvent.isController()) { 
-
+    
+    //Respond to load file command
     if(theEvent.controller().name()=="Load File") {
-      if(nodeDrawn || graphDrawn){
+      //Remove menu options relevant to already-drawn graphs
+      if(drawNodeGraph || drawBarGraph){
         UI.removeVisualizationStats();
         UI.removeOptions();
       }
-      nodeDrawn = false;
-      graphDrawn = false;
+      //Stop drawing graph
+      drawNodeGraph = false;
+      drawBarGraph = false;
+      //Open file selection menu
       selectInput("Select a file to process:", "fileSelected");
     }
-    
+    //Section for menus
   }else if (theEvent.isGroup()) {
-    // if the name of the event is equal to ImageSelect (aka the name of our dropdownlist)
+    //Graph selection menu
     if (theEvent.group().name() == "VisualizationChoice") {
-      //Bar graph is selected
+      
+      //When bar graph is selected:
       if(theEvent.group().value() == 0){
-        nodeSelected = false;
+        drawBarGraph=true;
+        drawNodeGraph=false;
+        
+        //Obtain death info from all matches
         deaths = processor.getDeaths("",-1);
+
+        //Add menu options for altering bar graph data set
         UI.addVisualizationOptions(players,matches,false);
-        drawBarChart();
+        
+        //Create the bar graph
+        createBarGraph();
+        
         UI.drawVisualizationStats(vs);
         vs.getInitialStats();
-      }else{
-        //Draw match timeline
-        UI.addVisualizationOptions(players,matches,true); 
-        UI.removeVisualizationStats();
-        graphDrawn = false;   
-        //nGraph = new NodeGraph(graphArea, nodeControl);
+      }
+      //When the node graph is selected
+      else if(theEvent.group().value() == 1)  {
+        drawBarGraph = false;
+        drawNodeGraph = true;
+        
+        //Obtain death info from all matches
         deaths = processor.getDeaths("",-1);
-        circleGraph = new CircleGraph(graphArea.getWidth(), graphArea.getHeight(),deaths, 10, 100);
-        nodeDrawn=true;
-        nodeSelected = true;
+        
+        //Add menu options for altering node graph data set
+        //UI.addVisualizationOptions(players,matches,true); 
+        //Hide summary info box
+        //UI.removeVisualizationStats();
+  
+        //nGraph = new NodeGraph(graphArea, nodeControl);
 
-        //drawMatchTimeline();
+        circleGraph = new CircleGraph(graphArea.getWidth(), graphArea.getHeight(),deaths, 5, 100);
+      }else if(theEvent.group().value() ==2){
+        treeGraph = new TreeGraph(processor.getDeaths("",-1));
+        drawnTreeMap = true;
+
       }
     }
+    
+    //Match selection menu
     if(theEvent.group().name() == "MatchChoice"){
       int matchNumber = (int)theEvent.group().value();
-      m_number = matchNumber -1;
-      System.out.println("Match Number: " + m_number);
-      
       updateVisualisationMatch(matchNumber);
     }
+    //Player selection menu
     if(theEvent.group().name()=="PlayerChoice"){
       int playerNumber = (int)theEvent.group().value();
       String playerName;
       if(playerNumber == 0){
-        playerName = ""; 
+        playerName = "";
       }else{
          playerName = UI.getPlayer(playerNumber);
       }
-      
-      
       updateVisualisationPlayer(playerName);
     }
- }
+  }
 }
 
 public void fileSelected(File selection) {
@@ -197,79 +232,76 @@ public void fileSelected(File selection) {
     matches = reader.getMatches();
     //Add player list to UI
     dataProcessed = true;
-
   }
 }
-
-public void drawBarChart(){
-   nodeDrawn = false;
-   graphDrawn = false;
-   barControl.remove("BarSlider");
-   graph = new BarGraph(deaths,graphArea,10,barControl);
-   graphDrawn = true;
-   drawVisualizationStats();
-}
-
-
-
-public void drawVisualizationStats(){
-  vs = new VisualizationStats(reader.getMatches(),processor,statsArea);
-  
-}
-
 
 public void drawMatchTimeline(int matchNumber, String playerName){
- nodeDrawn = false;
- if(nGraph.getPlayerEvents(playerName,matches.get(matchNumber).getEvents()).size() >0){
-   nGraph.dataSelection(matches.get(matchNumber).getEvents(),playerName);
-   nodeDrawn = true;
- }
-
-  
+  drawNodeGraph = false;
+  if(nGraph.getPlayerEvents(playerName,matches.get(matchNumber).getEvents()).size() >0){
+    nGraph.dataSelection(matches.get(matchNumber).getEvents(),playerName);
+    drawNodeGraph = true;
+  }
 }
 
+//Update procedure when a different match is selected
 public void updateVisualisationMatch(int matchNumber){
+  currentMatchNo = matchNumber;
   
-  if(nodeSelected){
-    currentMatchNo = matchNumber;
-    UI.updatePlayerDropDown(matchNumber);
-    
-  }else{
-  
-    if(matchNumber == 0){
+  //When nodegraph is selected
+  if(drawNodeGraph){
+    //UI.updatePlayerDropDown(currentMatchNo);
+  }else if(drawBarGraph){ 
+    //If all matches are selected
+    if(currentMatchNo == 0){
+      //Get death data from all matches
       deaths = processor.getDeaths("",-1);
+      //Update summary data to show overall summary
       vs.updateMatchStatistics(-1);
       UI.drawVisualizationStats(vs);
+      //Update player selection options
       UI.updatePlayerDropDown(-1);
-
-    }else{
-      deaths = processor.getDeaths("",matchNumber-1);
-      vs.updateMatchStatistics(matchNumber-1);
+    }
+    else{
+      //Get death data for chosen match
+      deaths = processor.getDeaths("",currentMatchNo-1);
+      //Update summary data for specific match summary
+      vs.updateMatchStatistics(currentMatchNo-1);
       UI.drawVisualizationStats(vs);
+      //Update player selection options
       UI.updatePlayerDropDown(matchNumber-1);
-
     }
-    drawBarChart();
+    createBarGraph();
   }
-  
 }
+
+//Update procedure when a different player is selected
 public void updateVisualisationPlayer(String playerName){
-  System.out.println(playerName);
-  if(nodeSelected){
-    drawMatchTimeline(currentMatchNo, playerName);
-    
-  }else{ 
-    if(playerName.equals("")){
-      if(m_number != -1){
-        deaths = processor.getDeaths("",m_number); 
-      }else{
-        deaths = processor.getDeaths("",-1);
-      }
-    }else if(!playerName.equals("")){
-        deaths = processor.getDeaths(playerName,m_number); 
-    }
-    drawBarChart();
+
+  //When the nodegraph is selected
+  if(drawNodeGraph){
+    //drawMatchTimeline(currentMatchNo, playerName);
   }
+  //When the bargraph is selected
+  else if(drawBarGraph){
+    //If no player is selected
+    if(playerName.equals("")){
+      deaths = processor.getDeaths("",currentMatchNo-1); 
+    }
+    //If a specific player is selected
+    else if(!playerName.equals("")){
+        deaths = processor.getDeaths(playerName,currentMatchNo-1); 
+    }
+    createBarGraph();
+  }
+}
+
+public void createBarGraph(){
+    //Remove old slider control
+    barControl.remove("BarSlider");
+    //Create new bar graph
+    graph = new BarGraph(deaths,graphArea,10,barControl);
+    //Create summary info box
+    vs = new VisualizationStats(reader.getMatches(),processor,statsArea);
 }
 
 
@@ -555,7 +587,7 @@ class CircleGraph {
     remainingIterations = totalIterations;
     
     //Used to scale circle radius with kills
-    this.circleScale = 20;
+    this.circleScale = 5;
     createCircles();
   }
 
@@ -570,6 +602,7 @@ class CircleGraph {
     Enumeration<String> enumDeath = deaths.keys();
     String key;
     DeathCount death;
+    Random rand = new Random();
     
     //Initialise circle arraylist
     circles = new ArrayList<Circle>(deaths.size());
@@ -578,7 +611,7 @@ class CircleGraph {
       key = enumDeath.nextElement();
       death = deaths.get(key);
       
-      circles.add(new Circle(xCentre,yCentre,death.getCount()*circleScale, key));
+      circles.add(new Circle(xCentre + 2*(rand.nextFloat() -0.5f),yCentre + 2*(rand.nextFloat() -0.5f), death.getCount()*circleScale, key));
     }
   }
 
@@ -624,17 +657,17 @@ class CircleGraph {
       }
     }
     
-    /*
+    
     //Circles move to centre by default
     for (int i = 0; i < circles.size (); i++)
     {
       Circle c = (Circle) circles.get(i);
-      float vx = (c.x - xcenter) * damping;
-      float vy = (c.y - ycenter) * damping;
+      float vx = (c.x - xCentre) * damping;
+      float vy = (c.y - yCentre)  *damping;
       c.x -= vx;
       c.y -= vy;
     }
-    */
+    
   }
 /*
   void update() {
@@ -646,11 +679,15 @@ class CircleGraph {
   
   public void draw()
   {
+    /**
     if(remainingIterations > 0){
       packCircles();
       System.out.println("pack iteration " + remainingIterations);
       remainingIterations -= 1;
     }
+    */
+    packCircles();
+    System.out.println( frameRate);
     
     for (int i = 0; i < circles.size (); i++)
     {
@@ -1668,6 +1705,9 @@ class TreeGraph{
  	TreeGraph(Hashtable<String, DeathCount> data){
  		classKills = new HashMap<String,Integer>();
  		this.data = data;
+    processData();
+    processTreeGraph();
+
 
  	}
  
@@ -1685,9 +1725,9 @@ class TreeGraph{
  	}
 
  	public void processTreeGraph(){
- 		ClassKillsMap mapData = new ClassKillsMap();
+ 		ClassKillsMap mapData = new ClassKillsMap(classKills);
 
- 		mapData.finishAdd();
+ 		
 
  		map = new Treemap(mapData,0,0,width,height);
 
@@ -1696,6 +1736,7 @@ class TreeGraph{
  	public void draw(){
  		if(map!= null){
  			map.draw();
+      System.out.println("Tree Draw");
  		}
  		
  	}
@@ -1705,6 +1746,7 @@ class TreeGraph{
 
 class ClassKillsMap extends SimpleMapModel{
 	HashMap classKills;
+  ArrayList<KillsItem> killsArray;
 
 	ClassKillsMap(){
 
@@ -1713,24 +1755,25 @@ class ClassKillsMap extends SimpleMapModel{
 	ClassKillsMap(HashMap<String,Integer> classKills){
 		this.classKills = classKills;
 		Iterator it = classKills.entrySet().iterator();
+    killsArray = new ArrayList<KillsItem>();
     	while (it.hasNext()) {
         	Map.Entry pair = (Map.Entry)it.next();
         	int value = (Integer) pair.getValue();
 
-        	KillsItem item = (KillsItem) pair.getValue();
-    		if (item == null) {
-      			item = new KillsItem(pair.getValue().toString());
+      			KillsItem item = new KillsItem(pair.getKey().toString());
         		for(int i = 0; i< value; i++){
         			item.incrementSize();
         		}
-    		}
+            killsArray.add(item);
+    		
 
 		}
+    finishAdd();
 	}
 
 	public void finishAdd(){
-		items = new KillsItem[classKills.size()];
-		classKills.values().toArray(items);
+		 items = killsArray.toArray(new KillsItem[killsArray.size()]);
+		 
 	}
 
 }
@@ -1743,7 +1786,7 @@ class KillsItem extends SimpleMapItem {
   }
 
   public void draw() {
-    fill(255);
+    fill(10,12,14);
     rect(x, y, w, h);
 
     fill(0);
@@ -1816,7 +1859,8 @@ class UserInterface {
     dropdown = cP5.addDropdownList("VisualizationChoice").setPosition(80,15).setWidth(120).setHeight(40);
     
     dropdown.addItem("Cause Of Death Chart",0);
-    dropdown.addItem("Match Timeline",1);
+    dropdown.addItem("Circle Map",1);
+    dropdown.addItem("Tree Map",2);
     dropdown.setBarHeight(15);
     dropdown.captionLabel().style().marginTop = 3;
     dropdown.captionLabel().style().marginLeft = 3;
@@ -2266,8 +2310,6 @@ class WeaponToClassMap{
 		return color(red,green,blue);
 
 	}
-
-
 }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "TF2Analyser" };

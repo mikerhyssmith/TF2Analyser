@@ -13,6 +13,9 @@ class TreeGraph{
  	TreeGraph(Hashtable<String, DeathCount> data){
  		classKills = new HashMap<String,Integer>();
  		this.data = data;
+    processData();
+    processTreeGraph();
+
 
  	}
  
@@ -30,9 +33,9 @@ class TreeGraph{
  	}
 
  	public void processTreeGraph(){
- 		ClassKillsMap mapData = new ClassKillsMap();
+ 		ClassKillsMap mapData = new ClassKillsMap(classKills);
 
- 		mapData.finishAdd();
+ 		
 
  		map = new Treemap(mapData,0,0,width,height);
 
@@ -41,6 +44,7 @@ class TreeGraph{
  	void draw(){
  		if(map!= null){
  			map.draw();
+      System.out.println("Tree Draw");
  		}
  		
  	}
@@ -50,6 +54,7 @@ class TreeGraph{
 
 class ClassKillsMap extends SimpleMapModel{
 	HashMap classKills;
+  ArrayList<KillsItem> killsArray;
 
 	ClassKillsMap(){
 
@@ -58,24 +63,25 @@ class ClassKillsMap extends SimpleMapModel{
 	ClassKillsMap(HashMap<String,Integer> classKills){
 		this.classKills = classKills;
 		Iterator it = classKills.entrySet().iterator();
+    killsArray = new ArrayList<KillsItem>();
     	while (it.hasNext()) {
         	Map.Entry pair = (Map.Entry)it.next();
         	int value = (Integer) pair.getValue();
 
-        	KillsItem item = (KillsItem) pair.getValue();
-    		if (item == null) {
-      			item = new KillsItem(pair.getValue().toString());
+      			KillsItem item = new KillsItem(pair.getKey().toString());
         		for(int i = 0; i< value; i++){
         			item.incrementSize();
         		}
-    		}
+            killsArray.add(item);
+    		
 
 		}
+    finishAdd();
 	}
 
 	void finishAdd(){
-		items = new KillsItem[classKills.size()];
-		classKills.values().toArray(items);
+		 items = killsArray.toArray(new KillsItem[killsArray.size()]);
+		 
 	}
 
 }

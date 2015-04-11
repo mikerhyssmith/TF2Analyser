@@ -56,7 +56,8 @@ class UserInterface {
     dropdown = cP5.addDropdownList("VisualizationChoice").setPosition(80,15).setWidth(120).setHeight(40);
     
     dropdown.addItem("Cause Of Death Chart",0);
-    dropdown.addItem("Match Timeline",1);
+    dropdown.addItem("Circle Map",1);
+    dropdown.addItem("Tree Map",2);
     dropdown.setBarHeight(15);
     dropdown.captionLabel().style().marginTop = 3;
     dropdown.captionLabel().style().marginLeft = 3;

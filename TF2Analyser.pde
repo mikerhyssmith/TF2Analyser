@@ -10,6 +10,7 @@ BarGraph graph;
 NodeGraph nGraph;
 CircleGraph circleGraph;
 VisualizationStats vs;
+TreeGraph treeGraph;
 
 int col;
 String filename;
@@ -32,6 +33,7 @@ int currentMatchNo = 0;
 
 boolean drawBarGraph = false;
 boolean drawNodeGraph = false;
+boolean drawnTreeMap = false;
 
 //TF2 Analyser logo file
 PImage logo;
@@ -77,6 +79,10 @@ void draw(){
   //Draw node graph, if selected
   if(drawNodeGraph){
     circleGraph.draw();
+  }
+
+  if(drawnTreeMap){
+    treeGraph.draw();
   }
   //Draw the UI
   UI.UIDraw();
@@ -136,6 +142,10 @@ void controlEvent(ControlEvent theEvent) {
         //nGraph = new NodeGraph(graphArea, nodeControl);
 
         circleGraph = new CircleGraph(graphArea.getWidth(), graphArea.getHeight(),deaths, 5, 100);
+      }else if(theEvent.group().value() ==2){
+        treeGraph = new TreeGraph(processor.getDeaths("",-1));
+        drawnTreeMap = true;
+
       }
     }
     
