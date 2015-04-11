@@ -34,7 +34,7 @@ import java.io.InputStream;
 import java.io.OutputStream; 
 import java.io.IOException; 
 
-public class Main extends PApplet {
+public class TF2Analyser extends PApplet {
 
 
 
@@ -1874,7 +1874,7 @@ class VisualizationStats {
   }
 }
   static public void main(String[] passedArgs) {
-    String[] appletArgs = new String[] { "Main" };
+    String[] appletArgs = new String[] { "TF2Analyser" };
     if (passedArgs != null) {
       PApplet.main(concat(appletArgs, passedArgs));
     } else {
