@@ -5,8 +5,11 @@ ControlP5 barControl;
 ControlP5 nodeControl;
 
 DropdownList d1, d2;
+
 BarGraph graph;
 NodeGraph nGraph;
+CircleGraph circleGraph;
+
 int col;
 String filename;
 boolean graphDrawn = false;
@@ -64,7 +67,7 @@ void draw(){
     graph.draw();
   }
   if(nodeDrawn){
-    nGraph.draw();
+    circleGraph.draw();
   }
   UI.UIDraw();
 }
@@ -86,6 +89,7 @@ void controlEvent(ControlEvent theEvent) {
   }else if (theEvent.isGroup()) {
     // if the name of the event is equal to ImageSelect (aka the name of our dropdownlist)
     if (theEvent.group().name() == "VisualizationChoice") {
+      //Bar graph is selected
       if(theEvent.group().value() == 0){
         nodeSelected = false;
         deaths = processor.getDeaths("",-1);
@@ -98,7 +102,10 @@ void controlEvent(ControlEvent theEvent) {
         UI.addVisualizationOptions(players,matches,true); 
         UI.removeVisualizationStats();
         graphDrawn = false;   
-        nGraph = new NodeGraph(graphArea, nodeControl);
+        //nGraph = new NodeGraph(graphArea, nodeControl);
+        deaths = processor.getDeaths("",-1);
+        circleGraph = new CircleGraph(graphArea.getWidth(), graphArea.getHeight(),deaths, 10, 100);
+        nodeDrawn=true;
         nodeSelected = true;
 
         //drawMatchTimeline();

@@ -50,6 +50,9 @@ class BarGraph{
     Enumeration<String> enumDeath = deaths.keys();
     String key;
     DeathCount death;
+    
+    
+    
     //Work out the highest kill value
     while(enumDeath.hasMoreElements()){
       key = enumDeath.nextElement();
@@ -116,7 +119,6 @@ class BarGraph{
         fill(255,40,40);
         h = (int) map(death.getCritCount(),0,maxKills,0,graphArea.getHeight()-iconHeight-sliderHeight);
         ypos=graphArea.getHeight() + graphArea.getY() - h - sliderHeight;
-    ;
         
         //Draw tooltip over highlighted bar
         ToolTip tip = new ToolTip("Weapon: "+death.getCause() +"\n" + "Kills: " + death.getCount() + "\n" + "Crits: " + death.getCritCount(), color(248,185,138), arial);
