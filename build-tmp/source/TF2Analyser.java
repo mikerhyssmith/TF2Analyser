@@ -8,6 +8,8 @@ import java.util.Enumeration;
 import java.util.Hashtable; 
 import controlP5.*; 
 import java.sql.Time; 
+import java.util.Enumeration; 
+import java.util.Hashtable; 
 import java.util.ArrayList; 
 import java.util.Hashtable; 
 import java.util.List; 
@@ -22,6 +24,7 @@ import java.util.ArrayList;
 import java.sql.Time; 
 import java.util.concurrent.TimeUnit; 
 import java.io.*; 
+import treemap.*; 
 import controlP5.*; 
 import java.text.Normalizer; 
 
@@ -43,8 +46,11 @@ ControlP5 barControl;
 ControlP5 nodeControl;
 
 DropdownList d1, d2;
+
 BarGraph graph;
 NodeGraph nGraph;
+CircleGraph circleGraph;
+
 int col;
 String filename;
 boolean graphDrawn = false;
@@ -102,7 +108,7 @@ public void draw(){
     graph.draw();
   }
   if(nodeDrawn){
-    nGraph.draw();
+    circleGraph.draw();
   }
   UI.UIDraw();
 }
@@ -124,6 +130,7 @@ public void controlEvent(ControlEvent theEvent) {
   }else if (theEvent.isGroup()) {
     // if the name of the event is equal to ImageSelect (aka the name of our dropdownlist)
     if (theEvent.group().name() == "VisualizationChoice") {
+      //Bar graph is selected
       if(theEvent.group().value() == 0){
         nodeSelected = false;
         deaths = processor.getDeaths("",-1);
@@ -136,7 +143,10 @@ public void controlEvent(ControlEvent theEvent) {
         UI.addVisualizationOptions(players,matches,true); 
         UI.removeVisualizationStats();
         graphDrawn = false;   
-        nGraph = new NodeGraph(graphArea, nodeControl);
+        //nGraph = new NodeGraph(graphArea, nodeControl);
+        deaths = processor.getDeaths("",-1);
+        circleGraph = new CircleGraph(graphArea.getWidth(), graphArea.getHeight(),deaths, 10, 100);
+        nodeDrawn=true;
         nodeSelected = true;
 
         //drawMatchTimeline();
@@ -350,6 +360,9 @@ class BarGraph{
     Enumeration<String> enumDeath = deaths.keys();
     String key;
     DeathCount death;
+    
+    
+    
     //Work out the highest kill value
     while(enumDeath.hasMoreElements()){
       key = enumDeath.nextElement();
@@ -416,7 +429,6 @@ class BarGraph{
         fill(255,40,40);
         h = (int) map(death.getCritCount(),0,maxKills,0,graphArea.getHeight()-iconHeight-sliderHeight);
         ypos=graphArea.getHeight() + graphArea.getY() - h - sliderHeight;
-    ;
         
         //Draw tooltip over highlighted bar
         ToolTip tip = new ToolTip("Weapon: "+death.getCause() +"\n" + "Kills: " + death.getCount() + "\n" + "Crits: " + death.getCritCount(), color(248,185,138), arial);
@@ -459,6 +471,198 @@ class CaptureEvent extends Event{
   }
   
 }
+class Circle {
+  float x;
+  float y;
+  float r;
+  String label;
+ 
+  Circle(float x, float y, float r, String label){
+    this.x = x;
+    this.y = y;
+    this.r = r;
+    this.label = label;
+  }
+ 
+ 
+ /*
+  float distance(float x1, float y1, float x2, float y2){
+    return sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
+  }
+ 
+  float getOffset(float x, float y){
+    return distance(this.x, this.y, x, y);
+  }
+ 
+  boolean contains(float x, float y){
+    return distance(this.x, this.y, x, y) <= this.r;
+  }
+ 
+  boolean intersect(Circle circle){
+    float d = distance(this.x, this.y, circle.x, circle.y);
+    return d <= (this.r + circle.r);
+  }*/
+  
+  public void draw()
+  {
+    ellipse(x, y, r*2, r*2);
+  }
+  
+  public float getX(){
+    return x;
+  }
+  public float getY(){
+    return y;
+  }
+  public float getRadius(){
+    return r;
+  }
+  public void setX(float x){
+    this.x = x;
+  }
+  public void setY(float y){
+    this.y = y;
+  }
+}
+
+
+
+
+class CircleGraph {
+
+  float graphWidth, graphHeight, circleSpacing, xCentre, yCentre;
+  Hashtable<String,DeathCount> deaths;
+  ArrayList<Circle> circles;
+  float damping;
+  int totalIterations, remainingIterations;
+  int circleScale;
+
+  CircleGraph(float width, float height, Hashtable<String,DeathCount> deaths, float spacing, int iterations)
+  {
+    this.graphWidth = width;
+    this.graphHeight = height;
+    this.xCentre = width/2;
+    this.yCentre = height/2;
+    this.deaths = deaths;
+    this.circleSpacing = spacing;
+    
+    //Might take these out?
+    damping = 0.01f;
+    this.totalIterations = iterations;
+    remainingIterations = totalIterations;
+    
+    //Used to scale circle radius with kills
+    this.circleScale = 20;
+    createCircles();
+  }
+
+  public float distanceSquared(float x1, float y1, float x2, float y2)
+  {
+    return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
+  }
+  
+  //Take data in hashtable of deaths, convert to arraylist
+  public void createCircles(){
+    //Set up iterator for deaths
+    Enumeration<String> enumDeath = deaths.keys();
+    String key;
+    DeathCount death;
+    
+    //Initialise circle arraylist
+    circles = new ArrayList<Circle>(deaths.size());
+    
+    while(enumDeath.hasMoreElements()){
+      key = enumDeath.nextElement();
+      death = deaths.get(key);
+      
+      circles.add(new Circle(xCentre,yCentre,death.getCount()*circleScale, key));
+    }
+  }
+
+
+  public void packCircles()
+  {
+    for (int i = 0; i < circles.size(); i++)
+    {
+      Circle c1 = (Circle) circles.get(i);
+
+      for (int j = i+1; j < circles.size(); j++)
+      {
+        Circle c2 = (Circle) circles.get(j);
+
+        float squareDistance = distanceSquared(c1.getX(), c1.getY(), c2.getX(), c2.getY());
+        float r = c1.getRadius() + c2.getRadius() + circleSpacing;
+
+        //If circles are closer than they should be
+        if (squareDistance < (r*r))
+        {
+          //Calculate x, y and total seperations
+          float dx = c2.getX() - c1.getX();
+          float dy = c2.getY() - c1.getY();
+          float totalDistance = sqrt(squareDistance);
+
+          //Distance squared from the centre of the graph
+          float cd1 = distanceSquared(c1.getX(), c1.getY(), xCentre, yCentre);
+          float cd2 = distanceSquared(c2.getX(), c2.getY(), xCentre, yCentre);
+          
+          //think this is unused
+         // float total = dx + dy;
+
+          //Increment to apply to each circle
+          float vx = (dx/totalDistance) * (r-totalDistance);
+          float vy = (dy/totalDistance) * (r-totalDistance);
+
+          //Alter circle positions based on increments
+          c1.x -= vx * cd1/(cd1+cd2);
+          c1.y -= vy * cd1/(cd1+cd2);
+          c2.x += vx * cd2/(cd1+cd2);
+          c2.y += vy * cd2/(cd1+cd2);
+        }    
+      }
+    }
+    
+    /*
+    //Circles move to centre by default
+    for (int i = 0; i < circles.size (); i++)
+    {
+      Circle c = (Circle) circles.get(i);
+      float vx = (c.x - xcenter) * damping;
+      float vy = (c.y - ycenter) * damping;
+      c.x -= vx;
+      c.y -= vy;
+    }
+    */
+  }
+/*
+  void update() {
+    for (int w=0; w<iterations; w++)
+    {
+      this.pack();
+    }
+  }*/
+  
+  public void draw()
+  {
+    if(remainingIterations > 0){
+      packCircles();
+      System.out.println("pack iteration " + remainingIterations);
+      remainingIterations -= 1;
+    }
+    
+    for (int i = 0; i < circles.size (); i++)
+    {
+      Circle c = (Circle) circles.get(i);
+      if (c.r < 1)
+      {
+        circles.remove(c);
+      } else
+      {
+        c.draw();
+      }
+    }
+  }
+}
+
 
 
 
@@ -1448,6 +1652,21 @@ class ToolTip{
 }
 
 
+private Treemap map;
+
+
+class TreeGraph{
+
+
+
+
+
+
+
+
+}
+
+
 
 class UserInterface {
   ControlP5 cP5;
@@ -1864,6 +2083,102 @@ class VisualizationStats {
     mostKills = getMostKills(match);
     mostDeaths = getMostDeaths(match);
   }
+}
+class WeaponToClassMap{
+	
+	JSONObject gameData;
+
+	public WeaponToClassMap(){
+		gameData=loadJSONObject("kill_icons.JSON");
+
+	}
+
+
+
+	/**
+	* Method for getting the class that uses a weapon: weaponName
+	*/
+	public String getPlayerClass(String weaponName){
+		String playerClass = "unknown";
+		JSONObject weapon;
+		try{
+			weapon = gameData.getJSONObject(weaponName);
+			playerClass = weapon.getString("class");
+  		} catch(Exception e){
+      		//Handle the exception and print an error if icon not found
+     	 	System.err.println("Exception: " + e.getMessage());
+  		}
+
+  		return playerClass;
+
+	}
+
+	/**
+	*Method for getting the colour representing a class.
+	*/
+	public int getClassColour(String playerClass){
+		int red = 0;
+		int green = 0;
+		int blue = 0;
+
+
+		
+
+			if(playerClass.equals("pyro")){
+				red = 255;
+				green = 0;
+				blue = 0;
+			}else if(playerClass.equals("soldier")){
+				red = 0;
+			    green = 0;
+				blue = 255;
+			}else if(playerClass.equals("scout")){
+				red = 255;
+				green = 0;
+				blue = 255;
+
+			}else if(playerClass.equals("demoman")){
+				red = 0;
+				green = 255;
+				blue = 255;
+			}else if(playerClass.equals("engineer")){
+				red = 255;
+				green = 255;
+				blue = 0;
+			}else if(playerClass.equals("sniper")){
+				red = 100;
+				green = 100;
+				blue = 50;
+			}else if(playerClass.equals("medic")){
+				red = 255;
+				green = 45;
+				blue = 110;
+
+			}else if(playerClass.equals("heavy")){
+				red = 0;
+				green = 10;
+				blue = 45;
+
+			}else if(playerClass.equals("environment")){
+				red = 10;
+				green = 50;
+				blue = 25;
+			}else if(playerClass.equals("suicide")){
+					red = 255;
+					green = 0;
+					blue = 24;
+			}else{
+				red = 255;
+			    green = 255;
+			    blue = 255;
+
+			}
+			
+		return color(red,green,blue);
+
+	}
+
+
 }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "TF2Analyser" };
