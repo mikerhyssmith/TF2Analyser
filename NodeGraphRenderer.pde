@@ -1,5 +1,5 @@
 import java.io.*;
-class NodeGraphRenderer implements Runnable{
+class NodeGraphRenderer {
   
     ArrayList<Node> nodes;
     ArrayList<Node> displayedNodes;
@@ -31,8 +31,8 @@ class NodeGraphRenderer implements Runnable{
     }
     
     
-    public void run() {
-      while(renderingActive){
+    public void processGraph() {
+    
         while(currentNode < nodes.size()-1){
             Node n = nodes.get(currentNode);
             Node nextNode = nodes.get(currentNode +1);
@@ -43,13 +43,7 @@ class NodeGraphRenderer implements Runnable{
             float yPos = height -n.getX() -padding;
             ellipse(n.getX(),yPos,10,10);
             endShape();
-            /**
-            try{
-              Thread.sleep((long)waitTime);
-            }catch(Exception e){
-              System.out.println("FAIL");
-            }
-            */
+  
             System.out.println("Node X: " + n.getX() + " Node Y: " + n.getY());
             System.out.println("CALLED");
             currentNode++;
@@ -66,6 +60,6 @@ class NodeGraphRenderer implements Runnable{
           ellipse(n.getX(),n.getY(),10,10);
           endShape();
         }
-      } 
+     
     }  
 }
