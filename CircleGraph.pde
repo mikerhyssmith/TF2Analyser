@@ -25,7 +25,7 @@ class CircleGraph {
     remainingIterations = totalIterations;
     
     //Used to scale circle radius with kills
-    this.circleScale = 20;
+    this.circleScale = 5;
     createCircles();
   }
 
@@ -40,6 +40,7 @@ class CircleGraph {
     Enumeration<String> enumDeath = deaths.keys();
     String key;
     DeathCount death;
+    Random rand = new Random();
     
     //Initialise circle arraylist
     circles = new ArrayList<Circle>(deaths.size());
@@ -48,7 +49,7 @@ class CircleGraph {
       key = enumDeath.nextElement();
       death = deaths.get(key);
       
-      circles.add(new Circle(xCentre,yCentre,death.getCount()*circleScale, key));
+      circles.add(new Circle(xCentre + 2*(rand.nextFloat() -0.5),yCentre + 2*(rand.nextFloat() -0.5), death.getCount()*circleScale, key));
     }
   }
 
@@ -94,17 +95,17 @@ class CircleGraph {
       }
     }
     
-    /*
+    
     //Circles move to centre by default
     for (int i = 0; i < circles.size (); i++)
     {
       Circle c = (Circle) circles.get(i);
-      float vx = (c.x - xcenter) * damping;
-      float vy = (c.y - ycenter) * damping;
+      float vx = (c.x - xCentre) * damping;
+      float vy = (c.y - yCentre)  *damping;
       c.x -= vx;
       c.y -= vy;
     }
-    */
+    
   }
 /*
   void update() {

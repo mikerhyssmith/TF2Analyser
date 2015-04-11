@@ -9,24 +9,29 @@ DropdownList d1, d2;
 BarGraph graph;
 NodeGraph nGraph;
 CircleGraph circleGraph;
+VisualizationStats vs;
 
 int col;
 String filename;
-boolean graphDrawn = false;
 Area graphArea;
 Area statsArea;
 UserInterface UI;
+
+//File input ant processing
 FileReader reader;
 DataProcessor processor;
 boolean fileLoaded;
 boolean dataProcessed;
+
+//Data
 String[] players;
 ArrayList<Match> matches;
-VisualizationStats vs;
 Hashtable<String, DeathCount> deaths;
-int m_number = -1;
-boolean nodeDrawn,nodeSelected = false;
+
 int currentMatchNo = 0;
+
+boolean drawBarGraph = false;
+boolean drawNodeGraph = false;
 
 //TF2 Analyser logo file
 PImage logo;
@@ -48,89 +53,109 @@ void setup() {
   //Define containing areas for various features
   graphArea = new Area(900,500,0,100);
   statsArea = new Area(200,130,width-250,20);
-
 }
 
 void draw(){
+  //Colour the background
   background(128);
   
-  if(!graphDrawn&&!nodeDrawn){
+  //Draw the logo if neither graph is displayed
+  if(!drawBarGraph&&!drawNodeGraph){
     image(logo, WINDOWWIDTH/2 - logo.width/2, WINDOWHEIGHT/2-logo.height/2, logo.width, logo.height);
   }
   
+  //Display file loaded message
   if(fileLoaded){
     UI.fileLoadedUI();
     fileLoaded = false;
   }
 
-  if(graphDrawn){
+  //Draw bargraph, if selected
+  if(drawBarGraph){
     graph.draw();
   }
-  if(nodeDrawn){
+  //Draw node graph, if selected
+  if(drawNodeGraph){
     circleGraph.draw();
   }
+  //Draw the UI
   UI.UIDraw();
 }
 
 void controlEvent(ControlEvent theEvent) {
-
   if(theEvent.isController()) { 
-
+    
+    //Respond to load file command
     if(theEvent.controller().name()=="Load File") {
-      if(nodeDrawn || graphDrawn){
+      //Remove menu options relevant to already-drawn graphs
+      if(drawNodeGraph || drawBarGraph){
         UI.removeVisualizationStats();
         UI.removeOptions();
       }
-      nodeDrawn = false;
-      graphDrawn = false;
+      //Stop drawing graph
+      drawNodeGraph = false;
+      drawBarGraph = false;
+      //Open file selection menu
       selectInput("Select a file to process:", "fileSelected");
     }
-    
+    //Section for menus
   }else if (theEvent.isGroup()) {
-    // if the name of the event is equal to ImageSelect (aka the name of our dropdownlist)
+    //Graph selection menu
     if (theEvent.group().name() == "VisualizationChoice") {
-      //Bar graph is selected
+      
+      //When bar graph is selected:
       if(theEvent.group().value() == 0){
-        nodeSelected = false;
+        drawBarGraph=true;
+        drawNodeGraph=false;
+        
+        //Obtain death info from all matches
         deaths = processor.getDeaths("",-1);
+
+        //Add menu options for altering bar graph data set
         UI.addVisualizationOptions(players,matches,false);
-        drawBarChart();
+        
+        //Create the bar graph
+        createBarGraph();
+        
         UI.drawVisualizationStats(vs);
         vs.getInitialStats();
-      }else{
-        //Draw match timeline
-        UI.addVisualizationOptions(players,matches,true); 
-        UI.removeVisualizationStats();
-        graphDrawn = false;   
-        //nGraph = new NodeGraph(graphArea, nodeControl);
+      }
+      //When the node graph is selected
+      else if(theEvent.group().value() == 1)  {
+        drawBarGraph = false;
+        drawNodeGraph = true;
+        
+        //Obtain death info from all matches
         deaths = processor.getDeaths("",-1);
-        circleGraph = new CircleGraph(graphArea.getWidth(), graphArea.getHeight(),deaths, 10, 100);
-        nodeDrawn=true;
-        nodeSelected = true;
+        
+        //Add menu options for altering node graph data set
+        //UI.addVisualizationOptions(players,matches,true); 
+        //Hide summary info box
+        //UI.removeVisualizationStats();
+  
+        //nGraph = new NodeGraph(graphArea, nodeControl);
 
-        //drawMatchTimeline();
+        circleGraph = new CircleGraph(graphArea.getWidth(), graphArea.getHeight(),deaths, 5, 100);
       }
     }
+    
+    //Match selection menu
     if(theEvent.group().name() == "MatchChoice"){
       int matchNumber = (int)theEvent.group().value();
-      m_number = matchNumber -1;
-      System.out.println("Match Number: " + m_number);
-      
       updateVisualisationMatch(matchNumber);
     }
+    //Player selection menu
     if(theEvent.group().name()=="PlayerChoice"){
       int playerNumber = (int)theEvent.group().value();
       String playerName;
       if(playerNumber == 0){
-        playerName = ""; 
+        playerName = "";
       }else{
          playerName = UI.getPlayer(playerNumber);
       }
-      
-      
       updateVisualisationPlayer(playerName);
     }
- }
+  }
 }
 
 void fileSelected(File selection) {
@@ -153,79 +178,76 @@ void fileSelected(File selection) {
     matches = reader.getMatches();
     //Add player list to UI
     dataProcessed = true;
-
   }
 }
-
-void drawBarChart(){
-   nodeDrawn = false;
-   graphDrawn = false;
-   barControl.remove("BarSlider");
-   graph = new BarGraph(deaths,graphArea,10,barControl);
-   graphDrawn = true;
-   drawVisualizationStats();
-}
-
-
-
-void drawVisualizationStats(){
-  vs = new VisualizationStats(reader.getMatches(),processor,statsArea);
-  
-}
-
 
 void drawMatchTimeline(int matchNumber, String playerName){
- nodeDrawn = false;
- if(nGraph.getPlayerEvents(playerName,matches.get(matchNumber).getEvents()).size() >0){
-   nGraph.dataSelection(matches.get(matchNumber).getEvents(),playerName);
-   nodeDrawn = true;
- }
-
-  
+  drawNodeGraph = false;
+  if(nGraph.getPlayerEvents(playerName,matches.get(matchNumber).getEvents()).size() >0){
+    nGraph.dataSelection(matches.get(matchNumber).getEvents(),playerName);
+    drawNodeGraph = true;
+  }
 }
 
+//Update procedure when a different match is selected
 void updateVisualisationMatch(int matchNumber){
+  currentMatchNo = matchNumber;
   
-  if(nodeSelected){
-    currentMatchNo = matchNumber;
-    UI.updatePlayerDropDown(matchNumber);
-    
-  }else{
-  
-    if(matchNumber == 0){
+  //When nodegraph is selected
+  if(drawNodeGraph){
+    //UI.updatePlayerDropDown(currentMatchNo);
+  }else if(drawBarGraph){ 
+    //If all matches are selected
+    if(currentMatchNo == 0){
+      //Get death data from all matches
       deaths = processor.getDeaths("",-1);
+      //Update summary data to show overall summary
       vs.updateMatchStatistics(-1);
       UI.drawVisualizationStats(vs);
+      //Update player selection options
       UI.updatePlayerDropDown(-1);
-
-    }else{
-      deaths = processor.getDeaths("",matchNumber-1);
-      vs.updateMatchStatistics(matchNumber-1);
+    }
+    else{
+      //Get death data for chosen match
+      deaths = processor.getDeaths("",currentMatchNo-1);
+      //Update summary data for specific match summary
+      vs.updateMatchStatistics(currentMatchNo-1);
       UI.drawVisualizationStats(vs);
+      //Update player selection options
       UI.updatePlayerDropDown(matchNumber-1);
-
     }
-    drawBarChart();
+    createBarGraph();
   }
-  
 }
+
+//Update procedure when a different player is selected
 void updateVisualisationPlayer(String playerName){
-  System.out.println(playerName);
-  if(nodeSelected){
-    drawMatchTimeline(currentMatchNo, playerName);
-    
-  }else{ 
-    if(playerName.equals("")){
-      if(m_number != -1){
-        deaths = processor.getDeaths("",m_number); 
-      }else{
-        deaths = processor.getDeaths("",-1);
-      }
-    }else if(!playerName.equals("")){
-        deaths = processor.getDeaths(playerName,m_number); 
-    }
-    drawBarChart();
+
+  //When the nodegraph is selected
+  if(drawNodeGraph){
+    //drawMatchTimeline(currentMatchNo, playerName);
   }
+  //When the bargraph is selected
+  else if(drawBarGraph){
+    //If no player is selected
+    if(playerName.equals("")){
+      deaths = processor.getDeaths("",currentMatchNo-1); 
+    }
+    //If a specific player is selected
+    else if(!playerName.equals("")){
+        deaths = processor.getDeaths(playerName,currentMatchNo-1); 
+    }
+    createBarGraph();
+  }
+}
+
+void createBarGraph(){
+    //Remove old slider control
+    barControl.remove("BarSlider");
+    //Create new bar graph
+    graph = new BarGraph(deaths,graphArea,10,barControl);
+    //Create summary info box
+    vs = new VisualizationStats(reader.getMatches(),processor,statsArea);
 }
 
 
