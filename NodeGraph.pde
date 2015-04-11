@@ -30,7 +30,6 @@ class NodeGraph {
   
   IconHandler icons;
   int minSeperation = 10;
-  Thread renderThread;
   
   //Get system independent new line character
   String newLineCharacter = System.getProperty("line.separator");
@@ -91,7 +90,6 @@ class NodeGraph {
     
     processEvents();
     render = new NodeGraphRenderer(nodes);
-    renderThread = new Thread(render);
 
    
  }
@@ -105,10 +103,8 @@ class NodeGraph {
    rectMode(CORNER);
    
    //Only draw nodes if the users game has been processed.
-    if(nodes.size() > 0 && !rendered){
-      render.setRendering(true);
-      renderThread.start();
-      rendered = true;
+    if(nodes.size() > 0){
+      render.processGraph();
     }
 
    
@@ -169,6 +165,8 @@ public void processEvents(){
    
    EventTypes eType=null;
    playerScore = 0;
+
+   nodes.clear();
 
  for(int i =0; i< playerEvents.size(); i ++){
      currentEvent = playerEvents.get(i);

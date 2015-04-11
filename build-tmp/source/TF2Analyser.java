@@ -1068,7 +1068,6 @@ class NodeGraph {
   
   IconHandler icons;
   int minSeperation = 10;
-  Thread renderThread;
   
   //Get system independent new line character
   String newLineCharacter = System.getProperty("line.separator");
@@ -1129,7 +1128,6 @@ class NodeGraph {
     
     processEvents();
     render = new NodeGraphRenderer(nodes);
-    renderThread = new Thread(render);
 
    
  }
@@ -1143,10 +1141,8 @@ class NodeGraph {
    rectMode(CORNER);
    
    //Only draw nodes if the users game has been processed.
-    if(nodes.size() > 0 && !rendered){
-      render.setRendering(true);
-      renderThread.start();
-      rendered = true;
+    if(nodes.size() > 0){
+      render.processGraph();
     }
 
    
@@ -1208,6 +1204,8 @@ public void processEvents(){
    EventTypes eType=null;
    playerScore = 0;
 
+   nodes.clear();
+
  for(int i =0; i< playerEvents.size(); i ++){
      currentEvent = playerEvents.get(i);
      crit = false;
@@ -1261,7 +1259,7 @@ public void processEvents(){
   
 
 
-class NodeGraphRenderer implements Runnable{
+class NodeGraphRenderer {
   
     ArrayList<Node> nodes;
     ArrayList<Node> displayedNodes;
@@ -1293,8 +1291,8 @@ class NodeGraphRenderer implements Runnable{
     }
     
     
-    public void run() {
-      while(renderingActive){
+    public void processGraph() {
+    
         while(currentNode < nodes.size()-1){
             Node n = nodes.get(currentNode);
             Node nextNode = nodes.get(currentNode +1);
@@ -1305,13 +1303,7 @@ class NodeGraphRenderer implements Runnable{
             float yPos = height -n.getX() -padding;
             ellipse(n.getX(),yPos,10,10);
             endShape();
-            /**
-            try{
-              Thread.sleep((long)waitTime);
-            }catch(Exception e){
-              System.out.println("FAIL");
-            }
-            */
+  
             System.out.println("Node X: " + n.getX() + " Node Y: " + n.getY());
             System.out.println("CALLED");
             currentNode++;
@@ -1328,7 +1320,7 @@ class NodeGraphRenderer implements Runnable{
           ellipse(n.getX(),n.getY(),10,10);
           endShape();
         }
-      } 
+     
     }  
 }
 class Player {
