@@ -8,7 +8,6 @@ class WeaponToClassMap{
 	}
 
 
-
 	/**
 	* Method for getting the class that uses a weapon: weaponName
 	*/
@@ -34,9 +33,6 @@ class WeaponToClassMap{
 		int red = 0;
 		int green = 0;
 		int blue = 0;
-
-
-		
 
 			if(playerClass.equals("pyro")){
 				red = 255;
