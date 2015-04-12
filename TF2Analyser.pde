@@ -136,12 +136,17 @@ void controlEvent(ControlEvent theEvent) {
         
         //Add menu options for altering node graph data set
         //UI.addVisualizationOptions(players,matches,true); 
+        
         //Hide summary info box
-        //UI.removeVisualizationStats();
-  
+        UI.removeVisualizationStats();
+        
+        //Make sure that barchart slider is removed
+        barControl.remove("BarSlider");
+        
         //nGraph = new NodeGraph(graphArea, nodeControl);
 
-        circleGraph = new CircleGraph(graphArea.getWidth(), graphArea.getHeight(),deaths, 5, 100);
+        circleGraph = new CircleGraph(graphArea, deaths, 7, 100);
+        
       }else if(theEvent.group().value() ==2){
         treeGraph = new TreeGraph(processor.getDeaths("",-1));
         drawnTreeMap = true;

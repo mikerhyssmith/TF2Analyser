@@ -2,31 +2,42 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 
 class CircleGraph {
-
-  float graphWidth, graphHeight, circleSpacing, xCentre, yCentre;
+  //Font and icons for tooltips
+  PFont arial;
+  IconHandler icons;
+  
+  Area graphArea;
+  float xCentre, yCentre;
+  
   Hashtable<String,DeathCount> deaths;
+  
   ArrayList<Circle> circles;
+  float circleSpacing;
   float damping;
-  int totalIterations, remainingIterations;
   int circleScale;
+  
+  int totalIterations, remainingIterations;
 
-  CircleGraph(float width, float height, Hashtable<String,DeathCount> deaths, float spacing, int iterations)
+  CircleGraph(Area area, Hashtable<String,DeathCount> deaths, float spacing, int iterations)
   {
-    this.graphWidth = width;
-    this.graphHeight = height;
-    this.xCentre = width/2;
-    this.yCentre = height/2;
+    this.graphArea =area;
+    this.xCentre = graphArea.getWidth()/2 + graphArea.getX();
+    this.yCentre = graphArea.getHeight()/2 + graphArea.getY();
     this.deaths = deaths;
     this.circleSpacing = spacing;
     
-    //Might take these out?
     damping = 0.01;
     this.totalIterations = iterations;
     remainingIterations = totalIterations;
     
     //Used to scale circle radius with kills
-    this.circleScale = 5;
+    this.circleScale = 2;
     createCircles();
+    
+    //Set up font
+    arial = createFont("Arial",12,true);
+    //Set up icons
+    icons = new IconHandler("killicons_final.png");
   }
 
   float distanceSquared(float x1, float y1, float x2, float y2)
@@ -51,16 +62,63 @@ class CircleGraph {
       
       circles.add(new Circle(xCentre + 2*(rand.nextFloat() -0.5),yCentre + 2*(rand.nextFloat() -0.5), death.getCount()*circleScale, key));
     }
+    
+    //Sort according to size
+    Collections.sort(circles, new Comparator<Circle>() {
+      //Return a negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater than the second.
+        @Override
+        public int compare(Circle c1, Circle c2)
+        {
+            if(c1.getRadius()<c2.getRadius()){
+              return -1;
+            }
+            if(c1.getRadius()>c2.getRadius()){
+              return 1;
+            }
+            return 0;
+        }
+    });
   }
 
 
   void packCircles()
   {
+    
     for (int i = 0; i < circles.size(); i++)
     {
       Circle c1 = (Circle) circles.get(i);
+      
+      //First push circles in if they are outside the graph boundary
+      float xShift = 0;
+      float yShift = 0;
+      System.out.println("Circle: "+ c1.getLabel());
+      //Off the right of the screen
+      if((c1.getX() + c1.getRadius()) > graphArea.getWidth() + graphArea.getX()){
+        xShift = ((graphArea.getWidth() + graphArea.getX()) - (c1.getX() + c1.getRadius())) *10*damping;
+        System.out.println("Right "+xShift);
+      }
+      //Off the left of the screen
+      if((c1.getX() - c1.getRadius()) < graphArea.getX()){
+        xShift = (graphArea.getX() - (c1.getX() - c1.getRadius())) * 10*damping;
+                System.out.println("left "+xShift);
+      }
+      //Off the bottom of the screen
+      if((c1.getY() + c1.getRadius()) > graphArea.getHeight() + graphArea.getY()){
+        yShift = ((graphArea.getHeight() + graphArea.getY()) - (c1.getY() + c1.getRadius())) * 10* damping;
+                System.out.println("bottom "+yShift);
+      }
+      //Off the top of the screen
+      if((c1.getY() - c1.getRadius()) < graphArea.getY()){
+        yShift = (graphArea.getY() - (c1.getY() - c1.getRadius())) *10* damping;
+                System.out.println("top "+yShift);
+      }
+      //Apply the necessary shift
 
-      for (int j = i+1; j < circles.size(); j++)
+      c1.setX(c1.getX()+xShift);
+      c1.setY(c1.getY()+yShift);
+      
+      //for (int j = i+1; j < circles.size(); j++)
+      for(int j = circles.size()-1; j>i; j--)
       {
         Circle c2 = (Circle) circles.get(j);
 
@@ -94,29 +152,58 @@ class CircleGraph {
         }    
       }
     }
-    
-    
+/*
     //Circles move to centre by default
     for (int i = 0; i < circles.size (); i++)
     {
       Circle c = (Circle) circles.get(i);
-      float vx = (c.x - xCentre) * damping;
-      float vy = (c.y - yCentre)  *damping;
+      float vx = (c.x - xCentre) *damping;
+      float vy = (c.y - yCentre) *damping;
       c.x -= vx;
       c.y -= vy;
     }
+    /*
+    //Push in circles that are outside the graph area
+    for (int i = 0; i < circles.size (); i++)
+    {
+      Circle c = (Circle) circles.get(i);
+      float vx = 0;
+      float vy = 0;
+      
+      //Off the right of the screen
+      if((c.getX() + c.getRadius()) > graphArea.getWidth() + graphArea.getX()){
+        vx = ((graphArea.getWidth() + graphArea.getX()) - (c.getX() + c.getRadius())) * damping;
+        System.out.println("Right "+vx);
+      }
+      //Off the left of the screen
+      if((c.getX() - c.getRadius()) < graphArea.getX()){
+        vx = (graphArea.getX() - (c.getX() - c.getRadius())) * damping;
+                System.out.println("left "+vx);
+      }
+      //Off the bottom of the screen
+      if((c.getY() + c.getRadius()) > graphArea.getHeight() + graphArea.getY()){
+        vy = ((graphArea.getHeight() + graphArea.getY()) - (c.getY() + c.getRadius())) * damping;
+                System.out.println("bottom "+vy);
+      }
+      //Off the top of the screen
+      if((c.getY() - c.getRadius()) < graphArea.getY()){
+        vy = (graphArea.getY() - (c.getY() - c.getRadius())) * damping;
+                System.out.println("top "+vy);
+      }
+
+      c.setX(c.getX()+vx);
+      c.setY(c.getY()+vy);
+    }*/
     
   }
-/*
-  void update() {
-    for (int w=0; w<iterations; w++)
-    {
-      this.pack();
-    }
-  }*/
   
   void draw()
   {
+    boolean circleSelected = false;
+    String circleKey = "";
+    DeathCount death;
+    fill(150);
+    stroke(0);
     /**
     if(remainingIterations > 0){
       packCircles();
@@ -125,18 +212,22 @@ class CircleGraph {
     }
     */
     packCircles();
-    System.out.println( frameRate);
-    
+    ellipseMode(CENTER);
     for (int i = 0; i < circles.size (); i++)
     {
-      Circle c = (Circle) circles.get(i);
-      if (c.r < 1)
-      {
-        circles.remove(c);
-      } else
-      {
-        c.draw();
+      Circle c =  circles.get(i);
+      c.draw();
+      //Draw crit kills and tooltip if mouse is over the bar
+      if(c.containsPoint(mouseX,mouseY)){
+        circleSelected=true;
+        circleKey = c.getLabel();
       }
+    }
+    //Draw tooltip over highlighted bar
+    if(circleSelected){
+      death = deaths.get(circleKey);
+      ToolTip tip = new ToolTip("Weapon: "+death.getCause() +"\n" + "Kills: " + death.getCount() + "\n" + "Crits: " + death.getCritCount(), color(248,185,138), arial);
+      tip.draw();
     }
   }
 }

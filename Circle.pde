@@ -10,25 +10,16 @@ class Circle {
     this.r = r;
     this.label = label;
   }
- 
- 
- /*
-  float distance(float x1, float y1, float x2, float y2){
-    return sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
+  
+  boolean containsPoint(float x, float y){
+    float dist = ((this.x - x)*(this.x-x)) + ((this.y - y)*(this.y - y));
+    
+    if(dist < (r*r)){
+      return true;
+    }else{
+      return false;
+    }
   }
- 
-  float getOffset(float x, float y){
-    return distance(this.x, this.y, x, y);
-  }
- 
-  boolean contains(float x, float y){
-    return distance(this.x, this.y, x, y) <= this.r;
-  }
- 
-  boolean intersect(Circle circle){
-    float d = distance(this.x, this.y, circle.x, circle.y);
-    return d <= (this.r + circle.r);
-  }*/
   
   void draw()
   {
@@ -43,6 +34,9 @@ class Circle {
   }
   public float getRadius(){
     return r;
+  }
+  public String getLabel(){
+    return label;
   }
   public void setX(float x){
     this.x = x;
