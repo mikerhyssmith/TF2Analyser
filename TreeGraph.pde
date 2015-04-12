@@ -11,15 +11,90 @@ class TreeGraph{
 	Treemap map;
   WeaponToClassMap dataMap = new WeaponToClassMap();
   boolean classObject = false;
+  PFont arial;
+  Area statsArea;
  
  	TreeGraph(Hashtable<String, DeathCount> data, Area graphArea, Area statsArea){
  		classKills = new HashMap<String,Integer>();
  		this.data = data;
+    arial = createFont("Arial",11,true);
+    this.statsArea = statsArea;
+
     processClassData();
     processTreeGraph();
+    
 
 
  	}
+
+/**
+* Draws the key for the graph showing the class name next to the colour that represents it.
+*/
+  public void drawKey(){
+    fill(200);
+    rect(statsArea.getX(), statsArea.getY(), statsArea.getWidth(), statsArea.getHeight(), 7);
+    textFont(arial);       
+    
+    textAlign(LEFT);
+    ellipseMode(CORNER);
+
+    fill(0);    
+    text("Scout", statsArea.getX()+10, statsArea.getY()+20);
+    text("Soldier", statsArea.getX()+100, statsArea.getY()+20); 
+    text("Pyro", statsArea.getX()+190, statsArea.getY()+20);
+    text("Demo", statsArea.getX()+10, statsArea.getY()+40);
+    text("Heavy", statsArea.getX()+100, statsArea.getY()+40);
+    text("Engi", statsArea.getX()+190, statsArea.getY()+40);
+    text("Medic", statsArea.getX()+10, statsArea.getY()+60);
+    text("Sniper", statsArea.getX()+100, statsArea.getY()+60);
+    text("Spy", statsArea.getX()+190, statsArea.getY()+60);
+    text("Environment", statsArea.getX()+50, statsArea.getY()+80);
+    text("Suicide", statsArea.getX()+170, statsArea.getY()+80);
+
+    fill(dataMap.getClassColour("scout"));
+    ellipse(statsArea.getX() + 45, statsArea.getY() + 10,10,10);
+
+    
+    fill(dataMap.getClassColour("soldier"));
+    ellipse(statsArea.getX() + 145, statsArea.getY() + 10,10,10);
+
+    
+    fill(dataMap.getClassColour("pyro"));
+    ellipse(statsArea.getX() + 220, statsArea.getY() + 10,10,10);
+
+    
+    fill(dataMap.getClassColour("demoman"));
+    ellipse(statsArea.getX() + 45, statsArea.getY() + 30,10,10);
+
+    
+    fill(dataMap.getClassColour("heavy"));
+    ellipse(statsArea.getX() + 145, statsArea.getY() + 30,10,10);
+
+    
+    fill(dataMap.getClassColour("engineer"));
+    ellipse(statsArea.getX() + 220, statsArea.getY() + 30,10,10);
+
+    
+    fill(dataMap.getClassColour("medic"));
+    ellipse(statsArea.getX() + 45, statsArea.getY() + 50,10,10);
+
+    
+    fill(dataMap.getClassColour("sniper"));
+    ellipse(statsArea.getX() + 145, statsArea.getY() + 50,10,10);
+
+    
+    fill(dataMap.getClassColour("spy"));
+    ellipse(statsArea.getX() + 220, statsArea.getY() + 50,10,10);
+
+    
+    fill(dataMap.getClassColour("environment"));
+    ellipse(statsArea.getX() + 120, statsArea.getY() + 70,10,10);
+
+    
+    fill(dataMap.getClassColour("suicide"));
+    ellipse(statsArea.getX() + 210, statsArea.getY() + 70,10,10);
+
+  }
  
  	public void processWeaponsData(){
  		Iterator it = data.entrySet().iterator();
@@ -62,6 +137,7 @@ class TreeGraph{
 
  	void draw(){
  		if(map!= null){
+      drawKey();
  			map.draw();
 
  		}

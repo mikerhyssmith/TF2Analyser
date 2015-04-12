@@ -16,6 +16,7 @@ int col;
 String filename;
 Area graphArea;
 Area statsArea;
+Area graphKeyArea;
 UserInterface UI;
 
 //File input ant processing
@@ -55,6 +56,7 @@ void setup() {
   //Define containing areas for various features
   graphArea = new Area(width,500,0,100);
   statsArea = new Area(200,130,width-250,20);
+  graphKeyArea = new Area(300,85,width-310,10);
 }
 
 void draw(){
@@ -143,7 +145,7 @@ void controlEvent(ControlEvent theEvent) {
 
         circleGraph = new CircleGraph(graphArea.getWidth(), graphArea.getHeight(),deaths, 5, 100);
       }else if(theEvent.group().value() ==2){
-        treeGraph = new TreeGraph(processor.getDeaths("",-1),graphArea);
+        treeGraph = new TreeGraph(processor.getDeaths("",-1),graphArea,graphKeyArea);
         drawnTreeMap = true;
 
       }
