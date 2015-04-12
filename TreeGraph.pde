@@ -13,6 +13,7 @@ class TreeGraph{
   boolean classObject = false;
   PFont arial;
   Area statsArea;
+
  
  	TreeGraph(Hashtable<String, DeathCount> data, Area graphArea, Area statsArea){
  		classKills = new HashMap<String,Integer>();
@@ -20,11 +21,8 @@ class TreeGraph{
     arial = createFont("Arial",11,true);
     this.statsArea = statsArea;
 
-    processClassData();
+    processWeaponsData();
     processTreeGraph();
-    
-
-
  	}
 
 /**
@@ -96,6 +94,9 @@ class TreeGraph{
 
   }
  
+ /**
+ *Processes a tree map which shows the weapon statistics
+ */
  	public void processWeaponsData(){
  		Iterator it = data.entrySet().iterator();
     	while (it.hasNext()) {
@@ -111,6 +112,9 @@ class TreeGraph{
 
  	}
 
+  /**
+  * Processes the data which shows the class statistics
+  */
   public void processClassData(){
     Iterator it = data.entrySet().iterator();
       while (it.hasNext()) {
@@ -126,15 +130,23 @@ class TreeGraph{
 
   }
 
+  /**
+  *Produce the Tree Map
+  */
  	public void processTreeGraph(){
  		ClassKillsMap mapData = new ClassKillsMap(classKills,classObject);
-
- 		
-
  		map = new Treemap(mapData,0,height-graphArea.getHeight(),graphArea.getWidth(),graphArea.getHeight());
+    OrderedTreemap orderLayout = new OrderedTreemap();
+    SquarifiedLayout layout = new SquarifiedLayout();
+    map.setLayout(layout);
+    map.updateLayout();
+
 
  	}
 
+  /**
+  *Draw the TreeMap
+  */
  	void draw(){
  		if(map!= null){
       drawKey();
@@ -144,7 +156,6 @@ class TreeGraph{
  		
  	}
 
-  
 }
 
 class ClassKillsMap extends SimpleMapModel{
@@ -155,6 +166,9 @@ class ClassKillsMap extends SimpleMapModel{
 
 	}
 
+  /**
+  * Overloaded constructor to allow us to process data.
+  */
 	ClassKillsMap(HashMap<String,Integer> classKills,boolean classObject){
 		this.classKills = classKills;
 		Iterator it = classKills.entrySet().iterator();
@@ -175,6 +189,9 @@ class ClassKillsMap extends SimpleMapModel{
     finishAdd();
 	}
 
+  /**
+  * Inherited method to be called to fill the items array in the super class.
+  */
 	void finishAdd(){
 		 items = killsArray.toArray(new KillsItem[killsArray.size()]);
 		 

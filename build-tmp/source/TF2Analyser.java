@@ -86,7 +86,7 @@ static final int WINDOWWIDTH=1000;
 static final int WINDOWHEIGHT=600;
 
 public void setup() {
-  size(WINDOWWIDTH,WINDOWHEIGHT);
+  size(WINDOWWIDTH,WINDOWHEIGHT,P2D);
   logo = loadImage("logo.png");
   smooth();
   background(128);
@@ -108,7 +108,7 @@ public void draw(){
   background(128);
   
   //Draw the logo if neither graph is displayed
-  if(!drawBarGraph&&!drawNodeGraph){
+  if(!drawBarGraph&&!drawNodeGraph && !drawnTreeMap){
     image(logo, WINDOWWIDTH/2 - logo.width/2, WINDOWHEIGHT/2-logo.height/2, logo.width, logo.height);
   }
   
@@ -126,7 +126,7 @@ public void draw(){
   if(drawNodeGraph){
     circleGraph.draw();
   }
-
+  //Draw Tree Graph if selected
   if(drawnTreeMap){
     treeGraph.draw();
   }
@@ -175,6 +175,7 @@ public void controlEvent(ControlEvent theEvent) {
       //When the node graph is selected
       else if(theEvent.group().value() == 1)  {
         drawBarGraph = false;
+        drawnTreeMap = false;
         drawNodeGraph = true;
         
         //Obtain death info from all matches
@@ -182,15 +183,24 @@ public void controlEvent(ControlEvent theEvent) {
         
         //Add menu options for altering node graph data set
         //UI.addVisualizationOptions(players,matches,true); 
+        
         //Hide summary info box
-        //UI.removeVisualizationStats();
-  
+        UI.removeVisualizationStats();
+        
+        //Make sure that barchart slider is removed
+        barControl.remove("BarSlider");
+        
         //nGraph = new NodeGraph(graphArea, nodeControl);
 
-        circleGraph = new CircleGraph(graphArea.getWidth(), graphArea.getHeight(),deaths, 5, 100);
+        circleGraph = new CircleGraph(graphArea, deaths, 7, 100);
+        
       }else if(theEvent.group().value() ==2){
         treeGraph = new TreeGraph(processor.getDeaths("",-1),graphArea,graphKeyArea);
         drawnTreeMap = true;
+        drawBarGraph = false;
+        drawNodeGraph = false;
+        UI.removeVisualizationStats();
+        System.out.println("CALLED");
 
       }
     }
@@ -520,25 +530,16 @@ class Circle {
     this.r = r;
     this.label = label;
   }
- 
- 
- /*
-  float distance(float x1, float y1, float x2, float y2){
-    return sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
+  
+  public boolean containsPoint(float x, float y){
+    float dist = ((this.x - x)*(this.x-x)) + ((this.y - y)*(this.y - y));
+    
+    if(dist < (r*r)){
+      return true;
+    }else{
+      return false;
+    }
   }
- 
-  float getOffset(float x, float y){
-    return distance(this.x, this.y, x, y);
-  }
- 
-  boolean contains(float x, float y){
-    return distance(this.x, this.y, x, y) <= this.r;
-  }
- 
-  boolean intersect(Circle circle){
-    float d = distance(this.x, this.y, circle.x, circle.y);
-    return d <= (this.r + circle.r);
-  }*/
   
   public void draw()
   {
@@ -554,6 +555,9 @@ class Circle {
   public float getRadius(){
     return r;
   }
+  public String getLabel(){
+    return label;
+  }
   public void setX(float x){
     this.x = x;
   }
@@ -566,31 +570,42 @@ class Circle {
 
 
 class CircleGraph {
-
-  float graphWidth, graphHeight, circleSpacing, xCentre, yCentre;
+  //Font and icons for tooltips
+  PFont arial;
+  IconHandler icons;
+  
+  Area graphArea;
+  float xCentre, yCentre;
+  
   Hashtable<String,DeathCount> deaths;
+  
   ArrayList<Circle> circles;
+  float circleSpacing;
   float damping;
-  int totalIterations, remainingIterations;
   int circleScale;
+  
+  int totalIterations, remainingIterations;
 
-  CircleGraph(float width, float height, Hashtable<String,DeathCount> deaths, float spacing, int iterations)
+  CircleGraph(Area area, Hashtable<String,DeathCount> deaths, float spacing, int iterations)
   {
-    this.graphWidth = width;
-    this.graphHeight = height;
-    this.xCentre = width/2;
-    this.yCentre = height/2;
+    this.graphArea =area;
+    this.xCentre = graphArea.getWidth()/2 + graphArea.getX();
+    this.yCentre = graphArea.getHeight()/2 + graphArea.getY();
     this.deaths = deaths;
     this.circleSpacing = spacing;
     
-    //Might take these out?
     damping = 0.01f;
     this.totalIterations = iterations;
     remainingIterations = totalIterations;
     
     //Used to scale circle radius with kills
-    this.circleScale = 5;
+    this.circleScale = 2;
     createCircles();
+    
+    //Set up font
+    arial = createFont("Arial",12,true);
+    //Set up icons
+    icons = new IconHandler("killicons_final.png");
   }
 
   public float distanceSquared(float x1, float y1, float x2, float y2)
@@ -615,16 +630,63 @@ class CircleGraph {
       
       circles.add(new Circle(xCentre + 2*(rand.nextFloat() -0.5f),yCentre + 2*(rand.nextFloat() -0.5f), death.getCount()*circleScale, key));
     }
+    
+    //Sort according to size
+    Collections.sort(circles, new Comparator<Circle>() {
+      //Return a negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater than the second.
+        @Override
+        public int compare(Circle c1, Circle c2)
+        {
+            if(c1.getRadius()<c2.getRadius()){
+              return -1;
+            }
+            if(c1.getRadius()>c2.getRadius()){
+              return 1;
+            }
+            return 0;
+        }
+    });
   }
 
 
   public void packCircles()
   {
+    
     for (int i = 0; i < circles.size(); i++)
     {
       Circle c1 = (Circle) circles.get(i);
+      
+      //First push circles in if they are outside the graph boundary
+      float xShift = 0;
+      float yShift = 0;
+      System.out.println("Circle: "+ c1.getLabel());
+      //Off the right of the screen
+      if((c1.getX() + c1.getRadius()) > graphArea.getWidth() + graphArea.getX()){
+        xShift = ((graphArea.getWidth() + graphArea.getX()) - (c1.getX() + c1.getRadius())) *10*damping;
+        System.out.println("Right "+xShift);
+      }
+      //Off the left of the screen
+      if((c1.getX() - c1.getRadius()) < graphArea.getX()){
+        xShift = (graphArea.getX() - (c1.getX() - c1.getRadius())) * 10*damping;
+                System.out.println("left "+xShift);
+      }
+      //Off the bottom of the screen
+      if((c1.getY() + c1.getRadius()) > graphArea.getHeight() + graphArea.getY()){
+        yShift = ((graphArea.getHeight() + graphArea.getY()) - (c1.getY() + c1.getRadius())) * 10* damping;
+                System.out.println("bottom "+yShift);
+      }
+      //Off the top of the screen
+      if((c1.getY() - c1.getRadius()) < graphArea.getY()){
+        yShift = (graphArea.getY() - (c1.getY() - c1.getRadius())) *10* damping;
+                System.out.println("top "+yShift);
+      }
+      //Apply the necessary shift
 
-      for (int j = i+1; j < circles.size(); j++)
+      c1.setX(c1.getX()+xShift);
+      c1.setY(c1.getY()+yShift);
+      
+      //for (int j = i+1; j < circles.size(); j++)
+      for(int j = circles.size()-1; j>i; j--)
       {
         Circle c2 = (Circle) circles.get(j);
 
@@ -658,29 +720,58 @@ class CircleGraph {
         }    
       }
     }
-    
-    
+/*
     //Circles move to centre by default
     for (int i = 0; i < circles.size (); i++)
     {
       Circle c = (Circle) circles.get(i);
-      float vx = (c.x - xCentre) * damping;
-      float vy = (c.y - yCentre)  *damping;
+      float vx = (c.x - xCentre) *damping;
+      float vy = (c.y - yCentre) *damping;
       c.x -= vx;
       c.y -= vy;
     }
+    /*
+    //Push in circles that are outside the graph area
+    for (int i = 0; i < circles.size (); i++)
+    {
+      Circle c = (Circle) circles.get(i);
+      float vx = 0;
+      float vy = 0;
+      
+      //Off the right of the screen
+      if((c.getX() + c.getRadius()) > graphArea.getWidth() + graphArea.getX()){
+        vx = ((graphArea.getWidth() + graphArea.getX()) - (c.getX() + c.getRadius())) * damping;
+        System.out.println("Right "+vx);
+      }
+      //Off the left of the screen
+      if((c.getX() - c.getRadius()) < graphArea.getX()){
+        vx = (graphArea.getX() - (c.getX() - c.getRadius())) * damping;
+                System.out.println("left "+vx);
+      }
+      //Off the bottom of the screen
+      if((c.getY() + c.getRadius()) > graphArea.getHeight() + graphArea.getY()){
+        vy = ((graphArea.getHeight() + graphArea.getY()) - (c.getY() + c.getRadius())) * damping;
+                System.out.println("bottom "+vy);
+      }
+      //Off the top of the screen
+      if((c.getY() - c.getRadius()) < graphArea.getY()){
+        vy = (graphArea.getY() - (c.getY() - c.getRadius())) * damping;
+                System.out.println("top "+vy);
+      }
+
+      c.setX(c.getX()+vx);
+      c.setY(c.getY()+vy);
+    }*/
     
   }
-/*
-  void update() {
-    for (int w=0; w<iterations; w++)
-    {
-      this.pack();
-    }
-  }*/
   
   public void draw()
   {
+    boolean circleSelected = false;
+    String circleKey = "";
+    DeathCount death;
+    fill(150);
+    stroke(0);
     /**
     if(remainingIterations > 0){
       packCircles();
@@ -689,18 +780,22 @@ class CircleGraph {
     }
     */
     packCircles();
-    System.out.println( frameRate);
-    
+    ellipseMode(CENTER);
     for (int i = 0; i < circles.size (); i++)
     {
-      Circle c = (Circle) circles.get(i);
-      if (c.r < 1)
-      {
-        circles.remove(c);
-      } else
-      {
-        c.draw();
+      Circle c =  circles.get(i);
+      c.draw();
+      //Draw crit kills and tooltip if mouse is over the bar
+      if(c.containsPoint(mouseX,mouseY)){
+        circleSelected=true;
+        circleKey = c.getLabel();
       }
+    }
+    //Draw tooltip over highlighted bar
+    if(circleSelected){
+      death = deaths.get(circleKey);
+      ToolTip tip = new ToolTip("Weapon: "+death.getCause() +"\n" + "Kills: " + death.getCount() + "\n" + "Crits: " + death.getCritCount(), color(248,185,138), arial);
+      tip.draw();
     }
   }
 }
@@ -1707,6 +1802,7 @@ class TreeGraph{
   boolean classObject = false;
   PFont arial;
   Area statsArea;
+
  
  	TreeGraph(Hashtable<String, DeathCount> data, Area graphArea, Area statsArea){
  		classKills = new HashMap<String,Integer>();
@@ -1714,11 +1810,8 @@ class TreeGraph{
     arial = createFont("Arial",11,true);
     this.statsArea = statsArea;
 
-    processClassData();
+    processWeaponsData();
     processTreeGraph();
-    
-
-
  	}
 
 /**
@@ -1790,6 +1883,9 @@ class TreeGraph{
 
   }
  
+ /**
+ *Processes a tree map which shows the weapon statistics
+ */
  	public void processWeaponsData(){
  		Iterator it = data.entrySet().iterator();
     	while (it.hasNext()) {
@@ -1805,6 +1901,9 @@ class TreeGraph{
 
  	}
 
+  /**
+  * Processes the data which shows the class statistics
+  */
   public void processClassData(){
     Iterator it = data.entrySet().iterator();
       while (it.hasNext()) {
@@ -1820,15 +1919,23 @@ class TreeGraph{
 
   }
 
+  /**
+  *Produce the Tree Map
+  */
  	public void processTreeGraph(){
  		ClassKillsMap mapData = new ClassKillsMap(classKills,classObject);
-
- 		
-
  		map = new Treemap(mapData,0,height-graphArea.getHeight(),graphArea.getWidth(),graphArea.getHeight());
+    OrderedTreemap orderLayout = new OrderedTreemap();
+    SquarifiedLayout layout = new SquarifiedLayout();
+    map.setLayout(layout);
+    map.updateLayout();
+
 
  	}
 
+  /**
+  *Draw the TreeMap
+  */
  	public void draw(){
  		if(map!= null){
       drawKey();
@@ -1838,7 +1945,6 @@ class TreeGraph{
  		
  	}
 
-  
 }
 
 class ClassKillsMap extends SimpleMapModel{
@@ -1849,6 +1955,9 @@ class ClassKillsMap extends SimpleMapModel{
 
 	}
 
+  /**
+  * Overloaded constructor to allow us to process data.
+  */
 	ClassKillsMap(HashMap<String,Integer> classKills,boolean classObject){
 		this.classKills = classKills;
 		Iterator it = classKills.entrySet().iterator();
@@ -1869,6 +1978,9 @@ class ClassKillsMap extends SimpleMapModel{
     finishAdd();
 	}
 
+  /**
+  * Inherited method to be called to fill the items array in the super class.
+  */
 	public void finishAdd(){
 		 items = killsArray.toArray(new KillsItem[killsArray.size()]);
 		 
