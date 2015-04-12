@@ -140,10 +140,10 @@ void controlEvent(ControlEvent theEvent) {
         //UI.addVisualizationOptions(players,matches,true); 
         
         //Hide summary info box
-        UI.removeVisualizationStats();
+        //UI.removeVisualizationStats();
         
         //Make sure that barchart slider is removed
-        barControl.remove("BarSlider");
+       // barControl.remove("BarSlider");
         
         //nGraph = new NodeGraph(graphArea, nodeControl);
 

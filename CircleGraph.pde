@@ -91,74 +91,65 @@ class CircleGraph {
       //First push circles in if they are outside the graph boundary
       float xShift = 0;
       float yShift = 0;
-      System.out.println("Circle: "+ c1.getLabel());
       //Off the right of the screen
       if((c1.getX() + c1.getRadius()) > graphArea.getWidth() + graphArea.getX()){
-        xShift = ((graphArea.getWidth() + graphArea.getX()) - (c1.getX() + c1.getRadius())) *10*damping;
-        System.out.println("Right "+xShift);
+        xShift = ((graphArea.getWidth() + graphArea.getX()) - (c1.getX() + c1.getRadius())) * damping;
       }
       //Off the left of the screen
       if((c1.getX() - c1.getRadius()) < graphArea.getX()){
-        xShift = (graphArea.getX() - (c1.getX() - c1.getRadius())) * 10*damping;
-                System.out.println("left "+xShift);
+        xShift = (graphArea.getX() - (c1.getX() - c1.getRadius())) *damping;
       }
       //Off the bottom of the screen
       if((c1.getY() + c1.getRadius()) > graphArea.getHeight() + graphArea.getY()){
-        yShift = ((graphArea.getHeight() + graphArea.getY()) - (c1.getY() + c1.getRadius())) * 10* damping;
-                System.out.println("bottom "+yShift);
+        yShift = ((graphArea.getHeight() + graphArea.getY()) - (c1.getY() + c1.getRadius())) * damping;
       }
       //Off the top of the screen
       if((c1.getY() - c1.getRadius()) < graphArea.getY()){
-        yShift = (graphArea.getY() - (c1.getY() - c1.getRadius())) *10* damping;
-                System.out.println("top "+yShift);
+        yShift = (graphArea.getY() - (c1.getY() - c1.getRadius())) * damping;
       }
       //Apply the necessary shift
-
       c1.setX(c1.getX()+xShift);
       c1.setY(c1.getY()+yShift);
       
-      //for (int j = i+1; j < circles.size(); j++)
-      for(int j = circles.size()-1; j>i; j--)
+      for (int j = i+1; j < circles.size(); j++)
+     // for(int j = circles.size()-1; j>i; j--)
       {
         Circle c2 = (Circle) circles.get(j);
 
-        float squareDistance = distanceSquared(c1.getX(), c1.getY(), c2.getX(), c2.getY());
-        float r = c1.getRadius() + c2.getRadius() + circleSpacing;
+        float squareSeperation = distanceSquared(c1.getX(), c1.getY(), c2.getX(), c2.getY());
+        float targetSeperation = c1.getRadius() + c2.getRadius() + circleSpacing;
 
         //If circles are closer than they should be
-        if (squareDistance < (r*r))
+        if (squareSeperation < (targetSeperation*targetSeperation))
         {
           //Calculate x, y and total seperations
-          float dx = c2.getX() - c1.getX();
-          float dy = c2.getY() - c1.getY();
-          float totalDistance = sqrt(squareDistance);
+          float xSeperation = c2.getX() - c1.getX();
+          float ySeperation = c2.getY() - c1.getY();
+          float totalSeperation = sqrt(squareSeperation);
 
-          //Distance squared from the centre of the graph
-          float cd1 = distanceSquared(c1.getX(), c1.getY(), xCentre, yCentre);
-          float cd2 = distanceSquared(c2.getX(), c2.getY(), xCentre, yCentre);
+          //Distance squared from the centre of the graph, for each circle
+          float centreSeperation1 = distanceSquared(c1.getX(), c1.getY(), xCentre, yCentre);
+          float centreSeperation2 = distanceSquared(c2.getX(), c2.getY(), xCentre, yCentre);
           
-          //think this is unused
-         // float total = dx + dy;
-
           //Increment to apply to each circle
-          float vx = (dx/totalDistance) * (r-totalDistance);
-          float vy = (dy/totalDistance) * (r-totalDistance);
+          float xIncrement = (xSeperation/totalSeperation) * (targetSeperation-totalSeperation);
+          float yIncrement = (ySeperation/totalSeperation) * (targetSeperation-totalSeperation);
 
-          //Alter circle positions based on increments
-          c1.x -= vx * cd1/(cd1+cd2);
-          c1.y -= vy * cd1/(cd1+cd2);
-          c2.x += vx * cd2/(cd1+cd2);
-          c2.y += vy * cd2/(cd1+cd2);
+          //Alter circle positions based on increment, radius distance from the centre
+          c1.x -= xIncrement * (c2.getRadius()/(c1.getRadius()+c2.getRadius())) * (centreSeperation1/(centreSeperation1+centreSeperation2));
+          c1.y -= yIncrement * (c2.getRadius()/(c1.getRadius()+c2.getRadius())) * (centreSeperation1/(centreSeperation1+centreSeperation2));
+          c2.x += xIncrement * (c1.getRadius()/(c1.getRadius()+c2.getRadius())) * (centreSeperation2/(centreSeperation1+centreSeperation2));
+          c2.y += yIncrement * (c1.getRadius()/(c1.getRadius()+c2.getRadius())) * (centreSeperation2/(centreSeperation1+centreSeperation2));
         }    
       }
     }
-/*
+
     //Circles move to centre by default
     for (int i = 0; i < circles.size (); i++)
     {
       Circle c = (Circle) circles.get(i);
-      float vx = (c.x - xCentre) *damping;
-      float vy = (c.y - yCentre) *damping;
+      float vx = (c.x - xCentre) *damping*damping;
+      float vy = (c.y - yCentre) *damping*damping;
       c.x -= vx;
       c.y -= vy;
     }
@@ -204,7 +195,7 @@ class CircleGraph {
     DeathCount death;
     fill(150);
     stroke(0);
-    /**
+    /**Uncomment this to limit iterations
     if(remainingIterations > 0){
       packCircles();
       System.out.println("pack iteration " + remainingIterations);
