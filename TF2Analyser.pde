@@ -42,7 +42,7 @@ static final int WINDOWWIDTH=1000;
 static final int WINDOWHEIGHT=600;
 
 void setup() {
-  size(WINDOWWIDTH,WINDOWHEIGHT);
+  size(WINDOWWIDTH,WINDOWHEIGHT,P2D);
   logo = loadImage("logo.png");
   smooth();
   background(128);
@@ -64,7 +64,7 @@ void draw(){
   background(128);
   
   //Draw the logo if neither graph is displayed
-  if(!drawBarGraph&&!drawNodeGraph){
+  if(!drawBarGraph&&!drawNodeGraph && !drawnTreeMap){
     image(logo, WINDOWWIDTH/2 - logo.width/2, WINDOWHEIGHT/2-logo.height/2, logo.width, logo.height);
   }
   
@@ -82,7 +82,7 @@ void draw(){
   if(drawNodeGraph){
     circleGraph.draw();
   }
-
+  //Draw Tree Graph if selected
   if(drawnTreeMap){
     treeGraph.draw();
   }
@@ -131,6 +131,7 @@ void controlEvent(ControlEvent theEvent) {
       //When the node graph is selected
       else if(theEvent.group().value() == 1)  {
         drawBarGraph = false;
+        drawnTreeMap = false;
         drawNodeGraph = true;
         
         //Obtain death info from all matches
@@ -152,6 +153,10 @@ void controlEvent(ControlEvent theEvent) {
       }else if(theEvent.group().value() ==2){
         treeGraph = new TreeGraph(processor.getDeaths("",-1),graphArea,graphKeyArea);
         drawnTreeMap = true;
+        drawBarGraph = false;
+        drawNodeGraph = false;
+        UI.removeVisualizationStats();
+        System.out.println("CALLED");
 
       }
     }
