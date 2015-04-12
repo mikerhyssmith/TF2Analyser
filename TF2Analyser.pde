@@ -42,7 +42,7 @@ static final int WINDOWWIDTH=1000;
 static final int WINDOWHEIGHT=600;
 
 void setup() {
-  size(WINDOWWIDTH,WINDOWHEIGHT,P2D);
+  size(WINDOWWIDTH,WINDOWHEIGHT, P2D);
   logo = loadImage("logo.png");
   smooth();
   background(128);

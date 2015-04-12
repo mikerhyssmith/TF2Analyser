@@ -17,6 +17,9 @@ class CircleGraph {
   int circleScale;
   
   int totalIterations, remainingIterations;
+  
+  //Used for per-class weapon colours
+  WeaponToClassMap dataMap = new WeaponToClassMap();
 
   CircleGraph(Area area, Hashtable<String,DeathCount> deaths, float spacing, int iterations)
   {
@@ -31,7 +34,7 @@ class CircleGraph {
     remainingIterations = totalIterations;
     
     //Used to scale circle radius with kills
-    this.circleScale = 2;
+    this.circleScale = 15;
     createCircles();
     
     //Set up font
@@ -60,7 +63,7 @@ class CircleGraph {
       key = enumDeath.nextElement();
       death = deaths.get(key);
       
-      circles.add(new Circle(xCentre + 2*(rand.nextFloat() -0.5),yCentre + 2*(rand.nextFloat() -0.5), death.getCount()*circleScale, key));
+      circles.add(new Circle(xCentre + 2*(rand.nextFloat() -0.5),yCentre + 2*(rand.nextFloat() -0.5), sqrt(death.getCount())*circleScale, key));
     }
     
     //Sort according to size
@@ -207,6 +210,7 @@ class CircleGraph {
     for (int i = 0; i < circles.size (); i++)
     {
       Circle c =  circles.get(i);
+      fill(dataMap.getClassColour(dataMap.getPlayerClass(c.getLabel())));
       c.draw();
       //Draw crit kills and tooltip if mouse is over the bar
       if(c.containsPoint(mouseX,mouseY)){
