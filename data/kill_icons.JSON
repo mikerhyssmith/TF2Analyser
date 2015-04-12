@@ -6,7 +6,8 @@
 				"y":		"288",
 				"width":	"52",
 				"height":	"32",
-				"class":      "multi-class"
+				"class":      "multi-class",
+				"pretty-print": "Skull"
 		},
 
 		"obj_sentrygun":
@@ -16,7 +17,8 @@
 				"y":		"160",
 				"width":	"64",
 				"height":	"32",
-				"class":      "engineer"
+				"class":      "engineer",
+				"pretty-print": "Level 1 Sentry"
 		},
 
 		"obj_sentrygun2":
@@ -26,7 +28,8 @@
 				"y":		"0",
 				"width":	"96",
 				"height":	"32",
-				"class":      "engineer"
+				"class":      "engineer",
+				"pretty-print": "Level 2 Sentry"
 		},
 
 		"obj_sentrygun3":
@@ -36,7 +39,9 @@
 				"y":		"32",
 				"width":	"96",
 				"height":	"32",
-				"class":      "engineer"
+				"class":      "engineer",
+				"pretty-print": "Level 3 Sentry"
+
 		},
 
 		"bat":
@@ -46,7 +51,8 @@
 				"y":		"0",
 				"width":	"96",
 				"height":	"32",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Bat"
 		},
 
 		"pistol":
@@ -56,7 +62,8 @@
 				"y":		"32",
 				"width":	"96",
 				"height":	"32",
-                "class":      "multi-class"
+                "class":      "multi-class",
+				"pretty-print": "Pistol"
 		},
 
 		"pistol_scout":
@@ -66,7 +73,8 @@
 				"y":		"32",
 				"width":	"96",
 				"height":	"32",
-                "class":      "scout"
+                "class":      "scout",
+				"pretty-print": "Pistol"
 		},
 
 		"nailgun":
@@ -76,7 +84,8 @@
 				"y":		"64",
 				"width":	"64",
 				"height":	"32",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Nailgun"
 		},
 
 		"sniperrifle":
@@ -86,7 +95,8 @@
 				"y":		"96",
 				"width":	"32",
 				"height":	"32",
-				"class":      "sniper"
+				"class":      "sniper",
+				"pretty-print": "Sniper Rifle"
 		},
 
 		"smg":
@@ -96,7 +106,8 @@
 				"y":		"128",
 				"width":	"96",
 				"height":	"32",
-				"class":      "smg"
+				"class":      "sniper",
+				"pretty-print": "SMG"
 		},
 
 		"club":
@@ -106,7 +117,8 @@
 				"y":		"160",
 				"width":	"96",
 				"height":	"32",
-				"class":      "sniper"
+				"class":      "sniper",
+				"pretty-print": "Club"
 		},
 
 		"shovel":
@@ -116,7 +128,8 @@
 				"y":		"192",
 				"width":	"96",
 				"height":	"32",
-				"class":      "soldier"
+				"class":      "soldier",
+				"pretty-print": "Shovel"
 		},
 
 		"tf_projectile_rocket":
@@ -126,7 +139,8 @@
 				"y":		"224",
 				"width":	"96",
 				"height":	"32",
-				"class":      "soldier"
+				"class":      "soldier",
+				"pretty-print": "Rocket Launcher"
 		},
 
 		"shotgun_primary":
@@ -136,7 +150,8 @@
 				"y":		"256",
 				"width":	"96",
 				"height":	"32",
-				"class":      "scout"
+				"class":      "engineer",
+				"pretty-print": "Shotgun"
 		},
 
 		"shotgun_soldier":
@@ -146,7 +161,8 @@
 				"y":		"256",
 				"width":	"96",
 				"height":	"32",
-				"class":      "soldier"
+				"class":      "soldier",
+				"pretty-print": "Shotgun"
 		},
 
 		"shotgun_hwg":
@@ -156,7 +172,8 @@
 				"y":		"256",
 				"width":	"96",
 				"height":	"32",
-				"class":      "heavy"
+				"class":      "heavy",
+				"pretty-print": "Shotgun"
 		},
 
 		"shotgun_pyro":
@@ -166,7 +183,8 @@
 				"y":		"256",
 				"width":	"96",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Shotgun"
 		},
 
 		"tf_projectile_pipe":
@@ -176,7 +194,8 @@
 				"y":		"288",
 				"width":	"96",
 				"height":	"32",
-				"class":      "demoman"
+				"class":      "demoman",
+				"pretty-print": "Grenade Launcher"
 		},
 
 		"bottle":
@@ -186,7 +205,8 @@
 				"y":		"320",
 				"width":	"96",
 				"height":	"32",
-				"class":      "demoman"
+				"class":      "demoman",
+				"pretty-print": "Bottle"
 		},
 
 		"syringegun_medic":
@@ -196,7 +216,8 @@
 				"y":		"352",
 				"width":	"96",
 				"height":	"32",
-				"class":      "medic"
+				"class":      "medic",
+				"pretty-print": "Syringe Gun"
 		},
 
 		"minigun":
@@ -206,7 +227,8 @@
 				"y":		"384",
 				"width":	"96",
 				"height":	"32",
-				"class":      "heavy"
+				"class":      "heavy",
+				"pretty-print": "Mini Gun"
 		},
 
 		"pipe":
@@ -216,7 +238,8 @@
 				"y":		"448",
 				"width":	"96",
 				"height":	"32",
-				"class":      "demoman"
+				"class":      "demoman",
+				"pretty-print": "Grenade Launcher"
 		},
 	
 		"flamethrower":
@@ -226,7 +249,8 @@
 				"y":		"416",
 				"width":	"96",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Flame Thrower"
 		},
 
 		"fists":
@@ -236,7 +260,8 @@
 				"y":		"446",
 				"width":	"64",
 				"height":	"32",
-				"class":      "heavy"
+				"class":      "heavy",
+				"pretty-print": "Fists"
 		},
 
 		"fireaxe":
@@ -246,7 +271,8 @@
 				"y":		"480",
 				"width":	"96",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Fire Axe"
 				
 		},
 
@@ -257,7 +283,8 @@
 				"y":		"128",
 				"width":	"96",
 				"height":	"32",
-				"class":      "medic"
+				"class":      "medic",
+				"pretty-print": "Bone Saw"
 		},
 
 		"knife":
@@ -267,7 +294,8 @@
 				"y":		"0",
 				"width":	"96",
 				"height":	"32",
-				"class":      "spy"
+				"class":      "spy",
+				"pretty-print": "Knife"
 		},
 
 		"revolver":
@@ -277,7 +305,8 @@
 				"y":		"32",
 				"width":	"96",
 				"height":	"32",
-				"class":      "spy"
+				"class":      "spy",
+				"pretty-print": "Revolver"
 		},
 
 		"flaregun":
@@ -287,7 +316,8 @@
 				"y":		"64",
 				"width":	"96",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Flare Gun"
 		},
 
 		"wrench":
@@ -297,7 +327,8 @@
 				"y":		"96",
 				"width":	"96",
 				"height":	"32",
-				"class":      "engineer"
+				"class":      "engineer",
+				"pretty-print": "Wrench"
 		},
 
 		"scattergun":
@@ -307,7 +338,8 @@
 				"y":		"192",
 				"width":	"96",
 				"height":	"32",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Scattergun"
 		},
 		
 		"tf_projectile_pipe_remote":
@@ -317,7 +349,8 @@
 				"y":		"224",
 				"width":	"96",
 				"height":	"32",
-				"class":      "demoman"
+				"class":      "demoman",
+				"pretty-print": "Sticky Launcher"
 		},
 		
 		"vehicle":
@@ -327,7 +360,8 @@
 				"y":		"256",
 				"width":	"96",
 				"height":	"32",
-				"class":      "environment"
+				"class":      "environment",
+				"pretty-print": "Vehicle"
 		},
 
 		"skull":
@@ -337,7 +371,8 @@
 				"y":		"288",
 				"width":	"96",
 				"height":	"32",
-				"class":      "multi-class"
+				"class":      "multi-class",
+				"pretty-print": "Skull"
 		},
 
 		"headshot":
@@ -347,7 +382,8 @@
 				"y":		"352",
 				"width":	"42",
 				"height":	"32",
-				"class":      "sniper"
+				"class":      "sniper",
+				"pretty-print": "Sniper Rifle"
 		},
 
 		"backstab":
@@ -357,7 +393,8 @@
 				"y":		"384",
 				"width":	"48",
 				"height":	"32",
-				"class":      "spy"
+				"class":      "spy",
+				"pretty-print": "Backstab"
 		},
 
 		"ubersaw":
@@ -367,7 +404,8 @@
 				"y":		"416",
 				"width":	"96",
 				"height":	"32",
-				"class":      "medic"
+				"class":      "medic",
+				"pretty-print": "Uber Saw"
 		},
 
 		"axtinguisher":
@@ -377,7 +415,8 @@
 				"y":		"448",
 				"width":	"96",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Axtinguisher"
 		},
 
 		"taunt_pyro":
@@ -387,7 +426,8 @@
 				"y":		"480",
 				"width":	"96",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Pyro Taunt"
 		},
 
 		"bluedefend":
@@ -396,7 +436,8 @@
 				"x":		"194",
 				"y":		"0",
 				"width":	"32",
-				"height":	"32"
+				"height":	"32",
+				"pretty-print": "Blue Defend"
 		},
 
 		"bluecapture":
@@ -405,7 +446,8 @@
 				"x":		"194",
 				"y":		"32",
 				"width":	"32",
-				"height":	"32"
+				"height":	"32",
+				"pretty-print": "Blue Capture"
 		},
 
 		"reddefend":
@@ -414,7 +456,8 @@
 				"x":		"226",
 				"y":		"0",
 				"width":	"32",
-				"height":	"32"
+				"height":	"32",
+				"pretty-print": "Red Defend"
 		},
 
 		"redcapture":
@@ -423,7 +466,8 @@
 				"x":		"226",
 				"y":		"32",
 				"width":	"32",
-				"height":	"32"
+				"height":	"32",
+				"pretty-print": "Red Capture"
 		},
 
 		"obj_attachment_sapper":
@@ -442,7 +486,8 @@
 				"y":		"64",
 				"width":	"64",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Reflect"
 		},
 
 		"deflect_sticky":
@@ -452,7 +497,8 @@
 				"y":		"96",
 				"width":	"64",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Reflected Sticky"
 		},
 
 		"deflect_rocket":
@@ -462,7 +508,8 @@
 				"y":		"128",
 				"width":	"64",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Reflected Rocket"
 		},
 
 		"deflect_flare":
@@ -472,7 +519,8 @@
 				"y":		"160",
 				"width":	"64",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Reflected Flare"
 		},
 
 		"bat_wood":
@@ -482,7 +530,8 @@
 				"y":		"0",
 				"width":	"96",
 				"height":	"32",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Sandman"
 		},
 
 		"ball":
@@ -492,7 +541,8 @@
 				"y":		"192",
 				"width":	"64",
 				"height":	"32",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Sandman Ball"
 		},
 
 		"taunt_heavy":
@@ -502,7 +552,8 @@
 				"y":		"479",
 				"width":	"64",
 				"height":	"32",
-				"class":      "heavy"
+				"class":      "heavy",
+				"pretty-print": "Heavy Taunt"
 
 		},
 
@@ -513,7 +564,8 @@
 				"y":		"224",
 				"width":	"64",
 				"height":	"64",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Scout Taunt"
 		},
 
 		"gloves":
@@ -523,7 +575,8 @@
 				"y":		"448",
 				"width":	"96",
 				"height":	"32",
-				"class":      "heavy"
+				"class":      "heavy",
+				"pretty-print": "Gloves"
 		},
 
 		"crit":
@@ -542,7 +595,8 @@
 				"y":		"67",
 				"width":	"92",
 				"height":	"32",
-				"class":      "spy"
+				"class":      "spy",
+				"pretty-print": "Ambassador"
 		},
 
 		"huntsman":
@@ -552,7 +606,8 @@
 				"y":		"98",
 				"width":	"96", 
 				"height":	"32",
-				"class":      "sniper"
+				"class":      "sniper",
+				"pretty-print": "Huntsman"
 		},
 
 		"huntsman_burning":
@@ -562,7 +617,8 @@
 				"y":		"190",
 				"width":	"68",
 				"height":	"33",
-				"class":      "sniper"
+				"class":      "sniper",
+				"pretty-print": "Burning Huntsman"
 		},
 
 		"huntsman_flyingburn":
@@ -572,7 +628,8 @@
 				"y":		"223",
 				"width":	"103",
 				"height":	"32",
-				"class":      "sniper"
+				"class":      "sniper",
+				"pretty-print": "Burning Huntsman"
 		},
 
 		"taunt_spy":
@@ -582,7 +639,8 @@
 				"y":		"129",
 				"width":	"92",
 				"height":	"32",
-				"class":      "spy"
+				"class":      "spy",
+				"pretty-print": "Spy Taunt"
 		},
 
 		"huntsman_headshot":
@@ -592,7 +650,8 @@
 				"y":		"289",
 				"width":	"64",
 				"height":	"32",
-				"class":      "sniper"
+				"class":      "sniper",
+				"pretty-print": "Huntsman Headshot"
 		},
 
 		"ambassador_headshot":
@@ -602,7 +661,8 @@
 				"y":		"322",
 				"width":	"64",
 				"height":	"32",
-				"class":      "spy"
+				"class":      "spy",
+				"pretty-print": "Ambassador Headshot"
 		},
 
 		"taunt_sniper":
@@ -612,7 +672,8 @@
 				"y":		"161",
 				"width":	"94",
 				"height":	"27",
-				"class":      "sniper"
+				"class":      "sniper",
+				"pretty-print": "Sniper Taunt"
 		},
 
 		"saw_kill":
@@ -622,7 +683,8 @@
 				"y":		"359",
 				"width":	"64",
 				"height":	"32",
-				"class":      "environment"
+				"class":      "environment",
+				"pretty-print": "Saw Kill"
 		},
 
 		"deflect_arrow":
@@ -632,7 +694,8 @@
 				"y":		"0",
 				"width":	"64",
 				"height":	"30",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Huntsman Arrow Reflect"
 		},
 
 		"firedeath":
@@ -642,7 +705,8 @@
 				"y":		"256",
 				"width":	"64",
 				"height":	"32",
-				"class":      "environment"
+				"class":      "environment",
+				"pretty-print": "Death by Fire"
 		},
 
 		"pumpkindeath":
@@ -652,7 +716,8 @@
 				"y":		"358",
 				"width":	"96",
 				"height":	"32",
-				"class":      "environment"
+				"class":      "environment",
+				"pretty-print": "Death by Pumpkin"
 		},
 
 		"taunt_soldier":
@@ -662,7 +727,8 @@
 				"y":		"446",
 				"width":	"64",
 				"height":	"32",
-				"class":      "soldier"
+				"class":      "soldier",
+				"pretty-print": "Soldier Taunt"
 		},
 
 		"taunt_demoman":
@@ -672,7 +738,8 @@
 				"y":		"479",
 				"width":	"64",
 				"height":	"32",
-				"class":      "demoman"
+				"class":      "demoman",
+				"pretty-print": "Demoman Taunt"
 		},
 
 		"sword":
@@ -682,7 +749,8 @@
 				"y":		"464",
 				"width":	"64",
 				"height":	"32",
-				"class":      "demoman"
+				"class":      "demoman",
+				"pretty-print": "Eyelander"
 		},
 
 		"demoshield":
@@ -692,7 +760,8 @@
 				"y":		"398",
 				"width":	"64",
 				"height":	"32",
-				"class":      "demoman"
+				"class":      "demoman",
+				"pretty-print": "Chargin' Targe"
 		},
 
 		"pickaxe":
@@ -702,7 +771,8 @@
 				"y":		"431",
 				"width":	"64",
 				"height":	"32",
-				"class":      "soldier"
+				"class":      "soldier",
+				"pretty-print": "Pickaxe"
 		},
 
 		"rocketlauncher_directhit":
@@ -712,7 +782,8 @@
 				"y":		"263",
 				"width":	"92",
 				"height":	"32",
-				"class":      "soldier"
+				"class":      "soldier",
+				"pretty-print": "Direct Hit"
 		},
 
 		"sticky_resistance":
@@ -722,7 +793,8 @@
 				"y":		"413",
 				"width":	"64",
 				"height":	"32",
-				"class":      "demoman"
+				"class":      "demoman",
+				"pretty-print": "Scottish Resistance"
 		},
 
 		"player_sentry":
@@ -732,7 +804,8 @@
 				"y":		"446",
 				"width":	"64",
 				"height":	"32",
-				"class":      "engineer"
+				"class":      "engineer",
+				"pretty-print": "Player Sentry"
 		},
 
 		"battleaxe":
@@ -742,7 +815,8 @@
 				"y":		"164",
 				"width":	"64",
 				"height":	"32",
-				"class":      "demoman"
+				"class":      "demoman",
+				"pretty-print": "Scotsmans Skullcutter"
 		},
 
 		"tribalkukri":
@@ -752,7 +826,8 @@
 				"y":		"65",
 				"width":	"92",
 				"height":	"32",
-				"class":      "sniper"
+				"class":      "sniper",
+				"pretty-print": "Kukri"
 		},
 
 		"sledgehammer":
@@ -762,7 +837,8 @@
 				"y":		"98",
 				"width":	"64",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Homewrecker"
 		},
 
 		"paintrain":
@@ -772,7 +848,8 @@
 				"y":		"131",
 				"width":	"64",
 				"height":	"32",
-				"class":      "multi-class"
+				"class":      "multi-class",
+				"pretty-print": "Pain Train"
 		},
 
 		"deflect_huntsman_headshot":
@@ -782,7 +859,8 @@
 				"y":		"289",
 				"width":	"64",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Reflect Huntsman Headshot"
 		},
 
 		"huntsman_flyingburn_headshot":
@@ -792,7 +870,8 @@
 				"y":		"32",
 				"width":	"64",
 				"height":	"32",
-				"class":      "sniper"
+				"class":      "sniper",
+				"pretty-print": "Burning Headshot"
 		},
 
 		"taunt_medic":
@@ -802,7 +881,8 @@
 				"y":		"197",
 				"width":	"128",
 				"height":	"32",
-				"class":      "medic"
+				"class":      "medic",
+				"pretty-print": "Medic Taunt"
 		},
 
 		"samrevolver":
@@ -812,7 +892,8 @@
 				"y":		"230",
 				"width":	"98",
 				"height":	"32",
-				"class":      "spy"
+				"class":      "spy",
+				"pretty-print": "Big Kill"
 		},
 
 		"natascha":
@@ -822,7 +903,8 @@
 				"y":		"297",
 				"width":	"98",
 				"height":	"32",
-				"class":      "heavy"
+				"class":      "heavy",
+				"pretty-print": "Natascha"
 		},
 
 		"maxgun":
@@ -832,7 +914,8 @@
 				"y":		"330",
 				"width":	"98",
 				"height":	"32",
-				"class":      "multi-class"
+				"class":      "multi-class",
+				"pretty-print": "Lugermorph"
 		},
 
 		"force_a_nature":
@@ -842,7 +925,8 @@
 				"y":		"363",
 				"width":	"128",
 				"height":	"32",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Force-a-nature"
 		},
 
 		"deflect_huntsman_flyingburn_headshot":
@@ -852,7 +936,8 @@
 				"y":		"396",
 				"width":	"98",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Reflected Burning Headshot"
 		},
 
 		"deflect_huntsman_flyingburn":
@@ -862,7 +947,8 @@
 				"y":		"32",
 				"width":	"64",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Reflected Buring Huntsman"
 		},
 
 		"deflect_ball":
@@ -872,7 +958,8 @@
 				"y":		"131",
 				"width":	"64",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Deflect Ball"
 		},
 
 		"building_carried_destroyed":
@@ -891,7 +978,8 @@
 				"y":		"704",
 				"width":	"96",
 				"height":	"32",
-				"class":      "engineer"
+				"class":      "engineer",
+				"pretty-print": "Guitar Kill"
 		},
 
 		"frontier_kill":
@@ -901,7 +989,8 @@
 				"y":		"96",
 				"width":	"128",
 				"height":	"32",
-				"class":      "engineer"
+				"class":      "engineer",
+				"pretty-print": "Frontier Justice"
 		},
 
 		"wrench_golden":
@@ -911,7 +1000,8 @@
 				"y":		"736",
 				"width":	"96",
 				"height":	"32",
-				"class":      "engineer"
+				"class":      "engineer",
+				"pretty-print": "Golden Wrench"
 		},
 
 		"southern_comfort_kill":
@@ -921,7 +1011,8 @@
 				"y":		"992",
 				"width":	"64",
 				"height":	"32",
-				"class":      "engineer"
+				"class":      "engineer",
+				"pretty-print": "Southern Comfort"
 		},
 
 		"bleed_kill":
@@ -931,7 +1022,8 @@
 				"y":		"928",
 				"width":	"32",
 				"height":	"32",
-				"class":      "multi-class"
+				"class":      "multi-class",
+				"pretty-print": "Bleed"
 		},
 
 		"wrangler_kill":
@@ -941,7 +1033,8 @@
 				"y":		"960",
 				"width":	"32",
 				"height":	"32",
-				"class":      "engineer"
+				"class":      "engineer",
+				"pretty-print": "Wrangler"
 		},
 
 		"robot_arm_kill":
@@ -951,7 +1044,8 @@
 				"y":		"800",
 				"width":	"96",
 				"height":	"32",
-				"class":      "engineer"
+				"class":      "engineer",
+				"pretty-print": "Gunslinger"
 		},
 
 		"robot_arm_combo_kill":
@@ -961,7 +1055,8 @@
 				"y":		"832",
 				"width":	"96",
 				"height":	"32",
-				"class":      "engineer"
+				"class":      "engineer",
+				"pretty-print": "Gunslinger Combo"
 		},
 
 		"robot_arm_blender_kill":
@@ -971,7 +1066,8 @@
 				"y":		"864",
 				"width":	"96",
 				"height":	"32",
-				"class":      "engineer"
+				"class":      "engineer",
+				"pretty-print": "Gunslinger Blender"
 		},
 
 		"degreaser":
@@ -981,7 +1077,8 @@
 				"y":		"896",
 				"width":	"96",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Degreaser"
 		},
 
 		"powerjack":
@@ -991,7 +1088,8 @@
 				"y":		"928",
 				"width":	"96",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Powerjack"
 		},
 
 		"eternal_reward":
@@ -1001,7 +1099,8 @@
 				"y":		"960",
 				"width":	"96",
 				"height":	"32",
-				"class":      "spy"
+				"class":      "spy",
+				"pretty-print": "Your Eternal Reward"
 		},
 
 		"letranger":
@@ -1011,7 +1110,8 @@
 				"y":		"992",
 				"width":	"96",
 				"height":	"32",
-				"class":      "spy"
+				"class":      "spy",
+				"pretty-print": "l'etranger"
 		},
 
 		"short_stop":
@@ -1021,7 +1121,8 @@
 				"y":		"896",
 				"width":	"64",
 				"height":	"32",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Short Stop"
 		},
 
 		"holy_mackerel":
@@ -1031,7 +1132,8 @@
 				"y":		"992",
 				"width":	"96",
 				"height":	"32",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Holy Mackerel"
 		},
 
 		"headtaker":
@@ -1041,7 +1143,8 @@
 				"y":		"128",
 				"width":	"128",
 				"height":	"32",
-				"class":      "demoman"
+				"class":      "demoman",
+				"pretty-print": "Horseless Headless Horsemann's Headtaker"
 		},
 
 		"fryingpan":
@@ -1051,7 +1154,8 @@
 				"y":		"768",
 				"width":	"96",
 				"height":	"32",
-				"class":      "multi-class"
+				"class":      "multi-class",
+				"pretty-print": "Pan"
 		},
 
 		"back_scratcher":
@@ -1061,7 +1165,8 @@
 				"y":		"800",
 				"width":	"96",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Back Scratcher"
 		},
 
 		"boston_basher":
@@ -1071,7 +1176,8 @@
 				"y":		"832",
 				"width":	"96",
 				"height":	"32",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Boston Basher"
 		},
 		
 		"claidheamohmor":
@@ -1081,7 +1187,8 @@
 				"y":		"864",
 				"width":	"96",
 				"height":	"32",
-				"class":      "demoman"
+				"class":      "demoman",
+				"pretty-print": "Claidheamohor"
 		},
 	
 		"steel_fists":
@@ -1091,7 +1198,8 @@
 				"y":		"896",
 				"width":	"96",
 				"height":	"32",
-				"class":      "heavy"
+				"class":      "heavy",
+				"pretty-print": "Steel Fists"
 		},
 					
 		"ullapool_caber_explosion":
@@ -1101,7 +1209,8 @@
 				"y":		"928",
 				"width":	"96",
 				"height":	"32",
-				"class":      "demoman"
+				"class":      "demoman",
+				"pretty-print": "Ullapool Caber Explosion"
 		},
 		
 		"ullapool_caber":
@@ -1111,7 +1220,8 @@
 				"y":		"960",
 				"width":	"96",
 				"height":	"32",
-				"class":      "demoman"
+				"class":      "demoman",
+				"pretty-print": "Ullapool Caber"
 		},
 	
 		"candy_cane":
@@ -1121,7 +1231,8 @@
 				"y":		"768",
 				"width":	"96",
 				"height":	"32",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Candy Cane"
 		},
 		
 		"amputator":
@@ -1131,7 +1242,8 @@
 				"y":		"800",
 				"width":	"96",
 				"height":	"32",
-				"class":      "engineer"
+				"class":      "engineer",
+				"pretty-print": "Amputator"
 		},
 	
 		"blackbox":
@@ -1141,7 +1253,8 @@
 				"y":		"160",
 				"width":	"128",
 				"height":	"32",
-				"class":      "soldier"
+				"class":      "soldier",
+				"pretty-print": "Black Box"
 		},
 
 		"wrench_jag":
@@ -1151,7 +1264,8 @@
 				"y":		"864",
 				"width":	"64",
 				"height":	"32",
-				"class":      "engineer"
+				"class":      "engineer",
+				"pretty-print": "The Jag"
 		},
 	
 		"warrior_spirit":
@@ -1161,7 +1275,8 @@
 				"y":		"832",
 				"width":	"96",
 				"height":	"32",
-				"class":      "heavy"
+				"class":      "heavy",
+				"pretty-print": "Warriors Spirit"
 		},
 
 		"loch_n_load":
@@ -1171,7 +1286,8 @@
 				"y":		"736",
 				"width":	"96",
 				"height":	"32",
-				"class":      "demoman"
+				"class":      "demoman",
+				"pretty-print": "Loch n Load"
 		},
 	
 		"iron_curtain":
@@ -1181,7 +1297,8 @@
 				"y":		"704",
 				"width":	"96",
 				"height":	"32",
-				"class":      "heavy"
+				"class":      "heavy",
+				"pretty-print": "Iron Curtain"
 		},
 	
 		"crusaders_crossbow":
@@ -1191,7 +1308,8 @@
 				"y":		"672",
 				"width":	"96",
 				"height":	"32",
-				"class":      "medic"
+				"class":      "medic",
+				"pretty-print": "Crusadors Crossbow"
 		},
 		
 		"battleneedle":
@@ -1201,7 +1319,8 @@
 				"y":		"640",
 				"width":	"96",
 				"height":	"32",
-				"class":      "medic"
+				"class":      "medic",
+				"pretty-print": "Overdose"
 		},
 	
 		"sydney_sleeper":
@@ -1211,7 +1330,8 @@
 				"y":		"192",
 				"width":	"128",
 				"height":	"32",
-				"class":      "sniper"
+				"class":      "sniper",
+				"pretty-print": "Sydney Sleeper"
 		},
 	
 		"cow_mangler":
@@ -1221,7 +1341,8 @@
 				"y":		"224",
 				"width":	"128",
 				"height":	"32",
-				"class":      "soldier"
+				"class":      "soldier",
+				"pretty-print": "Cow Mangler"
 		},
 	
 		"righteous_bison":
@@ -1231,7 +1352,8 @@
 				"y":		"256",
 				"width":	"128",
 				"height":	"32",
-				"class":      "soldier"
+				"class":      "soldier",
+				"pretty-print": "Righteous Bison"
 		},
 	
 		"bushwacka":
@@ -1241,7 +1363,8 @@
 				"y":		"608",
 				"width":	"96",
 				"height":	"32",
-				"class":      "sniper"
+				"class":      "sniper",
+				"pretty-print": "Bush Wacka"
 		},
 	
 		"taunt_soldier_lumbricus":
@@ -1251,7 +1374,8 @@
 				"y":		"864",
 				"width":	"64",
 				"height":	"32",
-				"class":      "soldier"
+				"class":      "soldier",
+				"pretty-print": "Lumbricus Lid Taunt"
 		},
 						
 		"brass_beast":
@@ -1261,7 +1385,8 @@
 				"y":		"576",
 				"width":	"96",
 				"height":	"32",
-				"class":      "heavy"
+				"class":      "heavy",
+				"pretty-print": "Brass Beast"
 		},
 			
 		"gloves_running_urgently":
@@ -1271,7 +1396,8 @@
 				"y":		"544",
 				"width":	"96",
 				"height":	"32",
-				"class":      "heavy"
+				"class":      "heavy",
+				"pretty-print": "Gloves of Running Urgently"
 		},
 			
 		"blutsauger":
@@ -1281,7 +1407,8 @@
 				"y":		"512",
 				"width":	"96",
 				"height":	"32",
-				"class":      "medic"
+				"class":      "medic",
+				"pretty-print": "Blutsauger"
 		},
 			
 		"sandman":
@@ -1291,7 +1418,8 @@
 				"y":		"480",
 				"width":	"96",
 				"height":	"32",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Sandman"
 
 		},
 	
@@ -1302,7 +1430,8 @@
 				"y":		"448",
 				"width":	"96",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Backburner"
 
 		},
 		
@@ -1313,7 +1442,8 @@
 				"y":		"0",
 				"width":	"96",
 				"height":	"32",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Sun on a Stick"
 
 		},
 	
@@ -1324,7 +1454,8 @@
 				"y":		"32",
 				"width":	"96",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Sharpened Volcano Fragment"
 		},
 		
 		"obj_minisentry":
@@ -1334,7 +1465,8 @@
 				"y":		"416",
 				"width":	"96",
 				"height":	"32",
-				"class":      "engineer"
+				"class":      "engineer",
+				"pretty-print": "Mini Sentry"
 		},
 
 		"kunai":
@@ -1344,7 +1476,8 @@
 				"y":		"64",
 				"width":	"96",
 				"height":	"32",
-				"class":      "sniper"
+				"class":      "sniper",
+				"pretty-print": "Kunai"
 		},
 
 		"warfan":
@@ -1354,7 +1487,8 @@
 				"y":		"96",
 				"width":	"64",
 				"height":	"32",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Fan of War"
 		},
 
 		"demokatana":
@@ -1364,7 +1498,8 @@
 				"y":		"128",
 				"width":	"96",
 				"height":	"32",
-				"class":      "demoman"
+				"class":      "demoman",
+				"pretty-print": "Half Zatoichi"
 		},
 
 		"scout_sword":
@@ -1374,7 +1509,8 @@
 				"y":		"192",
 				"width":	"128",
 				"height":	"32",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Three Rune Blade"
 		},
 
 		"the_maul":
@@ -1384,7 +1520,8 @@
 				"y":		"224",
 				"width":	"96",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "The Maul"
 		},
 
 		"saxxy":
@@ -1394,7 +1531,8 @@
 				"y":		"256",
 				"width":	"96",
 				"height":	"32",
-				"class":      "multi-class"
+				"class":      "multi-class",
+				"pretty-print": "Saxxy"
 		},
 		
 		"market_gardener":
@@ -1404,7 +1542,8 @@
 				"y":		"288",
 				"width":	"96",
 				"height":	"32",
-				"class":      "soldier"
+				"class":      "soldier",
+				"pretty-print": "Market Garden"
 		},
 		
 		"the_winger":
@@ -1414,7 +1553,8 @@
 				"y":		"320",
 				"width":	"96",
 				"height":	"32",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "The Winger"
 		},
 		
 		"tomislav":
@@ -1424,7 +1564,8 @@
 				"y":		"352",
 				"width":	"96",
 				"height":	"32",
-				"class":      "heavy"
+				"class":      "heavy",
+				"pretty-print": "Tomislav"
 		},
 		
 		"soda_popper":
@@ -1434,7 +1575,8 @@
 				"y":		"384",
 				"width":	"96",
 				"height":	"32",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Soda Popper"
 		},
 		
 		"atomizer":
@@ -1444,7 +1586,8 @@
 				"y":		"416",
 				"width":	"96",
 				"height":	"32",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Atomizer"
 		},
 		
 		"bazaar_bargain":
@@ -1454,7 +1597,8 @@
 				"y":		"448",
 				"width":	"96",
 				"height":	"32",
-				"class":      "sniper"
+				"class":      "sniper",
+				"pretty-print": "Bazaar Bargain"
 		},
 		
 		"big_earner":
@@ -1464,7 +1608,8 @@
 				"y":		"480",
 				"width":	"96",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Big Earner"
 		},
 		
 		"detonator":
@@ -1474,7 +1619,8 @@
 				"y":		"512",
 				"width":	"96",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Detonator"
 		},
 		
 		"eviction_notice":
@@ -1484,7 +1630,8 @@
 				"y":		"544",
 				"width":	"96",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Eviction Notice"
 		},
 		
 		"family_business":
@@ -1494,7 +1641,8 @@
 				"y":		"576",
 				"width":	"96",
 				"height":	"32",
-				"class":      "heavy"
+				"class":      "heavy",
+				"pretty-print": "Family Business"
 		},
 		
 		"liberty_launcher":
@@ -1504,7 +1652,8 @@
 				"y":		"608",
 				"width":	"96",
 				"height":	"32",
-				"class":      "soldier"
+				"class":      "soldier",
+				"pretty-print": "Liberty Launcher"
 		},
 		
 		"proto_syringe":
@@ -1514,7 +1663,8 @@
 				"y":		"640",
 				"width":	"96",
 				"height":	"32",
-				"class":      "medic"
+				"class":      "medic",
+				"pretty-print": "Overdose"
 		},
 		
 		"persian_persuader":
@@ -1524,7 +1674,8 @@
 				"y":		"672",
 				"width":	"96",
 				"height":	"32",
-				"class":      "demoman"
+				"class":      "demoman",
+				"pretty-print": "Persian Persuador"
 		},
 		
 		"reserve_shooter":
@@ -1534,7 +1685,8 @@
 				"y":		"704",
 				"width":	"96",
 				"height":	"32",
-				"class":      "multi-class"
+				"class":      "multi-class",
+				"pretty-print": "Reserve Shooter"
 		},
 		
 		"shahanshah":
@@ -1544,7 +1696,8 @@
 				"y":		"736",
 				"width":	"96",
 				"height":	"32",
-				"class":      "sniper"
+				"class":      "sniper",
+				"pretty-print": "Shahanshah"
 		},
 		
 		"enforcer":
@@ -1554,7 +1707,8 @@
 				"y":		"768",
 				"width":	"96",
 				"height":	"32",
-				"class":      "spy"
+				"class":      "spy",
+				"pretty-print": "The Enforcer"
 		},
 		
 		"disciplinary_action":
@@ -1564,7 +1718,8 @@
 				"y":		"800",
 				"width":	"96",
 				"height":	"32",
-				"class":      "soldier"
+				"class":      "soldier",
+				"pretty-print": "Disciplinary Action"
 		},
 		
 		"splendid_screen":
@@ -1574,7 +1729,8 @@
 				"y":		"832",
 				"width":	"96",
 				"height":	"32",
-				"class":      "demoman"
+				"class":      "demoman",
+				"pretty-print": "Splendid Screen"
 		},
 		
 		"mantreads":
@@ -1584,7 +1740,8 @@
 				"y":		"864",
 				"width":	"96",
 				"height":	"32",
-				"class":      "soldier"
+				"class":      "soldier",
+				"pretty-print": "Man Treads"
 		},
 		
 		"solemn_vow":
@@ -1594,7 +1751,8 @@
 				"y":		"896",
 				"width":	"96",
 				"height":	"32",
-				"class":      "medic"
+				"class":      "medic",
+				"pretty-print": "Solemn Vow"
 		},
 		
 		"nessieclub":
@@ -1604,7 +1762,8 @@
 				"y":		"928",
 				"width":	"128",
 				"height":	"32",
-				"class":      "demoman"
+				"class":      "demoman",
+				"pretty-print": "Nessies Nine Iron"
 		},
 		
 		"mailbox":
@@ -1614,7 +1773,8 @@
 				"y":		"960",
 				"width":	"128",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Postal Pummeler"
 		},
 		
 		"quake_rl":
@@ -1624,7 +1784,8 @@
 				"y":		"992",
 				"width":	"128",
 				"height":	"32",
-				"class":      "soldier"
+				"class":      "soldier",
+				"pretty-print": "The Original"
 		},
 		
 		"diamondback":
@@ -1634,7 +1795,8 @@
 				"y":		"896",
 				"width":	"64",
 				"height":	"32",
-				"class":      "spy"
+				"class":      "spy",
+				"pretty-print": "The Diamondback"
 		},
 		
 		"widowmaker":
@@ -1644,7 +1806,8 @@
 				"y":		"960",
 				"width":	"64",
 				"height":	"32",
-				"class":      "engineer"
+				"class":      "engineer",
+				"pretty-print": "Widowmaker"
 		},
 		
 		"short_circuit":
@@ -1654,7 +1817,8 @@
 				"y":		"928",
 				"width":	"64",
 				"height":	"32",
-				"class":      "engineer"
+				"class":      "engineer",
+				"pretty-print": "Short Circuit"
 		},
 		"machina":
 		{
@@ -1663,7 +1827,8 @@
 				"y":		"288",
 				"width":	"128",
 				"height":	"32",
-				"class":      "sniper"		
+				"class":      "sniper",
+				"pretty-print": "Machina"		
 		},
 		"player_penetration":
 		{
@@ -1672,7 +1837,8 @@
 				"y":		"320",
 				"width":	"128",
 				"height":	"32",
-				"class":      "sniper"		
+				"class":      "sniper",
+				"pretty-print": "Player Penetration"		
 		},
 		"headshot_player_penetration":
 		{
@@ -1681,7 +1847,8 @@
 				"y":		"352",
 				"width":	"128",
 				"height":	"32",
-				"class":      "sniper"		
+				"class":      "sniper",
+				"pretty-print": "Headshot Penetration"		
 		},
 		"nonnonviolent_protest":
 		{
@@ -1690,7 +1857,8 @@
 				"y":		"0",
 				"width":	"96",
 				"height":	"32",
-				"class":      "multi-class"		
+				"class":      "multi-class",
+				"pretty-print": "Concientous Objector"		
 		},
 		"scotland_shard":
 		{
@@ -1699,7 +1867,8 @@
 				"y":		"32",
 				"width":	"96",
 				"height":	"32",
-				"class":      "demoman"		
+				"class":      "demoman",
+				"pretty-print": "Scottish Handshake"		
 		},
 		"baleful_beacon":
 		{
@@ -1707,7 +1876,7 @@
 				"x":		"0",
 				"y":		"64",
 				"width":	"96",
-				"height":	"32"		
+				"height":	"32",		
 		},
 		"unarmed_combat":
 		{
@@ -1716,7 +1885,8 @@
 				"y":		"96",
 				"width":	"96",
 				"height":	"32",
-				"class":      "multi-class"			
+				"class":      "multi-class",
+				"pretty-print": "Unarmed Combat"			
 		},
 		"voodoo_pin":
 		{
@@ -1725,7 +1895,8 @@
 				"y":		"128",
 				"width":	"96",
 				"height":	"32",
-				"class":      "spy"			
+				"class":      "spy",
+				"pretty-print": "Wanga Prick"			
 		},
 		"eyeball_rocket":
 		{
@@ -1734,7 +1905,8 @@
 				"y":		"160",
 				"width":	"96",
 				"height":	"32",
-				"class":      "merasmus"			
+				"class":      "merasmus",
+				"pretty-print": "Merasmus Rocket"			
 		},
 		"purgatory":
 		{
@@ -1752,7 +1924,8 @@
 				"y":		"256",
 				"width":	"96",
 				"height":	"32",
-				"class":      "heavy"			
+				"class":      "heavy",
+				"pretty-print": "Apoco Fists"			
 		},
 		"sharp_dresser":
 		{
@@ -1761,7 +1934,8 @@
 				"y":		"288",
 				"width":	"96",
 				"height":	"32",
-				"class":      "spy"		
+				"class":      "spy"	,
+				"pretty-print": "Sharp Dresser"	
 		},
 		"sharp_dresser_backstab":
 		{
@@ -1770,7 +1944,8 @@
 				"y":		"320",
 				"width":	"96",
 				"height":	"32",
-				"class":      "spy"		
+				"class":      "spy"	,
+				"pretty-print": "Sharp Dresser Backstab"	
 		},				
 		"phlogistinator":
 		{
@@ -1779,7 +1954,8 @@
 				"y":		"0",
 				"width":	"128",
 				"height":	"32",
-				"class":      "pyro"	
+				"class":      "pyro",
+				"pretty-print": "Phlogistinator"	
 		},
 		"manmelter":
 		{
@@ -1788,7 +1964,8 @@
 				"y":		"32",
 				"width":	"128",
 				"height":	"32",
-				"class":      "pyro"	
+				"class":      "pyro",
+				"pretty-print": "Manmelter"	
 		},
 		"thirddegree":
 		{
@@ -1797,7 +1974,8 @@
 				"y":		"352",
 				"width":	"96",
 				"height":	"32",
-				"class":      "pyro"	
+				"class":      "pyro",
+				"pretty-print": "Third Degree"	
 		},
 		"eureka_effect":
 		{
@@ -1806,7 +1984,8 @@
 				"y":		"416",
 				"width":	"96",
 				"height":	"32",
-				"class":      "engineer"	
+				"class":      "engineer",
+				"pretty-print": "Eureka Effect"	
 		},
 		"pomson":
 		{
@@ -1815,7 +1994,8 @@
 				"y":		"64",
 				"width":	"128",
 				"height":	"32",
-				"class":      "engineer"	
+				"class":      "engineer",
+				"pretty-print": "Pomson"	
 		},
 		"holiday_punch":
 		{
@@ -1824,7 +2004,8 @@
 				"y":		"448",
 				"width":	"96",
 				"height":	"32",
-				"class":      "heavy"	
+				"class":      "heavy",
+				"pretty-print": "Holiday Punch"	
 		},
 		"spy_cicle":
 		{
@@ -1833,7 +2014,8 @@
 				"y":		"512",
 				"width":	"96",
 				"height":	"32",
-				"class":      "spy"	
+				"class":      "spy",
+				"pretty-print": "Spy-cicle"	
 		},
 		"wrap_assassin":
 		{
@@ -1842,7 +2024,8 @@
 				"y":		"96",
 				"width":	"128",
 				"height":	"32",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Wrap Assasin"
 		},
 		"black_rose":
 		{
@@ -1851,7 +2034,8 @@
 				"y":		"576",
 				"width":	"96",
 				"height":	"32",
-				"class":      "spy"	
+				"class":      "spy",
+				"pretty-print": "Black Rose"	
 		},
 		"lollichop":
 		{
@@ -1860,7 +2044,8 @@
 				"y":		"608",
 				"width":	"96",
 				"height":	"32",
-				"class":      "pyro"	
+				"class":      "pyro",
+				"pretty-print": "Lollichop"	
 		},
 		"scorchshot":
 		{
@@ -1869,7 +2054,8 @@
 				"y":		"640",
 				"width":	"96",
 				"height":	"32",
-				"class":      "pyro"	
+				"class":      "pyro",
+				"pretty-print": "Scorch Shot"	
 		},
 		"rainblower":
 		{
@@ -1878,7 +2064,8 @@
 				"y":		"672",
 				"width":	"96",
 				"height":	"32",
-				"class":      "pyro"	
+				"class":      "pyro",
+				"pretty-print": "Rain Blower"	
 		},
 		"pro_smg":
 		{
@@ -1887,7 +2074,8 @@
 				"y":		"705",
 				"width":	"64",
 				"height":	"31",
-				"class":      "sniper"
+				"class":      "sniper",
+				"pretty-print": "Cleaners Carbine"
 		},
 		"pep_pistol":
 		{
@@ -1896,7 +2084,8 @@
 				"y":		"737",
 				"width":	"48",
 				"height":	"31",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Pretty Boys Pocket Pistol"
 		},
 		"armageddon":
 		{
@@ -1905,7 +2094,8 @@
 				"y":		"769",
 				"width":	"96",
 				"height":	"31",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Armageddon Taunt"
 		},
 		"pro_rifle":
 		{
@@ -1914,7 +2104,8 @@
 				"y":		"125",
 				"width":	"128",
 				"height":	"35",
-				"class":      "sniper"
+				"class":      "sniper",
+				"pretty-print": "Hitmans Heatmaker"
 		},
 		"pep_brawlerblaster":
 		{
@@ -1923,7 +2114,8 @@
 				"y":		"161",
 				"width":	"128",
 				"height":	"31",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Babyfaces Blaster"
 		},
 		"dumpster_device":
 		{
@@ -1932,7 +2124,8 @@
 				"y":		"187",
 				"width":	"128",
 				"height":	"36",
-				"class":      "soldier"
+				"class":      "soldier",
+				"pretty-print": "Beggars Bazooka"
 		},
 		"long_heatmaker":
 		{
@@ -1941,7 +2134,8 @@
 				"y":		"800",
 				"width":	"96",
 				"height":	"31",
-				"class":      "heavy"
+				"class":      "heavy",
+				"pretty-print": "Huo Long Heater"
 		},
 		"annihilator":
 		{
@@ -1950,7 +2144,8 @@
 				"y":		"832",
 				"width":	"96",
 				"height":	"31",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Neon Annhilator"
 		},
 		"guillotine":
 		{
@@ -1959,7 +2154,8 @@
 				"y":		"864",
 				"width":	"96",
 				"height":	"31",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Flying Guillotine"
 		},
 		"recorder":
 		{
@@ -1977,7 +2173,8 @@
 				"y":		"577",
 				"width":	"128",
 				"height":	"32",
-				"class":      "soldier"
+				"class":      "sniper",
+				"pretty-print": "TF Classic Rifle"
 		},
 		"tide_turner":
 		{
@@ -1986,7 +2183,8 @@
 				"y":		"545",
 				"width":	"64",
 				"height":	"32",
-				"class":      "demoman"
+				"class":      "demoman",
+				"pretty-print": "Tide Turner"
 		},
 		"bread_bite":
 		{
@@ -1995,7 +2193,8 @@
 				"y":		"577",
 				"width":	"64",
 				"height":	"32",
-				"class":      "heavy"
+				"class":      "heavy",
+				"pretty-print": "Bread Bite"
 		},
 		"snack_attack":
 		{
@@ -2004,7 +2203,8 @@
 				"y":		"608",
 				"width":	"128",
 				"height":	"32",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Snack Attack"
 		},
 		"back_scatter":
 		{
@@ -2013,7 +2213,8 @@
 				"y":		"512",
 				"width":	"128",
 				"height":	"32",
-				"class":      "scout"
+				"class":      "scout",
+				"pretty-print": "Back Attack"
 		},
 		"airstrike":
 		{
@@ -2022,7 +2223,8 @@
 				"y":		"545",
 				"width":	"128",
 				"height":	"32",
-				"class":      "soldier"
+				"class":      "soldier",
+				"pretty-print": "Airstrike"
 		},
 
 		"skullbat":
@@ -2032,7 +2234,8 @@
 				"y":		"288",
 				"width":	"96",
 				"height":	"32",
-				"class":      "multi-class"
+				"class":      "multi-class",
+				"pretty-print": "Skull"
 		},
 		"tf_projectile_arrow":
 		{
@@ -2041,7 +2244,8 @@
 				"y":		"98",
 				"width":	"96", 
 				"height":	"32",
-				"class":      "sniper"
+				"class":      "sniper",
+				"pretty-print": "Huntsman"
 		},
 		"player":
 		{
@@ -2050,7 +2254,8 @@
 				"y":		"288",
 				"width":	"96",
 				"height":	"32",
-				"class":      "suicide"
+				"class":      "suicide",
+				"pretty-print": "Suicide"
 		},
 		"world":
 		{
@@ -2059,7 +2264,8 @@
 				"y":		"288",
 				"width":	"96",
 				"height":	"32",
-				"class":      "environment"
+				"class":      "environment",
+				"pretty-print": "World"
 		},
 		"unique_pickaxe_escape":
 		{
@@ -2068,7 +2274,8 @@
 				"y":		"431",
 				"width":	"64",
 				"height":	"32",
-				"class":      "soldier"
+				"class":      "soldier",
+				"pretty-print": "Pickaxe Escape"
 		},
 		
 		
@@ -2081,7 +2288,8 @@
 				"y":		"384",
 				"width":	"128",
 				"height":	"32",
-				"class":      "demoman"
+				"class":      "demoman",
+				"pretty-print": "Loose Cannon"
 		},		
 		"rescue_ranger":
 		{
@@ -2090,7 +2298,8 @@
 				"y":		"416",
 				"width":	"128",
 				"height":	"32",
-				"class":      "engineer"
+				"class":      "engineer",
+				"pretty-print": "Rescue Ranger"
 		},
 		"memory_maker":
 		{
@@ -2099,7 +2308,8 @@
 				"y":		"0",
 				"width":	"64",
 				"height":	"32",
-				"class":      "multi-class"
+				"class":      "multi-class",
+				"pretty-print": "Memory Maker"
 		},		
 		"loose_cannon_reflect":
 		{
@@ -2108,7 +2318,8 @@
 				"y":		"32",
 				"width":	"64",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Loose Cannon Reflect"
 		},		
 		"rescue_ranger_reflect":
 		{
@@ -2117,7 +2328,8 @@
 				"y":		"64",
 				"width":	"64",
 				"height":	"32",
-				"class":      "pyro"
+				"class":      "pyro",
+				"pretty-print": "Rescue Ranger Reflect"
 		},
 		"ham_shank":
 		{
@@ -2126,7 +2338,8 @@
 				"y":		"96",
 				"width":	"64",
 				"height":	"32",
-				"class":      "multi-class"
+				"class":      "multi-class",
+				"pretty-print": "Ham"
 		},
 		"southern_hospitality":
 		{
@@ -2135,7 +2348,8 @@
 				"y":		"992",
 				"width":	"64",
 				"height":	"32",
-				"class":      "engineer"
+				"class":      "engineer",
+				"pretty-print": "Southern Hospitality"
 		},
 		"frontier_justice":
 		{
@@ -2144,7 +2358,8 @@
 				"y":		"96",
 				"width":	"128",
 				"height":	"32",
-				"class":      "engineer"
+				"class":      "engineer",
+				"pretty-print": "Frontier Justice"
 		},
 		"awper_hand":
 		{
@@ -2153,6 +2368,7 @@
 				"y":		"96",
 				"width":	"32",
 				"height":	"32",
-				"class":      "sniper"
+				"class":      "sniper",
+				"pretty-print": "Awper Hand"
 		},
 }

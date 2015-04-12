@@ -9,17 +9,19 @@ class TreeGraph{
 	HashMap<String,Integer> classKills;
 	Hashtable<String,DeathCount> data;
 	Treemap map;
+  WeaponToClassMap dataMap = new WeaponToClassMap();
+  boolean classObject = false;
  
- 	TreeGraph(Hashtable<String, DeathCount> data){
+ 	TreeGraph(Hashtable<String, DeathCount> data, Area graphArea, Area statsArea){
  		classKills = new HashMap<String,Integer>();
  		this.data = data;
-    processData();
+    processClassData();
     processTreeGraph();
 
 
  	}
  
- 	public void processData(){
+ 	public void processWeaponsData(){
  		Iterator it = data.entrySet().iterator();
     	while (it.hasNext()) {
         	Map.Entry pair = (Map.Entry)it.next();
@@ -28,23 +30,40 @@ class TreeGraph{
         	classKills.put(pair.getKey().toString(),count.getCount());
 
         	it.remove(); // avoids a ConcurrentModificationException
+
+          classObject = false;
     	}
 
  	}
 
+  public void processClassData(){
+    Iterator it = data.entrySet().iterator();
+      while (it.hasNext()) {
+          Map.Entry pair = (Map.Entry)it.next();
+          DeathCount count = (DeathCount) pair.getValue();
+
+          classKills.put(dataMap.getPlayerClass(pair.getKey().toString()),count.getCount());
+
+          it.remove(); // avoids a ConcurrentModificationException
+
+          classObject = true;
+      }
+
+  }
+
  	public void processTreeGraph(){
- 		ClassKillsMap mapData = new ClassKillsMap(classKills);
+ 		ClassKillsMap mapData = new ClassKillsMap(classKills,classObject);
 
  		
 
- 		map = new Treemap(mapData,0,0,width,height);
+ 		map = new Treemap(mapData,0,height-graphArea.getHeight(),graphArea.getWidth(),graphArea.getHeight());
 
  	}
 
  	void draw(){
  		if(map!= null){
  			map.draw();
-      System.out.println("Tree Draw");
+
  		}
  		
  	}
@@ -60,7 +79,7 @@ class ClassKillsMap extends SimpleMapModel{
 
 	}
 
-	ClassKillsMap(HashMap<String,Integer> classKills){
+	ClassKillsMap(HashMap<String,Integer> classKills,boolean classObject){
 		this.classKills = classKills;
 		Iterator it = classKills.entrySet().iterator();
     killsArray = new ArrayList<KillsItem>();
@@ -69,6 +88,7 @@ class ClassKillsMap extends SimpleMapModel{
         	int value = (Integer) pair.getValue();
 
       			KillsItem item = new KillsItem(pair.getKey().toString());
+            item.setClassObject(classObject);
         		for(int i = 0; i< value; i++){
         			item.incrementSize();
         		}
@@ -88,20 +108,37 @@ class ClassKillsMap extends SimpleMapModel{
 
 class KillsItem extends SimpleMapItem {
   String word;
+  boolean classObject = false;
+  WeaponToClassMap dataMap = new WeaponToClassMap();
 
   KillsItem(String word) {
     this.word = word;
   }
 
+  void setClassObject(boolean object){
+    classObject = object;
+  }
+
   void draw() {
-    fill(255);
+    String printWord =  word;
+
+    if(classObject){
+
+      fill(dataMap.getClassColour(word));
+    }else{
+      fill(dataMap.getClassColour(dataMap.getPlayerClass(word)));
+      printWord = dataMap.getPrettyPrintWeaponName(word);
+    }
+
+
+     
     rect(x, y, w, h);
 
-    fill(0);
-    if (w > textWidth(word) + 6) {
+    fill(255);
+    if (w > textWidth(printWord) + 6) {
       if (h > textAscent() + 6) {
         textAlign(CENTER, CENTER);
-        text(word, x + w/2, y + h/2);
+        text(printWord, x + w/2, y + h/2);
       }
     }
   }
