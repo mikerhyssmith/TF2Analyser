@@ -148,7 +148,7 @@ void controlEvent(ControlEvent theEvent) {
         
         //nGraph = new NodeGraph(graphArea, nodeControl);
 
-        circleGraph = new CircleGraph(graphArea, deaths, 7, 100);
+        circleGraph = new CircleGraph(graphArea, deaths, 7, 100,graphKeyArea);
         
       }else if(theEvent.group().value() ==2){
         treeGraph = new TreeGraph(processor.getDeaths("",-1),graphArea,graphKeyArea);

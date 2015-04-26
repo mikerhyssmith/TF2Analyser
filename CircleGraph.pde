@@ -17,11 +17,13 @@ class CircleGraph {
   int circleScale;
   
   int totalIterations, remainingIterations;
+
+  ClassKey classKey;
   
   //Used for per-class weapon colours
   WeaponToClassMap dataMap = new WeaponToClassMap();
 
-  CircleGraph(Area area, Hashtable<String,DeathCount> deaths, float spacing, int iterations)
+  CircleGraph(Area area, Hashtable<String,DeathCount> deaths, float spacing, int iterations, Area keyArea)
   {
     this.graphArea =area;
     this.xCentre = graphArea.getWidth()/2 + graphArea.getX();
@@ -36,6 +38,8 @@ class CircleGraph {
     //Used to scale circle radius with kills
     this.circleScale = 15;
     createCircles();
+
+    classKey = new ClassKey(keyArea);
     
     //Set up font
     arial = createFont("Arial",12,true);
@@ -196,6 +200,7 @@ class CircleGraph {
     boolean circleSelected = false;
     String circleKey = "";
     DeathCount death;
+    classKey.draw();
     fill(150);
     stroke(0);
     /**Uncomment this to limit iterations

@@ -11,6 +11,7 @@ class VisualizationStats {
   String currentSelectedPlayer = "";
   Area statsArea;
   
+  
   public VisualizationStats(ArrayList<Match> matches,DataProcessor reader, Area statsArea){
     this.matches = matches;
     this.deaths = reader.getDeaths("",-1);

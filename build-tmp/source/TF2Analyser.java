@@ -86,7 +86,7 @@ static final int WINDOWWIDTH=1000;
 static final int WINDOWHEIGHT=600;
 
 public void setup() {
-  size(WINDOWWIDTH,WINDOWHEIGHT,P2D);
+  size(WINDOWWIDTH,WINDOWHEIGHT, P2D);
   logo = loadImage("logo.png");
   smooth();
   background(128);
@@ -185,14 +185,14 @@ public void controlEvent(ControlEvent theEvent) {
         //UI.addVisualizationOptions(players,matches,true); 
         
         //Hide summary info box
-        UI.removeVisualizationStats();
+        //UI.removeVisualizationStats();
         
         //Make sure that barchart slider is removed
-        barControl.remove("BarSlider");
+       // barControl.remove("BarSlider");
         
         //nGraph = new NodeGraph(graphArea, nodeControl);
 
-        circleGraph = new CircleGraph(graphArea, deaths, 7, 100);
+        circleGraph = new CircleGraph(graphArea, deaths, 7, 100,graphKeyArea);
         
       }else if(theEvent.group().value() ==2){
         treeGraph = new TreeGraph(processor.getDeaths("",-1),graphArea,graphKeyArea);
@@ -586,7 +586,12 @@ class CircleGraph {
   
   int totalIterations, remainingIterations;
 
-  CircleGraph(Area area, Hashtable<String,DeathCount> deaths, float spacing, int iterations)
+  ClassKey classKey;
+  
+  //Used for per-class weapon colours
+  WeaponToClassMap dataMap = new WeaponToClassMap();
+
+  CircleGraph(Area area, Hashtable<String,DeathCount> deaths, float spacing, int iterations, Area keyArea)
   {
     this.graphArea =area;
     this.xCentre = graphArea.getWidth()/2 + graphArea.getX();
@@ -599,8 +604,10 @@ class CircleGraph {
     remainingIterations = totalIterations;
     
     //Used to scale circle radius with kills
-    this.circleScale = 2;
+    this.circleScale = 15;
     createCircles();
+
+    classKey = new ClassKey(keyArea);
     
     //Set up font
     arial = createFont("Arial",12,true);
@@ -628,7 +635,7 @@ class CircleGraph {
       key = enumDeath.nextElement();
       death = deaths.get(key);
       
-      circles.add(new Circle(xCentre + 2*(rand.nextFloat() -0.5f),yCentre + 2*(rand.nextFloat() -0.5f), death.getCount()*circleScale, key));
+      circles.add(new Circle(xCentre + 2*(rand.nextFloat() -0.5f),yCentre + 2*(rand.nextFloat() -0.5f), sqrt(death.getCount())*circleScale, key));
     }
     
     //Sort according to size
@@ -659,74 +666,65 @@ class CircleGraph {
       //First push circles in if they are outside the graph boundary
       float xShift = 0;
       float yShift = 0;
-      System.out.println("Circle: "+ c1.getLabel());
       //Off the right of the screen
       if((c1.getX() + c1.getRadius()) > graphArea.getWidth() + graphArea.getX()){
-        xShift = ((graphArea.getWidth() + graphArea.getX()) - (c1.getX() + c1.getRadius())) *10*damping;
-        System.out.println("Right "+xShift);
+        xShift = ((graphArea.getWidth() + graphArea.getX()) - (c1.getX() + c1.getRadius())) * damping;
       }
       //Off the left of the screen
       if((c1.getX() - c1.getRadius()) < graphArea.getX()){
-        xShift = (graphArea.getX() - (c1.getX() - c1.getRadius())) * 10*damping;
-                System.out.println("left "+xShift);
+        xShift = (graphArea.getX() - (c1.getX() - c1.getRadius())) *damping;
       }
       //Off the bottom of the screen
       if((c1.getY() + c1.getRadius()) > graphArea.getHeight() + graphArea.getY()){
-        yShift = ((graphArea.getHeight() + graphArea.getY()) - (c1.getY() + c1.getRadius())) * 10* damping;
-                System.out.println("bottom "+yShift);
+        yShift = ((graphArea.getHeight() + graphArea.getY()) - (c1.getY() + c1.getRadius())) * damping;
       }
       //Off the top of the screen
       if((c1.getY() - c1.getRadius()) < graphArea.getY()){
-        yShift = (graphArea.getY() - (c1.getY() - c1.getRadius())) *10* damping;
-                System.out.println("top "+yShift);
+        yShift = (graphArea.getY() - (c1.getY() - c1.getRadius())) * damping;
       }
       //Apply the necessary shift
-
       c1.setX(c1.getX()+xShift);
       c1.setY(c1.getY()+yShift);
       
-      //for (int j = i+1; j < circles.size(); j++)
-      for(int j = circles.size()-1; j>i; j--)
+      for (int j = i+1; j < circles.size(); j++)
+     // for(int j = circles.size()-1; j>i; j--)
       {
         Circle c2 = (Circle) circles.get(j);
 
-        float squareDistance = distanceSquared(c1.getX(), c1.getY(), c2.getX(), c2.getY());
-        float r = c1.getRadius() + c2.getRadius() + circleSpacing;
+        float squareSeperation = distanceSquared(c1.getX(), c1.getY(), c2.getX(), c2.getY());
+        float targetSeperation = c1.getRadius() + c2.getRadius() + circleSpacing;
 
         //If circles are closer than they should be
-        if (squareDistance < (r*r))
+        if (squareSeperation < (targetSeperation*targetSeperation))
         {
           //Calculate x, y and total seperations
-          float dx = c2.getX() - c1.getX();
-          float dy = c2.getY() - c1.getY();
-          float totalDistance = sqrt(squareDistance);
+          float xSeperation = c2.getX() - c1.getX();
+          float ySeperation = c2.getY() - c1.getY();
+          float totalSeperation = sqrt(squareSeperation);
 
-          //Distance squared from the centre of the graph
-          float cd1 = distanceSquared(c1.getX(), c1.getY(), xCentre, yCentre);
-          float cd2 = distanceSquared(c2.getX(), c2.getY(), xCentre, yCentre);
+          //Distance squared from the centre of the graph, for each circle
+          float centreSeperation1 = distanceSquared(c1.getX(), c1.getY(), xCentre, yCentre);
+          float centreSeperation2 = distanceSquared(c2.getX(), c2.getY(), xCentre, yCentre);
           
-          //think this is unused
-         // float total = dx + dy;
-
           //Increment to apply to each circle
-          float vx = (dx/totalDistance) * (r-totalDistance);
-          float vy = (dy/totalDistance) * (r-totalDistance);
+          float xIncrement = (xSeperation/totalSeperation) * (targetSeperation-totalSeperation);
+          float yIncrement = (ySeperation/totalSeperation) * (targetSeperation-totalSeperation);
 
-          //Alter circle positions based on increments
-          c1.x -= vx * cd1/(cd1+cd2);
-          c1.y -= vy * cd1/(cd1+cd2);
-          c2.x += vx * cd2/(cd1+cd2);
-          c2.y += vy * cd2/(cd1+cd2);
+          //Alter circle positions based on increment, radius distance from the centre
+          c1.x -= xIncrement * (c2.getRadius()/(c1.getRadius()+c2.getRadius())) * (centreSeperation1/(centreSeperation1+centreSeperation2));
+          c1.y -= yIncrement * (c2.getRadius()/(c1.getRadius()+c2.getRadius())) * (centreSeperation1/(centreSeperation1+centreSeperation2));
+          c2.x += xIncrement * (c1.getRadius()/(c1.getRadius()+c2.getRadius())) * (centreSeperation2/(centreSeperation1+centreSeperation2));
+          c2.y += yIncrement * (c1.getRadius()/(c1.getRadius()+c2.getRadius())) * (centreSeperation2/(centreSeperation1+centreSeperation2));
         }    
       }
     }
-/*
+
     //Circles move to centre by default
     for (int i = 0; i < circles.size (); i++)
     {
       Circle c = (Circle) circles.get(i);
-      float vx = (c.x - xCentre) *damping;
-      float vy = (c.y - yCentre) *damping;
+      float vx = (c.x - xCentre) *damping*damping;
+      float vy = (c.y - yCentre) *damping*damping;
       c.x -= vx;
       c.y -= vy;
     }
@@ -770,9 +768,10 @@ class CircleGraph {
     boolean circleSelected = false;
     String circleKey = "";
     DeathCount death;
+    classKey.draw();
     fill(150);
     stroke(0);
-    /**
+    /**Uncomment this to limit iterations
     if(remainingIterations > 0){
       packCircles();
       System.out.println("pack iteration " + remainingIterations);
@@ -784,6 +783,7 @@ class CircleGraph {
     for (int i = 0; i < circles.size (); i++)
     {
       Circle c =  circles.get(i);
+      fill(dataMap.getClassColour(dataMap.getPlayerClass(c.getLabel())));
       c.draw();
       //Draw crit kills and tooltip if mouse is over the bar
       if(c.containsPoint(mouseX,mouseY)){
@@ -800,6 +800,87 @@ class CircleGraph {
   }
 }
 
+class ClassKey{
+	Area keyArea;
+	WeaponToClassMap dataMap = new WeaponToClassMap();
+	PFont arial;
+
+	public ClassKey(Area keyArea){
+		this.keyArea = keyArea;
+		arial = createFont("Arial",11,true);
+
+	}
+
+
+	public void draw(){
+
+	fill(200);
+    rect(keyArea.getX(), keyArea.getY(), keyArea.getWidth(), keyArea.getHeight(), 7);
+    textFont(arial);       
+    
+    textAlign(LEFT);
+    ellipseMode(CORNER);
+
+    fill(0);    
+    text("Scout", keyArea.getX()+10, keyArea.getY()+20);
+    text("Soldier", keyArea.getX()+100, keyArea.getY()+20); 
+    text("Pyro", keyArea.getX()+190, keyArea.getY()+20);
+    text("Demo", keyArea.getX()+10, keyArea.getY()+40);
+    text("Heavy", keyArea.getX()+100, keyArea.getY()+40);
+    text("Engi", keyArea.getX()+190, keyArea.getY()+40);
+    text("Medic", keyArea.getX()+10, keyArea.getY()+60);
+    text("Sniper", keyArea.getX()+100, keyArea.getY()+60);
+    text("Spy", keyArea.getX()+190, keyArea.getY()+60);
+    text("Environment", keyArea.getX()+50, keyArea.getY()+80);
+    text("Suicide", keyArea.getX()+170, keyArea.getY()+80);
+
+    fill(dataMap.getClassColour("scout"));
+    ellipse(keyArea.getX() + 45, keyArea.getY() + 10,10,10);
+
+    
+    fill(dataMap.getClassColour("soldier"));
+    ellipse(keyArea.getX() + 145, keyArea.getY() + 10,10,10);
+
+    
+    fill(dataMap.getClassColour("pyro"));
+    ellipse(keyArea.getX() + 220, keyArea.getY() + 10,10,10);
+
+    
+    fill(dataMap.getClassColour("demoman"));
+    ellipse(keyArea.getX() + 45, keyArea.getY() + 30,10,10);
+
+    
+    fill(dataMap.getClassColour("heavy"));
+    ellipse(keyArea.getX() + 145, keyArea.getY() + 30,10,10);
+
+    
+    fill(dataMap.getClassColour("engineer"));
+    ellipse(keyArea.getX() + 220, keyArea.getY() + 30,10,10);
+
+    
+    fill(dataMap.getClassColour("medic"));
+    ellipse(keyArea.getX() + 45, keyArea.getY() + 50,10,10);
+
+    
+    fill(dataMap.getClassColour("sniper"));
+    ellipse(keyArea.getX() + 145, keyArea.getY() + 50,10,10);
+
+    
+    fill(dataMap.getClassColour("spy"));
+    ellipse(keyArea.getX() + 220, keyArea.getY() + 50,10,10);
+
+    
+    fill(dataMap.getClassColour("environment"));
+    ellipse(keyArea.getX() + 120, keyArea.getY() + 70,10,10);
+
+    
+    fill(dataMap.getClassColour("suicide"));
+    ellipse(keyArea.getX() + 210, keyArea.getY() + 70,10,10);
+	}
+
+
+
+}
 
 
 
@@ -1801,87 +1882,21 @@ class TreeGraph{
   WeaponToClassMap dataMap = new WeaponToClassMap();
   boolean classObject = false;
   PFont arial;
-  Area statsArea;
+  Area graphKeyArea;
+  ClassKey key ;
 
  
- 	TreeGraph(Hashtable<String, DeathCount> data, Area graphArea, Area statsArea){
+ 	TreeGraph(Hashtable<String, DeathCount> data, Area graphArea, Area graphKeyArea){
  		classKills = new HashMap<String,Integer>();
  		this.data = data;
     arial = createFont("Arial",11,true);
-    this.statsArea = statsArea;
+    this.graphKeyArea = graphKeyArea;
 
+    key = new ClassKey(graphKeyArea);
     processWeaponsData();
     processTreeGraph();
  	}
 
-/**
-* Draws the key for the graph showing the class name next to the colour that represents it.
-*/
-  public void drawKey(){
-    fill(200);
-    rect(statsArea.getX(), statsArea.getY(), statsArea.getWidth(), statsArea.getHeight(), 7);
-    textFont(arial);       
-    
-    textAlign(LEFT);
-    ellipseMode(CORNER);
-
-    fill(0);    
-    text("Scout", statsArea.getX()+10, statsArea.getY()+20);
-    text("Soldier", statsArea.getX()+100, statsArea.getY()+20); 
-    text("Pyro", statsArea.getX()+190, statsArea.getY()+20);
-    text("Demo", statsArea.getX()+10, statsArea.getY()+40);
-    text("Heavy", statsArea.getX()+100, statsArea.getY()+40);
-    text("Engi", statsArea.getX()+190, statsArea.getY()+40);
-    text("Medic", statsArea.getX()+10, statsArea.getY()+60);
-    text("Sniper", statsArea.getX()+100, statsArea.getY()+60);
-    text("Spy", statsArea.getX()+190, statsArea.getY()+60);
-    text("Environment", statsArea.getX()+50, statsArea.getY()+80);
-    text("Suicide", statsArea.getX()+170, statsArea.getY()+80);
-
-    fill(dataMap.getClassColour("scout"));
-    ellipse(statsArea.getX() + 45, statsArea.getY() + 10,10,10);
-
-    
-    fill(dataMap.getClassColour("soldier"));
-    ellipse(statsArea.getX() + 145, statsArea.getY() + 10,10,10);
-
-    
-    fill(dataMap.getClassColour("pyro"));
-    ellipse(statsArea.getX() + 220, statsArea.getY() + 10,10,10);
-
-    
-    fill(dataMap.getClassColour("demoman"));
-    ellipse(statsArea.getX() + 45, statsArea.getY() + 30,10,10);
-
-    
-    fill(dataMap.getClassColour("heavy"));
-    ellipse(statsArea.getX() + 145, statsArea.getY() + 30,10,10);
-
-    
-    fill(dataMap.getClassColour("engineer"));
-    ellipse(statsArea.getX() + 220, statsArea.getY() + 30,10,10);
-
-    
-    fill(dataMap.getClassColour("medic"));
-    ellipse(statsArea.getX() + 45, statsArea.getY() + 50,10,10);
-
-    
-    fill(dataMap.getClassColour("sniper"));
-    ellipse(statsArea.getX() + 145, statsArea.getY() + 50,10,10);
-
-    
-    fill(dataMap.getClassColour("spy"));
-    ellipse(statsArea.getX() + 220, statsArea.getY() + 50,10,10);
-
-    
-    fill(dataMap.getClassColour("environment"));
-    ellipse(statsArea.getX() + 120, statsArea.getY() + 70,10,10);
-
-    
-    fill(dataMap.getClassColour("suicide"));
-    ellipse(statsArea.getX() + 210, statsArea.getY() + 70,10,10);
-
-  }
  
  /**
  *Processes a tree map which shows the weapon statistics
@@ -1938,10 +1953,10 @@ class TreeGraph{
   */
  	public void draw(){
  		if(map!= null){
-      drawKey();
  			map.draw();
 
  		}
+    key.draw();
  		
  	}
 
@@ -2212,6 +2227,7 @@ class VisualizationStats {
   PFont arial;
   String currentSelectedPlayer = "";
   Area statsArea;
+  
   
   public VisualizationStats(ArrayList<Match> matches,DataProcessor reader, Area statsArea){
     this.matches = matches;
