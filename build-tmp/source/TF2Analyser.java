@@ -780,6 +780,7 @@ class CircleGraph {
     */
     packCircles();
     ellipseMode(CENTER);
+    smooth(8);
     for (int i = 0; i < circles.size (); i++)
     {
       Circle c =  circles.get(i);
@@ -794,7 +795,7 @@ class CircleGraph {
     //Draw tooltip over highlighted bar
     if(circleSelected){
       death = deaths.get(circleKey);
-      ToolTip tip = new ToolTip("Weapon: "+death.getCause() +"\n" + "Kills: " + death.getCount() + "\n" + "Crits: " + death.getCritCount(), color(248,185,138), arial);
+      ToolTip tip = new ToolTip("Weapon: "+ dataMap.getPrettyPrintWeaponName(death.getCause()) +"\n" + "Kills: " + death.getCount() + "\n" + "Crits: " + death.getCritCount(), color(248,185,138), arial);
       tip.draw();
     }
   }
@@ -808,7 +809,6 @@ class ClassKey{
 	public ClassKey(Area keyArea){
 		this.keyArea = keyArea;
 		arial = createFont("Arial",11,true);
-
 	}
 
 
