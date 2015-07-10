@@ -16,12 +16,12 @@ public class UserInterface {
   boolean fileLoaded = false;
   int colour = 0;
   VisualizationStats vs;
-  
+  DataProcessor processor;
   //Whether or not to draw a statistics box
   boolean vst = false;
   boolean notificationDisplayed = false;
   
-  public UserInterface(PApplet p, ControlP5 cp5){
+  public UserInterface(PApplet p, ControlP5 cp5,DataProcessor processor){
     this.processing = p;
     this.cP5 = cp5;
     cP5.setColorForeground(0xffaa0000);
@@ -29,6 +29,7 @@ public class UserInterface {
     cP5.setColorLabel(0xffdddddd);
     cP5.setColorValue(0xff342F2C);
     cP5.setColorActive(0xff9D302F);
+    this.processor = processor;
 
     setupGUI();
   }

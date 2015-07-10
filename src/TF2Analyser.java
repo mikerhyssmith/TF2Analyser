@@ -61,7 +61,7 @@ public class TF2Analyser extends PApplet {
 		barControl = new ControlP5(this);
 		nodeControl = new ControlP5(this);
 
-		UI = new UserInterface(this,cP5);
+		UI = new UserInterface(this,cP5,processor);
 
 		// Define containing areas for various features
 		graphArea = new Area(width, 500, 0, 100);

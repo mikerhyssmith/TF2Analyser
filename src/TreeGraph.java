@@ -26,6 +26,7 @@ public class TreeGraph{
   PFont arial;
   Area graphKeyArea;
   ClassKey key ;
+  Area graphArea;
 
  
  	public TreeGraph(PApplet p, Hashtable<String, DeathCount> data, Area graphArea, Area graphKeyArea){
@@ -34,12 +35,13 @@ public class TreeGraph{
  		
  		this.processing=p;
  		this.data = data;
-    arial = processing.createFont("Arial",11,true);
-    this.graphKeyArea = graphKeyArea;
+ 		arial = processing.createFont("Arial",11,true);
+ 		this.graphKeyArea = graphKeyArea;
+ 		this.graphArea = graphArea;
 
-    key = new ClassKey(p,graphKeyArea);
-    processWeaponsData();
-    processTreeGraph();
+ 		key = new ClassKey(p,graphKeyArea);
+ 		processWeaponsData();
+ 		processTreeGraph();
  	}
 
  
