@@ -1,9 +1,15 @@
+import processing.core.PApplet;
+import processing.data.JSONObject;
+
 class WeaponToClassMap{
+	
+	PApplet processing;
 	
 	JSONObject gameData;
 
-	public WeaponToClassMap(){
-		gameData=loadJSONObject("kill_icons.JSON");
+	public WeaponToClassMap(PApplet p){
+		this.processing = p;
+		gameData=processing.loadJSONObject("kill_icons.JSON");
 
 	}
 

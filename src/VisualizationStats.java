@@ -1,4 +1,12 @@
-class VisualizationStats {
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Hashtable;
+
+import processing.core.PApplet;
+import processing.core.PFont;
+
+public class VisualizationStats {
+	PApplet processing;
   
   public ArrayList<Match> matches;
   String mostPopularWeapon;
@@ -12,12 +20,13 @@ class VisualizationStats {
   Area statsArea;
   
   
-  public VisualizationStats(ArrayList<Match> matches,DataProcessor reader, Area statsArea){
-    this.matches = matches;
+  public VisualizationStats(PApplet p, ArrayList<Match> matches,DataProcessor reader, Area statsArea){
+	  this.processing = p;
+	  this.matches = matches;
     this.deaths = reader.getDeaths("",-1);
     this.reader = reader;
     this.statsArea = statsArea;
-    arial = createFont("Arial",11,true);
+    arial = processing.createFont("Arial",11,true);
   }
   
   //Initial stats are those considering all matches in the data file
@@ -30,17 +39,17 @@ class VisualizationStats {
   }
   
   public void draw(){
-    fill(0,128,0,0);
-    rect(statsArea.getX(), statsArea.getY(), statsArea.getWidth(), statsArea.getHeight(), 7);
+	  processing.fill(0,128,0,0);
+	  processing.rect(statsArea.getX(), statsArea.getY(), statsArea.getWidth(), statsArea.getHeight(), 7);
     //textSize(32);
-    textFont(arial);       
-    fill(0);
-    textAlign(CENTER);
-    text("Match Statistics", statsArea.getX()+100, statsArea.getY()+20);
-    text("Most Effective Weapon: "+ System.getProperty("line.separator")  + mostPopularWeapon, statsArea.getX()+100, statsArea.getY()+40); 
-    text("Percentage of Crit Kills: " + percentCrits, statsArea.getX()+100, statsArea.getY()+75); 
-    text("Most Kills: " + mostKills , statsArea.getX()+100, statsArea.getY()+95); 
-    text("Most Deaths: " + mostDeaths , statsArea.getX()+100, statsArea.getY()+115); 
+	  processing.textFont(arial);       
+	  processing.fill(0);
+	  processing.textAlign(processing.CENTER);
+    processing.text("Match Statistics", statsArea.getX()+100, statsArea.getY()+20);
+    processing.text("Most Effective Weapon: "+ System.getProperty("line.separator")  + mostPopularWeapon, statsArea.getX()+100, statsArea.getY()+40); 
+    processing.text("Percentage of Crit Kills: " + percentCrits, statsArea.getX()+100, statsArea.getY()+75); 
+    processing.text("Most Kills: " + mostKills , statsArea.getX()+100, statsArea.getY()+95); 
+    processing.text("Most Deaths: " + mostDeaths , statsArea.getX()+100, statsArea.getY()+115); 
     
   }
   

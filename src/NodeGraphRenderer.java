@@ -1,6 +1,10 @@
-import java.io.*;
-class NodeGraphRenderer {
-  
+import java.util.ArrayList;
+
+import processing.core.PApplet;
+
+public class NodeGraphRenderer {
+	PApplet processing;
+	
     ArrayList<Node> nodes;
     ArrayList<Node> displayedNodes;
     float screenPosX;
@@ -9,12 +13,11 @@ class NodeGraphRenderer {
     int padding = 30;
     boolean renderingActive = false;
     
-    
-    public NodeGraphRenderer(ArrayList<Node> nodes) {
+    public NodeGraphRenderer(PApplet p, ArrayList<Node> nodes) {
       this.nodes = nodes;
-      displayedNodes = new ArrayList<Node>();
+      this.processing = p;
       
-    
+      displayedNodes = new ArrayList<Node>();
     }
     
     public void setNodes(ArrayList<Node> nodes){
@@ -30,19 +33,18 @@ class NodeGraphRenderer {
       renderingActive = active;
     }
     
-    
     public void processGraph() {
     
         while(currentNode < nodes.size()-1){
             Node n = nodes.get(currentNode);
             Node nextNode = nodes.get(currentNode +1);
             float waitTime = (nextNode.getX() - n.getX())*10000000;
-            beginShape();
-            fill(255);
-            stroke(1);
-            float yPos = height -n.getX() -padding;
-            ellipse(n.getX(),yPos,10,10);
-            endShape();
+            processing.beginShape();
+            processing.fill(255);
+            processing.stroke(1);
+            float yPos = processing.height -n.getX() -padding;
+            processing.ellipse(n.getX(),yPos,10,10);
+            processing.endShape();
   
             System.out.println("Node X: " + n.getX() + " Node Y: " + n.getY());
             System.out.println("CALLED");
@@ -54,12 +56,11 @@ class NodeGraphRenderer {
         for(int i =0; i < displayedNodes.size()-1; i++){
           System.out.println("POST PRINT");
           Node n = displayedNodes.get(i);
-          beginShape();
-          fill(255);
-          stroke(1);
-          ellipse(n.getX(),n.getY(),10,10);
-          endShape();
+          processing.beginShape();
+          processing.fill(255);
+          processing.stroke(1);
+          processing.ellipse(n.getX(),n.getY(),10,10);
+          processing.endShape();
         }
-     
     }  
 }

@@ -1,4 +1,11 @@
-class ToolTip{
+import processing.core.PApplet;
+import processing.core.PFont;
+import processing.core.PVector;
+
+public class ToolTip{
+	
+	PApplet processing;
+	
   //Area taken up by tooltip text
   Area tipArea;
   //Tip text (each element is a new line)
@@ -15,39 +22,40 @@ class ToolTip{
   float uOffset =0;
   float vOffset =0;
   
-  public ToolTip(String text, color colour, PFont font){
+  public ToolTip(PApplet p, String text, color colour, PFont font){
+	  this.processing = p;
     this.tipText = text.split("\n");
     this.tipColour = colour;
     this.font = font;
-    textFont(font);
+    processing.textFont(font);
     
     //Calculate the area of the tooltip
     int width = 0;
     
     //Find widest line
     for(int i=0;i<tipText.length;i++){
-      int l =(int)textWidth(tipText[i]);
+      int l =(int)processing.textWidth(tipText[i]);
       if(width < l){
         width = l;
       }
     }
 
-    int height = ((int)textAscent()+(int)textDescent())*tipText.length;
-    tipArea = new Area(width,height, mouseX-width, mouseY-height);
+    int height = ((int)processing.textAscent()+(int)processing.textDescent())*tipText.length;
+    tipArea = new Area(width,height, processing.mouseX-width, processing.mouseY-height);
   }
   
   public ToolTip(String text, color colour, PFont font, Area iconArea){
     this.tipText = text.split("\n");
     this.tipColour = colour;
     this.font = font;
-    textFont(font);
+    processing.textFont(font);
     
     //Calculate the area of the tooltip
     int width = 0;
     
     //Find widest line
     for(int i=0;i<tipText.length;i++){
-      int l =(int)textWidth(tipText[i]);
+      int l =(int)processing.textWidth(tipText[i]);
       if(width < l){
         width = l;
       }
@@ -58,8 +66,8 @@ class ToolTip{
       width=iconArea.getWidth(); 
     }
     
-    int height = ((int)textAscent()+(int)textDescent())*tipText.length;
-    tipArea = new Area(width,height, mouseX-width, mouseY-height);
+    int height = ((int)processing.textAscent()+(int)processing.textDescent())*tipText.length;
+    tipArea = new Area(width,height, processing.mouseX-width, processing.mouseY-height);
     this.iconArea=iconArea;
   }
   
@@ -78,26 +86,26 @@ class ToolTip{
     float h=tipArea.getHeight()+ (2*padding) + iconArea.getHeight();
 
     //Handle the tooltip being too close to the screen edge
-    if(mouseX<w){
+    if(processing.mouseX<w){
       uOffset = w;
     }
-    if(mouseY<v){
+    if(processing.mouseY<v){
       vOffset = h;
     }
     
-    rect(u+uOffset,v+vOffset,w,h);
+    processing.rect(u+uOffset,v+vOffset,w,h);
     
     //Draw the tooltip text
-    textFont(font);       
-    fill(0);
+    processing.textFont(font);       
+    processing.fill(0);
     
-    textAlign(LEFT,TOP);
+    processing.textAlign(processing.LEFT,processing.TOP);
     for(int i=0;i<tipText.length;i++){
-      text(tipText[i], tipArea.getX()-padding + uOffset, 
+    	processing.text(tipText[i], tipArea.getX()-padding + uOffset, 
                        tipArea.getY()-padding + vOffset + ((tipArea.getHeight()/tipText.length)*i -  iconArea.getHeight()));
     }
     
     
-    textAlign(LEFT,BASELINE);
+    processing.textAlign(processing.LEFT,processing.BASELINE);
   }
 }

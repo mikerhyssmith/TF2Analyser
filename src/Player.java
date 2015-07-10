@@ -1,4 +1,6 @@
-class Player {
+import java.util.ArrayList;
+
+public class Player {
   String name;
   ArrayList<Event> events;
   String[] deaths;
@@ -7,14 +9,14 @@ class Player {
   int NoOfCaptures;
   String team;
   
-  Player(String name, String team){
+  public Player(String name, String team){
     
     this.name = name;
     events = new ArrayList<Event>();
     this.team = team; 
   }
   
-  void addEvent(Event event){
+  public void addEvent(Event event){
     events.add(event);
   }
 }

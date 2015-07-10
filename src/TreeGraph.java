@@ -1,11 +1,18 @@
-import java.util.Hashtable;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.*;
-import treemap.*;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map;
+
+import processing.core.PApplet;
+import processing.core.PFont;
  
  
  
-class TreeGraph{
+public class TreeGraph{
+	
+	PApplet processing;
+	
 	HashMap<String,Integer> classKills;
 	Hashtable<String,DeathCount> data;
 	Treemap map;
@@ -16,10 +23,12 @@ class TreeGraph{
   ClassKey key ;
 
  
- 	TreeGraph(Hashtable<String, DeathCount> data, Area graphArea, Area graphKeyArea){
+ 	public TreeGraph(PApplet p, Hashtable<String, DeathCount> data, Area graphArea, Area graphKeyArea){
  		classKills = new HashMap<String,Integer>();
+ 		
+ 		this.processing=p;
  		this.data = data;
-    arial = createFont("Arial",11,true);
+    arial = processing.createFont("Arial",11,true);
     this.graphKeyArea = graphKeyArea;
 
     key = new ClassKey(graphKeyArea);
@@ -69,7 +78,7 @@ class TreeGraph{
   */
  	public void processTreeGraph(){
  		ClassKillsMap mapData = new ClassKillsMap(classKills,classObject);
- 		map = new Treemap(mapData,0,height-graphArea.getHeight(),graphArea.getWidth(),graphArea.getHeight());
+ 		map = new Treemap(mapData,0,processing.height- graphArea.getHeight(),graphArea.getWidth(),graphArea.getHeight());
     OrderedTreemap orderLayout = new OrderedTreemap();
     SquarifiedLayout layout = new SquarifiedLayout();
     map.setLayout(layout);
@@ -82,8 +91,8 @@ class TreeGraph{
   *Draw the TreeMap
   */
  	void draw(){
- 		if(map!= null){
- 			map.draw();
+ 		if(processing.map!= null){
+ 			processing.map.draw();
 
  		}
     key.draw();
@@ -134,19 +143,22 @@ class ClassKillsMap extends SimpleMapModel{
 }
 
 class KillsItem extends SimpleMapItem {
+	
+	PApplet processing;
   String word;
   boolean classObject = false;
   WeaponToClassMap dataMap = new WeaponToClassMap();
 
-  KillsItem(String word) {
+  KillsItem(PApplet p, String word) {
+	  this.processing = p;
     this.word = word;
   }
 
-  void setClassObject(boolean object){
+  public void setClassObject(boolean object){
     classObject = object;
   }
 
-  void draw() {
+  public void draw() {
     String printWord =  word;
 
     if(classObject){
@@ -159,12 +171,12 @@ class KillsItem extends SimpleMapItem {
 
 
      
-    rect(x, y, w, h);
+    processing.rect(x, y, w, h);
 
-    fill(255);
-    if (w > textWidth(printWord) + 6) {
-      if (h > textAscent() + 6) {
-        textAlign(CENTER, CENTER);
+    processing.fill(255);
+    if (w > processing.textWidth(printWord) + 6) {
+      if (h > processing.textAscent() + 6) {
+    	  processing.textAlign(processing.CENTER, processing.CENTER);
         text(printWord, x + w/2, y + h/2);
       }
     }

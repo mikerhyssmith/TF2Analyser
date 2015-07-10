@@ -1,7 +1,10 @@
-import controlP5.*;
-import java.text.Normalizer;
+import java.util.ArrayList;
 
-class UserInterface {
+import processing.core.PApplet;
+
+public class UserInterface {
+	PApplet processing;
+	
   ControlP5 cP5;
   DropdownList dropdown,playersDropDown,matchList,temp;
   ListBox l,playerList;
@@ -14,8 +17,8 @@ class UserInterface {
   boolean vst = false;
   boolean notificationDisplayed = false;
   
-  public UserInterface(ControlP5 cp5){
-    
+  public UserInterface(PApplet p, ControlP5 cp5){
+    this.processing = p;
     this.cP5 = cp5;
     cP5.setColorForeground(0xffaa0000);
     cP5.setColorBackground(0xff385C78);
@@ -27,12 +30,12 @@ class UserInterface {
   }
   
   //Create initial UI on startup
-  void setupGUI() {
+  public void setupGUI() {
     cP5.addButton("Load File",1,0,0,70,30);
   }
   
   
-  void UIDraw(){
+  public void UIDraw(){
     //Notification message on successful file load
     if(notificationDisplayed){
       if(colour < 128){
@@ -49,7 +52,7 @@ class UserInterface {
   }
   
   //This creates the next section of the UI once a file has been loaded
-  void fileLoadedUI(){
+  public void fileLoadedUI(){
     colour = 0;
     //Create a drop down box for visualization selection.
 
@@ -74,16 +77,16 @@ class UserInterface {
   }
   
   //Start drawing statistics box
-  void drawVisualizationStats(VisualizationStats vs){
+  public void drawVisualizationStats(VisualizationStats vs){
     this.vs = vs;
     vst = true;
   }
   
-  void removeVisualizationStats(){
+  public void removeVisualizationStats(){
      vst = false; 
   }
   
-  void removeOptions(){
+  public void removeOptions(){
     playersDropDown.hide();
     dropdown.hide();
     matchList.hide();
@@ -91,7 +94,7 @@ class UserInterface {
   
   
   //Create the rest of the UI once a type of graph has been chosen
-  void addVisualizationOptions(String[] Players, ArrayList<Match> matches,boolean node) {
+  public void addVisualizationOptions(String[] Players, ArrayList<Match> matches,boolean node) {
     //Create a drop down list of available players.
     playersDropDown = cP5.addDropdownList("PlayerChoice").setPosition(320,15).setSize(120,70);
     matchList = cP5.addDropdownList("MatchChoice").setPosition(200,15).setSize(120,70);
@@ -131,7 +134,7 @@ class UserInterface {
 
   
   //Changes the formatting of a drop-down list to match our chosen scheme
-  void customizeDropDownList(DropdownList ddl) {
+  public void customizeDropDownList(DropdownList ddl) {
     ddl.setBackgroundColor(color(190));
     ddl.setItemHeight(25);
     ddl.setBarHeight(15);
