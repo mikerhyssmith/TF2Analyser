@@ -1,8 +1,11 @@
+import java.awt.Color;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
 import processing.core.PApplet;
 import processing.core.PFont;
+import controlP5.ControlP5;
+import controlP5.Slider;
 
 public class BarGraph{
   
@@ -76,7 +79,7 @@ public class BarGraph{
     {
       sliderHeight = 20;
       //Add a slider for horizontal scrolling
-      barSlider = barControl.addSlider("BarSlider",0,graphWidth-width,0,0,graphArea.getY()+graphArea.getHeight()-sliderHeight,width,sliderHeight);
+      barSlider = barControl.addSlider("BarSlider",0,graphWidth-processing.width,0,0,graphArea.getY()+graphArea.getHeight()-sliderHeight,processing.width,sliderHeight);
       
       graphFits = false;
     }

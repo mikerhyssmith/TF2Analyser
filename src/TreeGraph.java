@@ -6,6 +6,11 @@ import java.util.Map;
 
 import processing.core.PApplet;
 import processing.core.PFont;
+import treemap.OrderedTreemap;
+import treemap.SimpleMapItem;
+import treemap.SimpleMapModel;
+import treemap.SquarifiedLayout;
+import treemap.Treemap;
  
  
  
@@ -16,7 +21,7 @@ public class TreeGraph{
 	HashMap<String,Integer> classKills;
 	Hashtable<String,DeathCount> data;
 	Treemap map;
-  WeaponToClassMap dataMap = new WeaponToClassMap();
+  WeaponToClassMap dataMap;
   boolean classObject = false;
   PFont arial;
   Area graphKeyArea;
@@ -24,6 +29,7 @@ public class TreeGraph{
 
  
  	public TreeGraph(PApplet p, Hashtable<String, DeathCount> data, Area graphArea, Area graphKeyArea){
+ 		dataMap = new WeaponToClassMap(p);
  		classKills = new HashMap<String,Integer>();
  		
  		this.processing=p;
@@ -31,7 +37,7 @@ public class TreeGraph{
     arial = processing.createFont("Arial",11,true);
     this.graphKeyArea = graphKeyArea;
 
-    key = new ClassKey(graphKeyArea);
+    key = new ClassKey(p,graphKeyArea);
     processWeaponsData();
     processTreeGraph();
  	}
@@ -91,8 +97,8 @@ public class TreeGraph{
   *Draw the TreeMap
   */
  	void draw(){
- 		if(processing.map!= null){
- 			processing.map.draw();
+ 		if(map!= null){
+ 			map.draw();
 
  		}
     key.draw();

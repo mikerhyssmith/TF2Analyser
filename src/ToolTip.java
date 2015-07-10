@@ -78,7 +78,7 @@ public class ToolTip{
   
   public void draw(){
     //Draw a box for the tooltip
-    fill(tipColour);
+    processing.fill(tipColour);
     
     float u=tipArea.getX()-(2*padding);
     float v= tipArea.getY()-(2*padding) -iconArea.getHeight();

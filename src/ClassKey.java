@@ -3,11 +3,12 @@ import processing.core.PFont;
 
 class ClassKey {
 	Area keyArea;
-	WeaponToClassMap dataMap = new WeaponToClassMap();
+	WeaponToClassMap dataMap;
 	PFont arial;
 	PApplet processing;
 
 	public ClassKey(PApplet p, Area keyArea) {
+		dataMap = new WeaponToClassMap(p);
 		this.keyArea = keyArea;
 		processing = p;
 		arial = processing.createFont("Arial", 11, true);

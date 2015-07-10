@@ -5,6 +5,8 @@ import java.util.concurrent.TimeUnit;
 
 import processing.core.PApplet;
 import processing.core.PFont;
+import controlP5.ControlP5;
+import controlP5.Slider;
 
 public class NodeGraph {
 	PApplet processing;
@@ -84,7 +86,7 @@ public class NodeGraph {
 			sliderHeight = 20;
 			// Add a slider for horizontal scrolling
 			nodeSlider = nodeControl.addSlider("NodeSlider", 0, graphWidth
-					- width, 0, 0, graphArea.getY() + graphArea.getHeight()
+					- processing.width, 0, 0, graphArea.getY() + graphArea.getHeight()
 					- sliderHeight, processing.width, sliderHeight);
 
 			graphFits = false;
@@ -92,10 +94,10 @@ public class NodeGraph {
 			sliderHeight = 0;
 		}
 		// Set up icons
-		icons = new IconHandler("killicons_final.png");
+		icons = new IconHandler(processing,"killicons_final.png");
 
 		processEvents();
-		render = new NodeGraphRenderer(nodes);
+		render = new NodeGraphRenderer(processing,nodes);
 
 	}
 

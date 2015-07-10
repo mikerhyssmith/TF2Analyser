@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 
 import processing.core.PApplet;
+import controlP5.ControlP5;
+import controlP5.DropdownList;
+import controlP5.ListBox;
+import controlP5.Textarea;
 
 public class UserInterface {
 	PApplet processing;
@@ -70,7 +74,7 @@ public class UserInterface {
     
     
     //Create a notification to state file has loaded correctly.
-    myTextarea = cP5.addTextarea("LoadSuccesful").setPosition(0,35).setFont(createFont("arial",16));
+    myTextarea = cP5.addTextarea("LoadSuccesful").setPosition(0,35).setFont(processing.createFont("arial",16));
     myTextarea.setText("File Loaded Succesfully !");
     notificationDisplayed = true;
     fileLoaded = true;

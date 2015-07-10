@@ -4,6 +4,9 @@ import java.util.Hashtable;
 
 import processing.core.PApplet;
 import processing.core.PImage;
+import controlP5.ControlEvent;
+import controlP5.ControlP5;
+import controlP5.DropdownList;
 
 public class TF2Analyser extends PApplet {
 
@@ -58,7 +61,7 @@ public class TF2Analyser extends PApplet {
 		barControl = new ControlP5(this);
 		nodeControl = new ControlP5(this);
 
-		UI = new UserInterface(cP5);
+		UI = new UserInterface(this,cP5);
 
 		// Define containing areas for various features
 		graphArea = new Area(width, 500, 0, 100);
@@ -156,11 +159,11 @@ public class TF2Analyser extends PApplet {
 
 					// nGraph = new NodeGraph(graphArea, nodeControl);
 
-					circleGraph = new CircleGraph(graphArea, deaths, 7, 100,
+					circleGraph = new CircleGraph(this,graphArea, deaths, 7, 100,
 							graphKeyArea);
 
 				} else if (theEvent.group().value() == 2) {
-					treeGraph = new TreeGraph(processor.getDeaths("", -1),
+					treeGraph = new TreeGraph(this,processor.getDeaths("", -1),
 							graphArea, graphKeyArea);
 					drawnTreeMap = true;
 					drawBarGraph = false;
@@ -198,7 +201,7 @@ public class TF2Analyser extends PApplet {
 			filename = selection.getAbsolutePath();
 
 			// Read in data from loaded file
-			reader = new FileReader(filename);
+			reader = new FileReader(this,filename);
 			reader.processFile(reader.getData());
 			fileLoaded = true;
 
@@ -278,9 +281,9 @@ public class TF2Analyser extends PApplet {
 		// Remove old slider control
 		barControl.remove("BarSlider");
 		// Create new bar graph
-		graph = new BarGraph(deaths, graphArea, 10, barControl);
+		graph = new BarGraph(this,deaths, graphArea, 10, barControl);
 		// Create summary info box
-		vs = new VisualizationStats(reader.getMatches(), processor, statsArea);
+		vs = new VisualizationStats(this,reader.getMatches(), processor, statsArea);
 	}
 
 	void BarSlider(float shift) {

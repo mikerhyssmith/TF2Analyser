@@ -29,10 +29,11 @@ class CircleGraph {
   ClassKey classKey;
   
   //Used for per-class weapon colours
-  WeaponToClassMap dataMap = new WeaponToClassMap();
+  WeaponToClassMap dataMap;
 
   CircleGraph(PApplet p,Area area, Hashtable<String,DeathCount> deaths, float spacing, int iterations, Area keyArea)
   {
+    dataMap = new WeaponToClassMap(p);
     this.graphArea =area;
     this.xCentre = graphArea.getWidth()/2 + graphArea.getX();
     this.yCentre = graphArea.getHeight()/2 + graphArea.getY();
