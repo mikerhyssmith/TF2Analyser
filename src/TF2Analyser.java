@@ -50,9 +50,13 @@ public class TF2Analyser extends PApplet {
 	PImage logo;
 	static final int WINDOWWIDTH = 1000;
 	static final int WINDOWHEIGHT = 600;
+	
+	 public static void main(String args[]) {
+		    PApplet.main(new String[] { "--present", "TF2Analyser" });
+	 }
 
 	public void setup() {
-		size(WINDOWWIDTH, WINDOWHEIGHT, P2D);
+		size(WINDOWWIDTH, WINDOWHEIGHT);
 		logo = loadImage("logo.png");
 		smooth();
 		background(128);
