@@ -1,4 +1,11 @@
-import controlP5.*;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Hashtable;
+
+import processing.core.PApplet;
+import processing.core.PImage;
+
+public class TF2Analyser extends PApplet{
 
 ControlP5 cP5;
 ControlP5 barControl;
@@ -41,7 +48,7 @@ PImage logo;
 static final int WINDOWWIDTH=1000;
 static final int WINDOWHEIGHT=600;
 
-void setup() {
+public void setup() {
   size(WINDOWWIDTH,WINDOWHEIGHT, P2D);
   logo = loadImage("logo.png");
   smooth();
@@ -59,7 +66,7 @@ void setup() {
   graphKeyArea = new Area(300,85,width-310,10);
 }
 
-void draw(){
+public void draw(){
   //Colour the background
   background(128);
   
@@ -280,7 +287,7 @@ void BarSlider(float shift) {
 void NodeSlider(float shift){
   nGraph.UpdateShift(shift);
 }
-
+}
 
 
 

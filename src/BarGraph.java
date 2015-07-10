@@ -1,8 +1,9 @@
 import java.util.Enumeration;
 import java.util.Hashtable;
-import controlP5.*;
 
-class BarGraph{
+import processing.core.PFont;
+
+public class BarGraph{
   
   //Table of deaths and causes
   Hashtable<String,DeathCount> deaths;
