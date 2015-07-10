@@ -1,15 +1,18 @@
-import java.util.*;
 import java.sql.Time;
+import java.util.ArrayList;
+
+import processing.core.PApplet;
 
 class FileReader {
   
   String[] data;
   ArrayList<Match> matches;
   Match currentMatch;
+  PApplet processing;
 
-  public FileReader(String fileName){
-    
-    data = loadStrings(fileName);
+  public FileReader(PApplet p,String fileName){
+    processing = p;
+    data = processing.loadStrings(fileName);
     matches = new ArrayList<Match>();
   }
   

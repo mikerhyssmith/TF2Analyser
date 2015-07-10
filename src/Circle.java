@@ -1,14 +1,18 @@
+import processing.core.PApplet;
+
 class Circle {
   float x;
   float y;
   float r;
   String label;
+  PApplet processing;
  
-  Circle(float x, float y, float r, String label){
+  Circle(PApplet p,float x, float y, float r, String label){
     this.x = x;
     this.y = y;
     this.r = r;
     this.label = label;
+    processing = p;
   }
   
   boolean containsPoint(float x, float y){
@@ -23,7 +27,7 @@ class Circle {
   
   void draw()
   {
-    ellipse(x, y, r*2, r*2);
+    processing.ellipse(x, y, r*2, r*2);
   }
   
   public float getX(){

@@ -1,6 +1,7 @@
 import java.util.Enumeration;
 import java.util.Hashtable;
 
+import processing.core.PApplet;
 import processing.core.PFont;
 
 public class BarGraph{
@@ -32,13 +33,16 @@ public class BarGraph{
   //Space for stats
   int statsSpace = 50;
   
+  PApplet processing;
+  
   IconHandler icons;
   
-  public BarGraph(Hashtable<String,DeathCount> deaths, Area barArea, int seperation, ControlP5 control){
+  public BarGraph(PApplet p,Hashtable<String,DeathCount> deaths, Area barArea, int seperation, ControlP5 control){
     this.deaths = deaths;
     this.graphArea = barArea;
     this.seperation = seperation;
     this.barControl = control;
+    processing = p;
     
     //Format interface
     barControl.setColorForeground(0xffaa0000);
@@ -81,10 +85,10 @@ public class BarGraph{
     }
     
     //Set up font
-    arial = createFont("Arial",12,true);
+    arial = processing.createFont("Arial",12,true);
 
     //Set up icons
-    icons = new IconHandler("killicons_final.png");
+    icons = new IconHandler(processing,"killicons_final.png");
   }
 
   public void draw(){
@@ -101,7 +105,7 @@ public class BarGraph{
       death = deaths.get(key);
       
       //Scale bar heights so that the highest is as tall as the graph
-      h =  (int) map(death.getCount(), 0, maxKills, 0, graphArea.getHeight()-iconHeight-sliderHeight-statsSpace); 
+      h =  (int) processing.map(death.getCount(), 0, maxKills, 0, graphArea.getHeight()-iconHeight-sliderHeight-statsSpace); 
       
       float xpos=x+graphArea.getX()-xShift;
       //Calculate y position of rectangle
@@ -111,14 +115,14 @@ public class BarGraph{
       icons.Draw(death.getCause(), xpos, ypos-iconHeight);
       
       //Set bar colour and draw bars
-      fill(52,47,44);
-      rect(xpos,ypos,barWidth,h);
+      processing.fill(52,47,44);
+      processing.rect(xpos,ypos,barWidth,h);
       
       //Draw crit kills and tooltip if mouse is over the bar
-      if((mouseX>xpos && mouseX<=xpos+barWidth)&&(mouseY > height -  (h + iconHeight/2) && mouseY < height - sliderHeight )){
+      if((processing.mouseX>xpos && processing.mouseX<=xpos+barWidth)&&(processing.mouseY > processing.height -  (h + iconHeight/2) && processing.mouseY < processing.height - sliderHeight )){
         //Draw bar on top showing crit kills
-        fill(255,40,40);
-        h = (int) map(death.getCritCount(),0,maxKills,0,graphArea.getHeight()-iconHeight-sliderHeight);
+        processing.fill(255,40,40);
+        h = (int) processing.map(death.getCritCount(),0,maxKills,0,graphArea.getHeight()-iconHeight-sliderHeight);
         ypos=graphArea.getHeight() + graphArea.getY() - h - sliderHeight;
         
         //Draw tooltip over highlighted bar

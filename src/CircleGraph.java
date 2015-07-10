@@ -1,5 +1,12 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.Random;
+
+import processing.core.PApplet;
+import processing.core.PFont;
 
 class CircleGraph {
   //Font and icons for tooltips
@@ -15,6 +22,7 @@ class CircleGraph {
   float circleSpacing;
   float damping;
   int circleScale;
+  PApplet processing;
   
   int totalIterations, remainingIterations;
 
@@ -23,15 +31,16 @@ class CircleGraph {
   //Used for per-class weapon colours
   WeaponToClassMap dataMap = new WeaponToClassMap();
 
-  CircleGraph(Area area, Hashtable<String,DeathCount> deaths, float spacing, int iterations, Area keyArea)
+  CircleGraph(PApplet p,Area area, Hashtable<String,DeathCount> deaths, float spacing, int iterations, Area keyArea)
   {
     this.graphArea =area;
     this.xCentre = graphArea.getWidth()/2 + graphArea.getX();
     this.yCentre = graphArea.getHeight()/2 + graphArea.getY();
     this.deaths = deaths;
     this.circleSpacing = spacing;
+    processing = p;
     
-    damping = 0.01;
+    damping = 0.01f;
     this.totalIterations = iterations;
     remainingIterations = totalIterations;
     
@@ -39,12 +48,12 @@ class CircleGraph {
     this.circleScale = 15;
     createCircles();
 
-    classKey = new ClassKey(keyArea);
+    classKey = new ClassKey(processing,keyArea);
     
     //Set up font
-    arial = createFont("Arial",12,true);
+    arial = processing.createFont("Arial",12,true);
     //Set up icons
-    icons = new IconHandler("killicons_final.png");
+    icons = new IconHandler(processing,"killicons_final.png");
   }
 
   float distanceSquared(float x1, float y1, float x2, float y2)
@@ -67,7 +76,7 @@ class CircleGraph {
       key = enumDeath.nextElement();
       death = deaths.get(key);
       
-      circles.add(new Circle(xCentre + 2*(rand.nextFloat() -0.5),yCentre + 2*(rand.nextFloat() -0.5), sqrt(death.getCount())*circleScale, key));
+      circles.add(new Circle(processing,xCentre + 2*(rand.nextFloat() -0.5f),yCentre + 2*(rand.nextFloat() -0.5f), processing.sqrt(death.getCount())*circleScale, key));
     }
     
     //Sort according to size
@@ -132,7 +141,7 @@ class CircleGraph {
           //Calculate x, y and total seperations
           float xSeperation = c2.getX() - c1.getX();
           float ySeperation = c2.getY() - c1.getY();
-          float totalSeperation = sqrt(squareSeperation);
+          float totalSeperation = processing.sqrt(squareSeperation);
 
           //Distance squared from the centre of the graph, for each circle
           float centreSeperation1 = distanceSquared(c1.getX(), c1.getY(), xCentre, yCentre);
@@ -195,14 +204,14 @@ class CircleGraph {
     
   }
   
-  void draw()
+  public void draw()
   {
     boolean circleSelected = false;
     String circleKey = "";
     DeathCount death;
     classKey.draw();
-    fill(150);
-    stroke(0);
+    processing.fill(150);
+    processing.stroke(0);
     /**Uncomment this to limit iterations
     if(remainingIterations > 0){
       packCircles();
@@ -211,15 +220,15 @@ class CircleGraph {
     }
     */
     packCircles();
-    ellipseMode(CENTER);
-    smooth(8);
+    processing.ellipseMode(processing.CENTER);
+    processing.smooth(8);
     for (int i = 0; i < circles.size (); i++)
     {
       Circle c =  circles.get(i);
       fill(dataMap.getClassColour(dataMap.getPlayerClass(c.getLabel())));
       c.draw();
       //Draw crit kills and tooltip if mouse is over the bar
-      if(c.containsPoint(mouseX,mouseY)){
+      if(c.containsPoint(processing.mouseX,processing.mouseY)){
         circleSelected=true;
         circleKey = c.getLabel();
       }

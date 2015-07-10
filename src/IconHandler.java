@@ -1,17 +1,24 @@
+import processing.core.PApplet;
+import processing.core.PImage;
+import processing.core.PVector;
+import processing.data.JSONObject;
 
-class IconHandler{
+
+public class IconHandler{
   PImage icons;
   int xPos;
   int yPos;
-  float scale=1.0;
+  float scale=1.0f;
   float xOffset = 0;
   float yOffset = 0;
 
   JSONObject iconData;
+  PApplet processing;
   
-  public IconHandler(String fileName){
-    icons = loadImage(fileName);
-    iconData=loadJSONObject("kill_icons.JSON");
+  public IconHandler(PApplet p,String fileName){
+	processing = p;
+    icons = processing.loadImage(fileName);
+    iconData=processing.loadJSONObject("kill_icons.JSON");
   }
   
   public void Draw(String weapon, float x, float y){
@@ -28,7 +35,7 @@ class IconHandler{
       width = icon.getInt("width");
       height = icon.getInt("height");
       //Draw the icon
-      image(icons, x + (xOffset*width*scale), y + (yOffset*height*scale), width*scale, height*scale, u+(section*512), v, u+width+(section*512),v+height);
+      processing.image(icons, x + (xOffset*width*scale), y + (yOffset*height*scale), width*scale, height*scale, u+(section*512), v, u+width+(section*512),v+height);
     } catch(Exception e){
       //Handle the exception and print an error if icon not found
       System.err.println("Exception: " + e.getMessage());
