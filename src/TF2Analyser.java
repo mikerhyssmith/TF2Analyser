@@ -105,7 +105,7 @@ public class TF2Analyser extends PApplet {
 		UI.UIDraw();
 	}
 
-	void controlEvent(ControlEvent theEvent) {
+	public void controlEvent(ControlEvent theEvent) {
 		if (theEvent.isController()) {
 
 			// Respond to load file command
@@ -197,7 +197,7 @@ public class TF2Analyser extends PApplet {
 		}
 	}
 
-	void fileSelected(File selection) {
+	public void fileSelected(File selection) {
 		if (selection == null) {
 			println("Window was closed or the user hit cancel.");
 		} else {
@@ -220,7 +220,7 @@ public class TF2Analyser extends PApplet {
 		}
 	}
 
-	void drawMatchTimeline(int matchNumber, String playerName) {
+	public void drawMatchTimeline(int matchNumber, String playerName) {
 		drawNodeGraph = false;
 		if (nGraph.getPlayerEvents(playerName,
 				matches.get(matchNumber).getEvents()).size() > 0) {
@@ -231,7 +231,7 @@ public class TF2Analyser extends PApplet {
 	}
 
 	// Update procedure when a different match is selected
-	void updateVisualisationMatch(int matchNumber) {
+	public void updateVisualisationMatch(int matchNumber) {
 		currentMatchNo = matchNumber;
 
 		// When nodegraph is selected
@@ -261,7 +261,7 @@ public class TF2Analyser extends PApplet {
 	}
 
 	// Update procedure when a different player is selected
-	void updateVisualisationPlayer(String playerName) {
+	public void updateVisualisationPlayer(String playerName) {
 
 		// When the nodegraph is selected
 		if (drawNodeGraph) {
@@ -281,7 +281,7 @@ public class TF2Analyser extends PApplet {
 		}
 	}
 
-	void createBarGraph() {
+	public void createBarGraph() {
 		// Remove old slider control
 		barControl.remove("BarSlider");
 		// Create new bar graph
@@ -290,11 +290,11 @@ public class TF2Analyser extends PApplet {
 		vs = new VisualizationStats(this,reader.getMatches(), processor, statsArea);
 	}
 
-	void BarSlider(float shift) {
+	public void BarSlider(float shift) {
 		graph.UpdateShift(shift);
 	}
 
-	void NodeSlider(float shift) {
+	public void NodeSlider(float shift) {
 		nGraph.UpdateShift(shift);
 	}
 }

@@ -98,7 +98,7 @@ public class TreeGraph{
   /**
   *Draw the TreeMap
   */
- 	void draw(){
+ 	public void draw(){
  		if(map!= null){
  			map.draw();
 
@@ -144,7 +144,7 @@ class ClassKillsMap extends SimpleMapModel{
   /**
   * Inherited method to be called to fill the items array in the super class.
   */
-	void finishAdd(){
+	public void finishAdd(){
 		 items = killsArray.toArray(new KillsItem[killsArray.size()]);
 		 
 	}
