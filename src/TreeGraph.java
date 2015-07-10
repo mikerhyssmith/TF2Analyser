@@ -156,10 +156,11 @@ class KillsItem extends SimpleMapItem {
 	PApplet processing;
   String word;
   boolean classObject = false;
-  WeaponToClassMap dataMap = new WeaponToClassMap(processing);
+  WeaponToClassMap dataMap ;
 
   KillsItem(PApplet p, String word) {
 	  this.processing = p;
+	  dataMap = new WeaponToClassMap(processing);
     this.word = word;
   }
 
