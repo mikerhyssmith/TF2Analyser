@@ -139,7 +139,7 @@ public class UserInterface {
   
   //Changes the formatting of a drop-down list to match our chosen scheme
   public void customizeDropDownList(DropdownList ddl) {
-    ddl.setBackgroundColor(color(190));
+    ddl.setBackgroundColor(processing.color(190));
     ddl.setItemHeight(25);
     ddl.setBarHeight(15);
     ddl.captionLabel().style().marginTop = 3;

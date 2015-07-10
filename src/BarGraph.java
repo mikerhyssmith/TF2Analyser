@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
@@ -8,7 +7,7 @@ import controlP5.ControlP5;
 import controlP5.Slider;
 
 public class BarGraph{
-  
+	
   //Table of deaths and causes
   Hashtable<String,DeathCount> deaths;
   //Distance between adjacent bars
@@ -129,7 +128,7 @@ public class BarGraph{
         ypos=graphArea.getHeight() + graphArea.getY() - h - sliderHeight;
         
         //Draw tooltip over highlighted bar
-        ToolTip tip = new ToolTip("Weapon: "+death.getCause() +"\n" + "Kills: " + death.getCount() + "\n" + "Crits: " + death.getCritCount(), color(248,185,138), arial);
+        ToolTip tip = new ToolTip(processing, "Weapon: "+death.getCause() +"\n" + "Kills: " + death.getCount() + "\n" + "Crits: " + death.getCritCount(), processing.color(248,185,138), arial);
         tip.draw();
       }
       

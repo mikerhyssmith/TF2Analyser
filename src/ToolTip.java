@@ -11,7 +11,7 @@ public class ToolTip{
   //Tip text (each element is a new line)
   String[] tipText;
   //Fill colour for tooltip box
-  color tipColour;
+  int tipColour;
   PFont font;
   //For when a tooltip containing a weapon icon is required
   Area iconArea = new Area(0,0,0,0);
@@ -22,7 +22,7 @@ public class ToolTip{
   float uOffset =0;
   float vOffset =0;
   
-  public ToolTip(PApplet p, String text, color colour, PFont font){
+  public ToolTip(PApplet p, String text, int colour, PFont font){
 	  this.processing = p;
     this.tipText = text.split("\n");
     this.tipColour = colour;
@@ -44,7 +44,8 @@ public class ToolTip{
     tipArea = new Area(width,height, processing.mouseX-width, processing.mouseY-height);
   }
   
-  public ToolTip(String text, color colour, PFont font, Area iconArea){
+  public ToolTip(PApplet p, String text, int colour, PFont font, Area iconArea){
+	  this.processing = p;
     this.tipText = text.split("\n");
     this.tipColour = colour;
     this.font = font;

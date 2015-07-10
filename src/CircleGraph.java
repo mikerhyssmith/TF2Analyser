@@ -226,7 +226,7 @@ class CircleGraph {
     for (int i = 0; i < circles.size (); i++)
     {
       Circle c =  circles.get(i);
-      fill(dataMap.getClassColour(dataMap.getPlayerClass(c.getLabel())));
+      processing.fill(dataMap.getClassColour(dataMap.getPlayerClass(c.getLabel())));
       c.draw();
       //Draw crit kills and tooltip if mouse is over the bar
       if(c.containsPoint(processing.mouseX,processing.mouseY)){
@@ -237,7 +237,7 @@ class CircleGraph {
     //Draw tooltip over highlighted bar
     if(circleSelected){
       death = deaths.get(circleKey);
-      ToolTip tip = new ToolTip("Weapon: "+ dataMap.getPrettyPrintWeaponName(death.getCause()) +"\n" + "Kills: " + death.getCount() + "\n" + "Crits: " + death.getCritCount(), color(248,185,138), arial);
+      ToolTip tip = new ToolTip(processing, "Weapon: "+ dataMap.getPrettyPrintWeaponName(death.getCause()) +"\n" + "Kills: " + death.getCount() + "\n" + "Crits: " + death.getCritCount(), processing.color(248,185,138), arial);
       tip.draw();
     }
   }

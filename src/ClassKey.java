@@ -37,37 +37,37 @@ class ClassKey {
 		processing.text("Environment", keyArea.getX() + 50, keyArea.getY() + 80);
 		processing.text("Suicide", keyArea.getX() + 170, keyArea.getY() + 80);
 
-		fill(dataMap.getClassColour("scout"));
+		processing.fill(dataMap.getClassColour("scout"));
 		processing.ellipse(keyArea.getX() + 45, keyArea.getY() + 10, 10, 10);
 
-		fill(dataMap.getClassColour("soldier"));
+		processing.fill(dataMap.getClassColour("soldier"));
 		processing.ellipse(keyArea.getX() + 145, keyArea.getY() + 10, 10, 10);
 
-		fill(dataMap.getClassColour("pyro"));
+		processing.fill(dataMap.getClassColour("pyro"));
 		processing.ellipse(keyArea.getX() + 220, keyArea.getY() + 10, 10, 10);
 
-		fill(dataMap.getClassColour("demoman"));
+		processing.fill(dataMap.getClassColour("demoman"));
 		processing.ellipse(keyArea.getX() + 45, keyArea.getY() + 30, 10, 10);
 
-		fill(dataMap.getClassColour("heavy"));
+		processing.fill(dataMap.getClassColour("heavy"));
 		processing.ellipse(keyArea.getX() + 145, keyArea.getY() + 30, 10, 10);
 
-		fill(dataMap.getClassColour("engineer"));
+		processing.fill(dataMap.getClassColour("engineer"));
 		processing.ellipse(keyArea.getX() + 220, keyArea.getY() + 30, 10, 10);
 
-		fill(dataMap.getClassColour("medic"));
+		processing.fill(dataMap.getClassColour("medic"));
 		processing.ellipse(keyArea.getX() + 45, keyArea.getY() + 50, 10, 10);
 
-		fill(dataMap.getClassColour("sniper"));
+		processing.fill(dataMap.getClassColour("sniper"));
 		processing.ellipse(keyArea.getX() + 145, keyArea.getY() + 50, 10, 10);
 
-		fill(dataMap.getClassColour("spy"));
+		processing.fill(dataMap.getClassColour("spy"));
 		processing.ellipse(keyArea.getX() + 220, keyArea.getY() + 50, 10, 10);
 
-		fill(dataMap.getClassColour("environment"));
+		processing.fill(dataMap.getClassColour("environment"));
 		processing.ellipse(keyArea.getX() + 120, keyArea.getY() + 70, 10, 10);
 
-		fill(dataMap.getClassColour("suicide"));
+		processing.fill(dataMap.getClassColour("suicide"));
 		processing.ellipse(keyArea.getX() + 210, keyArea.getY() + 70, 10, 10);
 	}
 

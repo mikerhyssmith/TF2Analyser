@@ -83,7 +83,7 @@ public class TreeGraph{
   *Produce the Tree Map
   */
  	public void processTreeGraph(){
- 		ClassKillsMap mapData = new ClassKillsMap(classKills,classObject);
+ 		ClassKillsMap mapData = new ClassKillsMap(processing, classKills,classObject);
  		map = new Treemap(mapData,0,processing.height- graphArea.getHeight(),graphArea.getWidth(),graphArea.getHeight());
     OrderedTreemap orderLayout = new OrderedTreemap();
     SquarifiedLayout layout = new SquarifiedLayout();
@@ -108,6 +108,7 @@ public class TreeGraph{
 }
 
 class ClassKillsMap extends SimpleMapModel{
+	PApplet processing;
 	HashMap classKills;
   ArrayList<KillsItem> killsArray;
 
@@ -118,15 +119,15 @@ class ClassKillsMap extends SimpleMapModel{
   /**
   * Overloaded constructor to allow us to process data.
   */
-	ClassKillsMap(HashMap<String,Integer> classKills,boolean classObject){
+	ClassKillsMap(PApplet p, HashMap<String,Integer> classKills,boolean classObject){
+		this.processing = p;
 		this.classKills = classKills;
 		Iterator it = classKills.entrySet().iterator();
-    killsArray = new ArrayList<KillsItem>();
+		killsArray = new ArrayList<KillsItem>();
     	while (it.hasNext()) {
         	Map.Entry pair = (Map.Entry)it.next();
         	int value = (Integer) pair.getValue();
-
-      			KillsItem item = new KillsItem(pair.getKey().toString());
+        	KillsItem item = new KillsItem(processing, pair.getKey().toString());
             item.setClassObject(classObject);
         		for(int i = 0; i< value; i++){
         			item.incrementSize();
@@ -153,7 +154,7 @@ class KillsItem extends SimpleMapItem {
 	PApplet processing;
   String word;
   boolean classObject = false;
-  WeaponToClassMap dataMap = new WeaponToClassMap();
+  WeaponToClassMap dataMap = new WeaponToClassMap(processing);
 
   KillsItem(PApplet p, String word) {
 	  this.processing = p;
@@ -169,9 +170,9 @@ class KillsItem extends SimpleMapItem {
 
     if(classObject){
 
-      fill(dataMap.getClassColour(word));
+    	processing.fill(dataMap.getClassColour(word));
     }else{
-      fill(dataMap.getClassColour(dataMap.getPlayerClass(word)));
+    	processing.fill(dataMap.getClassColour(dataMap.getPlayerClass(word)));
       printWord = dataMap.getPrettyPrintWeaponName(word);
     }
 
@@ -183,7 +184,7 @@ class KillsItem extends SimpleMapItem {
     if (w > processing.textWidth(printWord) + 6) {
       if (h > processing.textAscent() + 6) {
     	  processing.textAlign(processing.CENTER, processing.CENTER);
-        text(printWord, x + w/2, y + h/2);
+    	  processing.text(printWord, x + w/2, y + h/2);
       }
     }
   }

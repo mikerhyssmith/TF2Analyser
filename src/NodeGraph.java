@@ -219,7 +219,7 @@ public class NodeGraph {
 			y = playerScore;
 
 			// Create a node with player score, event time and a tooltip.
-			Node n = new Node((float) roundedX, y, new ToolTip(toolTipText, color(248, 185, 138), arial));
+			Node n = new Node((float) roundedX, y, new ToolTip(processing, toolTipText, processing.color(248, 185, 138), arial));
 			nodes.add(n);
 			previousX = x;
 

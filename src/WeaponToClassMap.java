@@ -35,7 +35,7 @@ class WeaponToClassMap{
 	/**
 	*Method for getting the colour representing a class.
 	*/
-	public color getClassColour(String playerClass){
+	public int getClassColour(String playerClass){
 		int red = 0;
 		int green = 0;
 		int blue = 0;
@@ -95,7 +95,7 @@ class WeaponToClassMap{
 
 			}
 			
-		return color(red,green,blue);
+		return processing.color(red,green,blue);
 
 	}
 
